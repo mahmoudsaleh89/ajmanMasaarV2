@@ -392,23 +392,30 @@ export class HomePage implements OnInit {
   setLangAndDirction() {
     this.storage.get('lang').then((result) => {
       debugger;
-      if (result == 'ar') {
-        this.translate.setDefaultLang('ar');
-        this.platform.setDir('rtl', true);
-        this.platform.setLang('ar', true);
-        this.settings.side = 'right';
-      } else if (result == 'en') {
-        this.translate.setDefaultLang('en');
-        this.platform.setDir('ltr', true);
-        this.platform.setLang('en', true);
-        this.settings.side = 'left';
-      }
-      else {
-        this.translate.setDefaultLang('en');
-        this.platform.setDir('ltr', true);
-        this.platform.setLang('en', true);
-        this.settings.side = 'left';
-      }
+
+        if (result == 'ar') {
+          this.storage.set('lang','ar');
+          this.translate.setDefaultLang('ar');
+          this.platform.setDir('rtl', true);
+          this.platform.setLang('ar', true);
+          this.settings.side = 'right';
+        }
+        else if (result == 'en') {
+          this.storage.set('lang','en');
+          this.translate.setDefaultLang('en');
+          this.platform.setDir('ltr', true);
+          this.platform.setLang('en', true);
+          this.settings.side = 'left';
+        }
+        else {
+          this.storage.set('lang','en');
+          this.translate.setDefaultLang('en');
+          this.platform.setDir('ltr', true);
+          this.platform.setLang('en', true);
+          this.settings.side = 'left';
+        }
+
+
 
     });
   }

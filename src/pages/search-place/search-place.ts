@@ -1,8 +1,10 @@
 import {Component, ElementRef, NgZone, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import {Geolocation, GeolocationOptions, Geoposition} from "@ionic-native/geolocation";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {LocationsProvider} from "../../providers/locations/locations";
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
 declare var google;
 
@@ -22,7 +24,7 @@ export class SearchPlacePage {
   currentPos: Geoposition;
   service = new google.maps.places.AutocompleteService();
   favLocation: any;
-
+  arrowDir: string;
   tempDataLocation;
   selectedPos = {
     locality: '',
@@ -39,7 +41,11 @@ export class SearchPlacePage {
               public geolocation: Geolocation,
               private zone: NgZone,
               public settings: GeneralSettingsProvider,
-              public locations: LocationsProvider) {
+              public locations: LocationsProvider,
+              public translate: TranslateService,
+              public platform: Platform,
+              public storage: Storage) {
+    this.setLangAndDirction();
     this.locations.loadTrips();
     this.locations.getToFavorits();
     this.autocompleteItems = [];
@@ -105,11 +111,36 @@ export class SearchPlacePage {
   }
 
   onAddtoFavorite(selectedlocation) {
-    debugger;
     let selected = {
       place: selectedlocation
     }
     this.locations.addToFavorits(selected);
   }
 
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.arrowDir = 'forward';
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.arrowDir = 'back';
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.arrowDir = 'back';
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+
+    });
+  }
 }
