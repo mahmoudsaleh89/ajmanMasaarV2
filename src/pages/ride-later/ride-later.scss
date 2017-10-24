@@ -1,0 +1,42 @@
+page-ride-later {
+  #map-ride-later {
+    height: 50%;
+  }
+  .clock-tool-bar {
+    width: 100%;
+    background-color: #5d5c5c;
+    text-align: center;
+    padding: 2%;
+    color: #fff;
+  }
+  .schedule {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .time-selector{
+    margin-top: 8%;
+  }
+  .time-selector .button-md {
+    color: #5d5c5c;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 0;
+   /* box-shadow: 0 0 0 0;*/
+    /* padding-top: 2%; */
+    height: 66px;
+    font-size: 18px;
+    /* border: solid red; */
+    border-top: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
+    margin-top: 0%;
+  }
+  .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+    width: 0px;
+    height: 0px;
+  }
+
+  div.scroll-content {
+    padding-top: 0px !important;
+  }
+
+}

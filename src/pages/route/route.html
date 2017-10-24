@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="element_content">
+    <ion-toolbar color="{{settings.themeColor}}">
+      <ion-card color="{{settings.themeColor}}" id="suggestedRoute">
+        <ion-card-content color="{{settings.themeColor}}">
+          <ion-row [hidden]="!open" (click)="onSelectRoute(i)" *ngFor="let route of suggestedRoute ;let i = index">
+            <ion-col *ngIf="i < 4" col-4>
+              <p>Departure on</p>
+              <p class="dep-time">
+                {{route[0].departure_on}} <span class="min-text">min</span>
+              </p>
+            </ion-col>
+            <ion-col *ngIf="i < 4" col-8>
+              <p>Travel Time : <span item-left class="time">{{route[0].duration.text}}</span>&nbsp;<span item-end
+                                                                                                         class="time">{{route[0].arrival_time.text}}</span>
+              </p>
+              <span *ngFor="let step of route[0].steps ; let j = index" item-left>
+                      <ion-icon *ngIf="j>0" class="arrow" color="main-brawen" name="ios-arrow-forward-outline"
+                                item-left>
+                         </ion-icon>
+                        <span color="main-dark-blue" *ngIf="step.travel_mode == 'TRANSIT'" text-center ion-col
+                              item-left>
+                        <ion-icon color="main-pinck" name="{{step.transit.line.vehicle.type | lowercase}}"
+                                  item-left></ion-icon>
+                          <span ion-col text-center>{{step.transit.line.short_name}}</span>
+                        </span>
+                        <span ion-col text-center class="walk" item-left *ngIf="step.travel_mode == 'WALKING'">
+                        <ion-icon color="blue-masar" name="walk" item-left></ion-icon>
+                        </span>
+              </span>
+            </ion-col>
+
+          </ion-row>
+          <ion-row [hidden]="open" (click)="onSelectRoute(i)" *ngFor="let route of firstRoute ;let i = index">
+            <ion-col col-4>
+              <p>Departure on</p>
+              <p class="dep-time">
+                {{route[0].departure_on}} <span class="min-text">min</span>
+              </p>
+            </ion-col>
+            <ion-col col-8>
+              <p>Travel Time : <span item-left class="time">{{route[0].duration.text}}</span>&nbsp;<span item-end
+                                                                                                         class="time">{{route[0].arrival_time.text}}</span>
+              </p>
+              <span *ngFor="let step of route[0].steps ; let j = index" item-left>
+                      <ion-icon *ngIf="j>0" class="arrow" color="main-brawen" name="ios-arrow-forward-outline"
+                                item-left>
+                         </ion-icon>
+                        <span color="main-dark-blue" *ngIf="step.travel_mode == 'TRANSIT'" text-center ion-col
+                              item-left>
+                        <ion-icon color="main-pinck" name="{{step.transit.line.vehicle.type | lowercase}}"
+                                  item-left></ion-icon>
+                          <span ion-col text-center>{{step.transit.line.short_name}}</span>
+                        </span>
+                        <span ion-col text-center class="walk" item-left *ngIf="step.travel_mode == 'WALKING'">
+                        <ion-icon color="blue-masar" name="walk" item-left></ion-icon>
+                        </span>
+</span>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        <button ion-button color="light" clear block text-center (click)="toggleArea()">
+          <ion-icon name="{{iconUse}}" style="font-size: 3em;"></ion-icon>
+        </button>
+      </ion-card>
+    </ion-toolbar>
+    <div [hidden]="hide" id="custom-panel" *ngFor="let route of suggestedRoute[0]">
+      <ion-list *ngFor="let thestep of theSteps; let y = index;let last = last">
+        <ion-item *ngIf="thestep.type=='TRANSIT'">
+
+          <ion-avatar item-start text-center>
+            <p [ngClass]="{'secondary':  y ==0}">{{thestep.time}}</p>
+            <p>
+              <ion-icon *ngIf="y==0" color="secondary" name="ios-disc-outline"></ion-icon>
+            </p>
+            <p>
+              <ion-icon color="main-pinck" name="{{thestep.transittype | lowercase}}"></ion-icon>
+              <span class="transport-name">{{thestep.busName}}</span></p>
+            <p>
+              <ion-icon md="md-arrow-round-down"></ion-icon>
+            </p>
+            <p>
+              <ion-icon *ngIf="last" color="secondary" name="ios-disc-outline"></ion-icon>
+            </p>
+          </ion-avatar>
+
+          <h2>{{thestep.name}}</h2>
+          <h3>{{thestep.instructions}}</h3>
+          <p>{{thestep.duration}} | stops ({{thestep.numOfStops}})</p>
+        </ion-item>
+        <ion-item *ngIf="thestep.type=='WALKING'">
+          <ion-avatar item-start text-center>
+            <p [ngClass]="{'secondary':  y ==0}">{{thestep.time}}</p>
+            <p>
+              <ion-icon *ngIf="y==0" color="secondary" name="ios-disc-outline"></ion-icon>
+            </p>
+            <ion-icon color="main-blue" name="walk"></ion-icon>
+            <p>
+              <ion-icon md="md-more"></ion-icon>
+            </p>
+          </ion-avatar>
+          <h2>{{thestep.name}}</h2>
+          <h3>{{thestep.instructions}}</h3>
+          <p>{{thestep.duration}} | distance: ({{thestep.distance}})</p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div #directionsPanelx></div>
+    <div #map id="map-diriction" [ngClass]="classAded"></div>
+
+    <div id="rout_fare">
+      <ion-row>
+        <ion-col col-6>
+          <button class="animated flash duration5" (click)="onShowMap()" ion-button block round item-end icon-left
+                  color="secondary">
+            <ion-icon name="ios-map-outline"></ion-icon>
+            {{label}}
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button (click)="OnGoToWallet()" ion-button block round item-end icon-left color="light">
+            <ion-icon name="ios-cash-outline"></ion-icon>
+            {{fare}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

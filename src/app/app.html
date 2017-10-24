@@ -1,1 +1,48 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+
+
+  <ion-content id="menu-custom">
+    <ion-item color="{{settings.themeColor}}" class="logo-menu" (click)="onGoToTopup()">
+      <!--<img src="img/masar-card.png" >-->
+      <div class="masser_card">
+        <div class="add-cr">
+          <ion-icon name="add" class="add-btn"></ion-icon>
+        </div>
+        <img src="img/card-logo.png">
+        <p text-center>{{account.massarCard}}</p>
+        <span>AED</span>
+      </div>
+    </ion-item>
+    <ion-list style="margin-top:60%">
+      <ion-item *ngFor="let page of pages" (click)="openPage(page)" menuClose>
+        <ion-icon name="{{page.icon}}" ion-start color="{{settings.themeColor}}"></ion-icon>
+        <button>
+          <p class="main-lable">{{page.title | translate}}</p>
+          <p>{{page.subtitle}}</p>
+        </button>
+
+      </ion-item>
+      <ion-item
+        (click)="onGoToRatePage()">
+        <ion-icon name="star" ion-start color="{{settings.themeColor}}"></ion-icon>
+        <button>
+          <p class="main-lable">Rate this app</p>
+          <p>We care about your opinion</p>
+        </button>
+      </ion-item>
+
+      <ion-item (click)="onGoToContactPage()">
+        <ion-icon name="ios-call" ion-start color="{{settings.themeColor}}"></ion-icon>
+        <button>
+          <p class="main-lable">Contact us</p>
+          <p>We would like to serve you</p>
+        </button>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

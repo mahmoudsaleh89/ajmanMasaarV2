@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>top-up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding style="background-color: #f8f8f8;" has-bouncing="false">
+  <div class="element_content">
+    <p class="header-p" text-center padding>
+      Please enter the amount you would like to top up
+    </p>
+    <ion-list no-padding>
+      <ion-item text-center>
+        <ion-label text-center>AED</ion-label>
+        <ion-input text-center type="number" [(ngModel)]="value"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row text-center>
+      <ion-col>
+        <button large class="active-btn" (click)="setInput(5)" ion-button color="{{settings.themeColor}}">AED<br>5
+        </button>
+      </ion-col>
+      <ion-col>
+        <button large class="active-btn" (click)="setInput(10)" ion-button color="{{settings.themeColor}}">
+          AED<br>
+          10
+        </button>
+      </ion-col>
+      <ion-col>
+        <button large ion-button color="{{settings.themeColor}}" (click)="setInput(20)">AED<br>20</button>
+      </ion-col>
+    </ion-row>
+    <div padding>
+      <button (click)="onTopupBalance()" block text-center ion-button color="secondary">
+        Continue &nbsp;
+        <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
+      </button>
+    </div>
+  </div>
+</ion-content>

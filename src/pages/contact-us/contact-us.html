@@ -1,0 +1,31 @@
+<ion-content style="background-color: #f5f5f5" scroll="false" has-bouncing="false">
+  <div class="close-modal">
+    <button color="light" ion-button clear block text-center (click)="closeModal()">
+      <ion-icon name="ios-close-circle-outline"></ion-icon>
+    </button>
+  </div>
+  <div class="form-area">
+    <h3>Contact us !</h3>
+    <p>
+      thanks for reaching out.<br>
+      Our team will be happy to ssupport you.
+    </p>
+    <p style="color: #b3acac;">
+      We are available for calls during or shortly after a ride
+    </p>
+    <ion-item>
+      <a href="tel:00971600599997" ion-button clear item-end color="dark">
+        <ion-icon name="call"></ion-icon>&nbsp; call</a>
+      <button (click)="onGoToFormPage()" ion-button clear item-end color="{{settings.themeColor}}">
+        <ion-icon name="mail"></ion-icon>&nbsp; Email us
+      </button>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <img src="img/contact.jpg">
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+</ion-content>

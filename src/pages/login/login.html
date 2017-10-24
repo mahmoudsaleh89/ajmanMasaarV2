@@ -1,0 +1,144 @@
+<ion-content style="background-color: #f5f5f5" class="no-scroll">
+
+  <div class=" background-login">
+    <div>
+      <ion-segment [(ngModel)]="tabSet">
+        <ion-segment-button value="login">
+          Login
+        </ion-segment-button>
+        <ion-segment-button value="register">
+          Register
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="tabSet" class="login-switch">
+      <div class="login-area" *ngSwitchCase="'login'">
+        <form #f="ngForm" (ngSubmit)="onSignin(f)">
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="person"></ion-icon>
+              </ion-label>
+              <ion-input name="username" required ngModel type="text" placeholder="user name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="lock"></ion-icon>
+              </ion-label>
+              <ion-input name="password" ngModel required type="password" placeholder="Password"></ion-input>
+            </ion-item>
+          </ion-list>
+          <div>
+            <button type="submit" ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">Sign In
+            </button>
+          </div>
+          <div hidden>
+            <button type="button" class="forgot-btn" ion-button clear block color="{{settings.themeColor}}">Forgot
+              password ?
+            </button>
+          </div>
+
+        </form>
+        <div>
+          <button class="forgot-btn" (click)="skip()" ion-button clear block color="dark">Skip</button>
+        </div>
+      </div>
+      <div class="register-form" large *ngSwitchCase="'register'">
+        <form *ngIf="!usePayment" #f="ngForm" (ngSubmit)="onSignUp(f)">
+          <ion-list inset>
+            <ion-row>
+              <ion-col ion-item col-6>
+                <ion-label stacked color="dark-gray-custom">First Name</ion-label>
+                <ion-input required name="firstName" ngModel color="{{settings.themeColor}}"
+                           type="text"></ion-input>
+              </ion-col>
+              <ion-col ion-item col-6>
+                <ion-label stacked color="dark-gray-custom">Last Name</ion-label>
+                <ion-input required name="lastName" ngModel color="{{settings.themeColor}}" type="text"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col ion-item col-4>
+                <ion-label stacked color="dark-gray-custom">code</ion-label>
+                <ion-input required placeholder="+971" name="code" ngModel color="{{settings.themeColor}}"
+                           type="number"></ion-input>
+              </ion-col>
+              <ion-col ion-item col-8>
+                <ion-label stacked color="dark-gray-custom">Phone number</ion-label>
+                <ion-input required name="phone" ngModel color="{{settings.themeColor}}" type="number"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+
+          <ion-list inset>
+            <ion-item class="ios-last">
+              <ion-label color="dark-gray-custom" stacked>User Name</ion-label>
+              <ion-input required name="username" required [minlength]="6" ngModel color="{{settings.themeColor}}"
+                         type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="dark-gray-custom" stacked>Password</ion-label>
+              <ion-input required name="password" ngModel required [minlength]="6" color="{{settings.themeColor}}"
+                         type="password"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="platform.is('android')">
+              <ion-label color="dark-gray-custom" stacked>Masaar card</ion-label>
+              <ion-input placeholder="scan your masaar card" disabled name="cardidandroid" [(ngModel)]="tagIdValue"
+                         color="{{settings.themeColor}}"
+                         type="text"></ion-input>
+              <img src="img/nfc-t.gif" style="width:50px" item-end>
+            </ion-item>
+            <ion-item *ngIf="platform.is('ios')">
+              <ion-label color="dark-gray-custom" stacked>Masaar card</ion-label>
+              <ion-input name="cardidios" ngModel color="{{settings.themeColor}}"
+                         type="text"></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-list>
+            <ion-item class="sign-up-btn">
+              <button type="submit" large ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+                submit
+              </button>
+            </ion-item>
+          </ion-list>
+        </form>
+        <form *ngIf="usePayment" #f2="ngForm" (ngSubmit)="onSignUpFull(f2)">
+          <ion-list inset>
+            <ion-item>
+              <ion-label color="dark-gray-custom" stacked>POBox</ion-label>
+              <ion-input required name="pobox" required [minlength]="3" ngModel color="{{settings.themeColor}}"
+                         type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="dark-gray-custom" stacked>Email</ion-label>
+              <ion-input required name="email" required [minlength]="8" ngModel color="{{settings.themeColor}}"
+                         type="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="dark-gray-custom" stacked>Billing Address</ion-label>
+              <ion-input required name="billingaddress" ngModel required [minlength]="4" color="{{settings.themeColor}}"
+                         type="text"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-list>
+            <ion-item class="sign-up-btn">
+              <button large type="submit" ion-button block [disabled]="!f2.valid" color="{{settings.themeColor}}">
+                save
+                &nbsp;
+                <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
+              </button>
+            </ion-item>
+          </ion-list>
+        </form>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</ion-content>

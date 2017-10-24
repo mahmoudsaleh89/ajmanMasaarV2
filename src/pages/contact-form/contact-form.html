@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-buttons large left>
+      <button (click)="onback()" ion-button >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Send Email</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="logo-imag" text-center="">
+    <img src="img/res-ptc-logo.png">
+    <br>
+    <img src="img/card-logo.png" style="width: 71%;">
+  </div>
+  <form #f="ngForm" (ngSubmit)="onSendContactForm(f)">
+    <ion-list inset>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person"></ion-icon>
+        </ion-label>
+        <ion-input name="name" ngModel type="text" placeholder="your name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="phone-portrait"></ion-icon>
+        </ion-label>
+        <ion-input name="phone" ngModel type="number" placeholder="your phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="document"></ion-icon>
+        </ion-label>
+        <ion-textarea required name="description" ngModel placeholder="Descripe your issue"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <button type="submit" large ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+          Submit
+        </button>
+      </ion-item>
+    </ion-list>
+    <div>
+
+    </div>
+  </form>
+</ion-content>

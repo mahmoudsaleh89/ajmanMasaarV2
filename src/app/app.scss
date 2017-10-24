@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,224 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+/*animation time*/
+.duration1 {
+  -webkit-animation-delay: 300ms !important;
+  animation-delay: 300ms !important;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0 !important;
+  animation-duration: 0 !important;
+}
+
+.duration2 {
+  -webkit-animation-delay: 400ms !important;
+  animation-delay: 300ms !important;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0 !important;
+  animation-duration: 0 !important;
+}
+
+.duration3 {
+  -webkit-animation-delay: 500ms !important;
+  animation-delay: 300ms !important;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0 !important;
+  animation-duration: 0 !important;
+}
+
+.duration4 {
+  -webkit-animation-delay: 550ms !important;
+  animation-delay: 300ms !important;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0 !important;
+  animation-duration: 0 !important;
+}
+
+.duration5 {
+  -webkit-animation-delay: 600ms !important;
+  animation-delay: 300ms !important;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration: 0 !important;
+  animation-duration: 0 !important;
+}
+
+#menu-custom .scroll-content {
+  background-color: #353535;
+}
+
+#menu-custom ion-label {
+  margin: 0;
+}
+
+#menu-custom .item-inner {
+  padding: 0;
+  /* border-bottom: solid #353535 1px !important;*/
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background-color: #353535;
+}
+
+#menu-custom .logo-menu .item-inner {
+  background-color: transparent;
+  padding-bottom: 14px;
+}
+
+#menu-custom .item {
+  padding: 0;
+}
+
+.nav-custom .toolbar-title-md {
+  padding: 0 !important;
+}
+
+#menu-custom button {
+  text-align: start !important;
+  background-color: transparent;
+  width: 60%;;
+  border-bottom: 1px solid #fff;
+  padding: 5% 0%;
+}
+
+/*#menu-custom .item-block button:last-child{
+  border-bottom: 1px solid transparent;
+}*/
+#menu-custom ion-icon {
+  font-size: 1.4em;
+  padding: 10px 20px;
+  vertical-align: text-top;
+}
+
+#menu-custom .item p {
+  color: #d4d4d4;
+  font-size: 11px;
+}
+
+#menu-custom p.main-lable {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+ion-item.logo-menu.item.item-block {
+  line-height: 0;
+  background-color: #3b3b3b;
+  color: #06bbd3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+}
+
+.empty-result-array {
+  font-size: 40px !important;
+  color: darkgrey;
+  margin-top: 20%;
+}
+
+.empty-result-array p {
+  font-size: 20px !important;
+}
+
+.masser_card {
+  background-color: #fff;
+  margin: 0 9%;
+  margin-top: 5%;
+  padding: 7%;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.masser_card p {
+  font-size: 30px !important;
+  color: #7b7474 !important;
+}
+
+.masser_card img {
+  width: 60%;
+  height: 22%;
+  text-align: -webkit-center;
+}
+
+.masser_card span {
+  display: block;
+  color: #7b7475;
+}
+
+.add-cr {
+  background-color: #e16c28 !important;
+  position: absolute;
+  left: 66%;
+  bottom: 2px;
+  border-radius: 100%;
+}
+
+#logo-menu .item-inner {
+  padding-bottom: 14px;
+}
+
+ion-icon.icon.icon-md.ion-md-add.item-icon,
+ion-icon.add-btn.icon.icon-ios.ion-ios-add.item-icon {
+  font-size: 28px !important;
+  color: #fff !important;
+  padding: 5px 10px !important;
+}
+
+.ios {
+  #menu-custom button {
+    border-bottom: 2px solid #fff;
+  }
+  .header-ios .toolbar-background-ios {
+    border-color: rgba(232, 121, 35, 0);
+  }
+  .searchbar-ios {
+    background-color: #ffffff;
+    border-bottom: 0;
+  }
+  .searchbar-ios .searchbar-input {
+    background-color: #d1d1d1;
+
+  }
+  .list-ios > .item-block:last-child,
+  .list-ios > .item-block:first-child {
+    border-bottom: 0 !important;
+  }
+
+  /*  div.scroll-content {
+      padding-top: 0px !important;
+    }
+    .no-scroll {
+      overflow-y: hidden !important;
+    }*/
+  /* #menu-custom .scroll-content {
+     overflow-y: hidden;
+   }*/
+
+  /*#menu-custom .scroll-content .list-ios {
+    height: 100% !important;
+    overflow-y: scroll !important;
+  }*/
+  #menu-custom ion-list.list-ios {
+    margin-top: 0 !important;
+  }
+  #menu-custom ion-item.logo-menu.item.item-block.item-ios {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: auto;
+  }
+
+  #menu-custom .scroll-content {
+    overflow-y: scroll !important;
+  }
+  #menu-custom .logo-menu {
+    padding-top: 20px;
+  }
+  #menu-custom .list-ios > .item-block:first-child {
+    border-top: 0 !important;
+  }
+}

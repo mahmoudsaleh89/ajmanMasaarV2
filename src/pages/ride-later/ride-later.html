@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>Ride later</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content has-bouncing="false">
+  <div #mapRideLater id="map-ride-later">
+  </div>
+  <div class="clock-tool-bar">{{currentTime}}</div>
+  <div class="time-selector">
+
+      <h4 style="text-align: center;color: gray;">set your time</h4>
+
+    <button block  (click)="openTimePicker()" ion-button>{{currentTime}}</button>
+  </div>
+  <div class="schedule">
+    <button block large (click)="onSetSchedule()" ion-button color="secondary">schedule</button>
+  </div>
+</ion-content>

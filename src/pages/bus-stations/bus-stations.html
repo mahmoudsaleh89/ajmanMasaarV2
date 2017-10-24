@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Bus Station</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!--class="animated fadeInRight"-->
+<ion-content padding has-bouncing="false">
+  <ion-list class="element_content">
+    <ion-item (click)="onGoToBusScheduler(location.Id,location.LocationName)"
+
+              *ngFor="let location of locations.staticData;let i = index;">
+      <ion-avatar item-start>
+        <img src="img/bus-stop.png">
+      </ion-avatar>
+      <h2>{{location.LocationName}}</h2>
+      <h4>{{location.Description}}</h4>
+      <p>{{location.distance}} Km</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

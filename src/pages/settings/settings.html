@@ -1,0 +1,190 @@
+<!--Header-->
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+    <ion-buttons large end>
+      <button type="submit" *ngIf="editMode" large ion-button (click)="onUpdatePersonalSettings()">
+        save
+      </button>
+      <button item-end *ngIf="editMode" large ion-button (click)="closeEditMode()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      <button *ngIf="!editMode" large ion-button (click)="openEditMode()">
+        Edit
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="element_content">
+
+    <!--Edit Mode Form-->
+    <form *ngIf="editMode" #myForm="ngForm">
+      <ion-item-divider>Personal Information</ion-item-divider>
+      <ion-list inset>
+        <ion-row>
+          <ion-col ion-item col-6>
+            <ion-label stacked color="dark-gray-custom">First Name</ion-label>
+            <ion-input required name="firstName" [(ngModel)]="acc.userLoginSuccess.FirstName"
+                       color="{{settings.themeColor}}"
+                       type="text"></ion-input>
+          </ion-col>
+          <ion-col ion-item col-6>
+            <ion-label stacked color="dark-gray-custom">Last Name</ion-label>
+            <ion-input required name="lastName" [(ngModel)]="acc.userLoginSuccess.LastName"
+                       color="{{settings.themeColor}}" type="text"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col ion-item col-4>
+            <ion-label stacked color="dark-gray-custom">code</ion-label>
+            <ion-input disabled required placeholder="+971" name="code" ngModel color="{{settings.themeColor}}"
+                       type="number"></ion-input>
+          </ion-col>
+          <ion-col ion-item col-8>
+            <ion-label stacked color="dark-gray-custom">Phone number</ion-label>
+            <ion-input disabled required name="phone" [(ngModel)]="acc.userLoginSuccess.Phone"
+                       color="{{settings.themeColor}}"
+                       type="number"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+      <ion-list inset>
+        <ion-item>
+          <ion-label color="dark-gray-custom" stacked>POBox</ion-label>
+          <ion-input required name="pobox" required [minlength]="3" [(ngModel)]="acc.userLoginSuccess.POBox"
+                     color="{{settings.themeColor}}"
+                     type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark-gray-custom" stacked>Email</ion-label>
+          <ion-input required name="email" required [minlength]="8" [(ngModel)]="acc.userLoginSuccess.Email"
+                     color="{{settings.themeColor}}"
+                     type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark-gray-custom" stacked>Billing Address</ion-label>
+          <ion-input required name="billingaddress" [(ngModel)]="acc.userLoginSuccess.BillingAddress" required
+                     [minlength]="4" color="{{settings.themeColor}}"
+                     type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-item-divider>General Settings</ion-item-divider>
+      <ion-list>
+        <ion-item>
+          <ion-label>language</ion-label>
+          <ion-select disabled name="language" [(ngModel)]="settings.lang">
+            <ion-option value="english">English</ion-option>
+            <ion-option value="arabic">العربية</ion-option>
+            <ion-option value="ardo">ارڈو</ion-option>
+          </ion-select>
+          <ion-icon name="ios-globe-outline" item-start></ion-icon>
+          <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
+          <ion-label>Theme color</ion-label>
+          <ion-select disabled name="themecolor" [(ngModel)]="settings.themeColor">
+            <ion-option (click)="onSelectTheme('m-orange')" value="m-orange">Orange</ion-option>
+            <ion-option (click)="onSelectTheme('m-pink')" value="m-pink">Pink</ion-option>
+            <ion-option (click)="onSelectTheme('m-dark-blue')" value="m-dark-blue">Dark blue</ion-option>
+            <ion-option (click)="onSelectTheme('m-blue')" value="m-blue">Light blue</ion-option>
+            <ion-option (click)="onSelectTheme('m-brown')" value="m-brown">Brown</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="md-color-filter" item-start></ion-icon>
+          <ion-label>Blind Mood (soon)</ion-label>
+          <ion-toggle disabled checked="false"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Search Route</ion-label>
+          <ion-select disabled name="searchroute" [(ngModel)]="searchRoute">
+            <ion-option value="bestrout">Best route</ion-option>
+            <ion-option value="lesstransfers">less transfers</ion-option>
+            <ion-option value="lesswalk">Less Walk</ion-option>
+          </ion-select>
+          <ion-icon name="ios-globe-outline" item-start></ion-icon>
+          <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+        </ion-item>
+        <!--<ion-item class="sign-up-btn">
+          <button type="submit" ion-button block clear text-center>
+            update
+          </button>
+        </ion-item>-->
+      </ion-list>
+    </form>
+    <!--View Mode-->
+
+
+    <!--Profile-->
+    <ion-list *ngIf="!editMode">
+      <ion-list-header>
+        <p>Profile</p>
+      </ion-list-header>
+      <ion-item>
+
+        <ion-icon name="ios-person-outline" item-start></ion-icon>
+        <h3>Name</h3>
+        <p>{{acc.userLoginSuccess.FirstName}} {{acc.userLoginSuccess.LastName}}</p>
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-call-outline" item-start></ion-icon>
+        <h3>Mobile</h3>
+        <p>{{acc.userLoginSuccess.Phone}}</p>
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-mail-outline" item-start></ion-icon>
+        <h3>Email</h3>
+        <p>{{acc.userLoginSuccess.Email}}</p>
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+    <!--General-->
+    <ion-list *ngIf="!editMode">
+      <ion-list-header>
+        <p>General</p>
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="ios-globe-outline" item-start></ion-icon>
+        <h3>language</h3>
+        <p>{{settings.lang}}</p>
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
+        <h3>Theme color</h3>
+        <p>{{settings.themeColor}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-color-filter" item-start></ion-icon>
+        <ion-label>Blind Mood (soon)</ion-label>
+        <ion-toggle [disabled]="!editMode" checked="false"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-browsers-outline" item-start></ion-icon>
+        <h3>Sort By </h3>
+        <p>Less Walk</p>
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="!editMode">
+      <ion-item hidden>
+        <ion-icon name="ios-lock-outline" item-start></ion-icon>
+        Change Password
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+      <button ion-item (click)="onSignOut()">
+        <ion-icon name="ios-log-out-outline" item-start></ion-icon>
+        Sign Out
+        <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </button>
+    </ion-list>
+  </div>
+</ion-content>

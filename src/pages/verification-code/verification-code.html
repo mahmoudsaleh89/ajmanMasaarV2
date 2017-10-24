@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <!-- <ion-title>verification-code</ion-title>-->
+  </ion-navbar>
+</ion-header>
+<ion-content padding has-bouncing="false">
+  <h2>
+    Verify your mobile number
+  </h2>
+  <p>Enter the code you have received via SMS on {{phone}}
+  </p>
+  <button ion-button clear (click)="onResendVerifyCode()" [disabled]="inactive" class="edit-number"> Resend code
+  </button>
+  <form #f="ngForm" (ngSubmit)="onVerification(f)">
+    <ion-list>
+      <ion-item>
+        <ion-input name="code" required [minlength]="3" ngModel type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button large type="submit" ion-button block [disabled]="!f.valid" color="secondary">
+          Send
+        </button>
+      </ion-item>
+    </ion-list>
+
+  </form>
+</ion-content>

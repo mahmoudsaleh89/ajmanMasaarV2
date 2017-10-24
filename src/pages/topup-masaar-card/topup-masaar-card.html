@@ -1,0 +1,101 @@
+<ion-header>
+
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>Top up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding style="background-color: #f5f5f5;">
+  <div class="element_content">
+    <div class="masser_card" *ngIf="showCard">
+      <div>
+        <img src="img/card-logo.png">
+        <p text-center>{{balance.massarCardBlance}}</p>
+        <span>AED</span>
+      </div>
+    </div>
+
+    <!--masaar card top up for ios and android -->
+    <div *ngIf="platform.is('ios') && !showCard">
+      <ion-card class="custom-card">
+        <ion-item>
+          <ion-card-content>
+
+            <div class="card-masaar">
+              <div class="pt" text-left>
+                <img src="img/res-ptc-logo.png" style="width: 80px">
+              </div>
+              <div text-center>
+                <img src="img/card-logo.png">
+              </div>
+              <ion-row>
+                <ion-col class="animated flash infinite" style="text-align: -webkit-right; color: #c18224;">
+                  1234XXXXXX
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="phone-unm">
+                  600599997
+                </ion-col>
+                <ion-col style="font-size: 6px;padding-top: 5%;text-align: right;">
+                  *هذه البطاقة خاضعة لاحكام وشروط الاستخدام
+                </ion-col>
+
+              </ion-row>
+            </div>
+          </ion-card-content>
+        </ion-item>
+      </ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>Card number</ion-label>
+          <ion-input required [(ngModel)]="cardSerial" [minlength]="10" [maxlength]="10" type="number"
+                     placeholder="123XXXXXXX"></ion-input>
+          <button (click)="CheckCardBySerial()" ion-button outline item-end>
+            Check card
+          </button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="nfc-area" *ngIf="!showCard && platform.is('android')" text-center>
+      <p>Scan your Masaar card to topup</p>
+      <img src="img/nfc-t.gif">
+    </div>
+
+    <p *ngIf="showCard" class="header-p" text-center padding>
+      Please enter the amount you would like to top up
+    </p>
+    <ion-list *ngIf="showCard" no-padding>
+      <ion-item text-center>
+        <ion-label text-center>AED</ion-label>
+        <ion-input text-center type="number" [(ngModel)]="value"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row text-center>
+      <ion-col>
+        <button large *ngIf="showCard" class="active-btn" (click)="setInput(5)" ion-button
+                color="{{settings.themeColor}}">AED<br>5
+        </button>
+      </ion-col>
+      <ion-col>
+        <button large *ngIf="showCard" class="active-btn" (click)="setInput(10)" ion-button
+                color="{{settings.themeColor}}">
+          AED<br>
+          10
+        </button>
+      </ion-col>
+      <ion-col>
+        <button large *ngIf="showCard" ion-button color="{{settings.themeColor}}" (click)="setInput(20)">AED<br>20
+        </button>
+      </ion-col>
+    </ion-row>
+    <div padding>
+      <button *ngIf="showCard" (click)="onTopupBalance()" block text-center ion-button color="secondary">
+        Continue &nbsp;
+        <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
+      </button>
+    </div>
+  </div>
+</ion-content>

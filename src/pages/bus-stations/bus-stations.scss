@@ -1,0 +1,11 @@
+page-bus-stations {
+  .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+    width: 0px;
+    height: 0px;
+  }
+
+  div.scroll-content {
+    padding-top: 0px !important;
+  }
+
+}

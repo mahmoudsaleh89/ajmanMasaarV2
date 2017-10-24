@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Wallet</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="element_content">
+    <!--Balance-->
+    <ion-list>
+      <ion-list-header>
+        Check Balance
+      </ion-list-header>
+      <button ion-item (click)="onToggelCredit()">
+        <p item-start>AED &nbsp; &nbsp; &nbsp;</p>
+        My Account
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </button>
+      <button ion-item *ngIf="showAcount" style="background-color: #f5f5f5">
+        <div class="masser_card">
+          <img src="img/card-logo.png">
+          <p text-center>{{account.massarCard}}</p>
+          <span>AED</span>
+        </div>
+      </button>
+      <button ion-item (click)="onCheckBlaneios()">
+        <ion-icon name="ios-card-outline" item-start></ion-icon>
+        Masaar card
+        <img *ngIf="platform.is('android')" src="img/nfc-t.gif" item-end style="width:50px">
+      </button>
+
+      <button ion-item *ngIf="showCard" style="background-color: #f5f5f5">
+        <div class="masser_card">
+          <img src="img/card-logo.png">
+          <p text-center>{{balance.massarCardBlance}}</p>
+          <span>AED</span>
+        </div>
+      </button>
+
+    </ion-list>
+    <!--Topup-->
+    <ion-list>
+      <ion-list-header>
+        Topup credit
+      </ion-list-header>
+      <button ion-item (click)="onGoToTopUp()">
+        <ion-icon name="ios-person-outline" item-start></ion-icon>
+        My Account
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </button>
+      <button ion-item (click)="onGoToTopUpMasar()">
+        <ion-icon name="ios-color-wand-outline" item-start></ion-icon>
+        Masaar card
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </button>
+
+    </ion-list>
+    <!--Promotion-->
+    <ion-list>
+      <ion-list-header>
+        Masaar Promotions
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="ios-pricetags-outline" item-start></ion-icon>
+        Topup your account by 40 AED get 10 FREE
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-pricetags-outline" item-start></ion-icon>
+        Topup your Masaar card and git one ride FREE
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+    <!--Transaction-->
+    <ion-list [hidden]="true">
+      <ion-list-header>
+        Transactions
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="ios-swap-outline" item-start></ion-icon>
+        Show last 5 transactions
+        <ion-icon *ngIf="platform.is('android')" name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

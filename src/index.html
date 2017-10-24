@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <style>
+    @media only screen and (min-height: 600px) and (min-width: 768px) {
+      .modal-wrapper {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+      width: 0px;
+      height: 0px;
+    }
+
+    .content-ios .scroll-content {
+      overflow-y: hidden !important;
+    }
+
+    .content-ios:not([no-bounce]) > .scroll-content::before {
+      bottom: 0px !important;
+    }
+
+    .content-ios:not([no-bounce]) > .scroll-content::after {
+      top: 0px !important;
+    }
+
+    .element_content {
+      height: 100%;
+      overflow-y: scroll !important;
+      position: absolute;
+      left: 0;
+      right:0;
+    }
+
+  </style>
   <meta charset="UTF-8">
   <title>Ionic App</title>
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
-
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link href="assets/css/animate.css" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-  
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+  <!--Google APi -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDybbxuFt_FlJYAduPS-iiBB1fLy1yk7oI&libraries=places"></script>
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
@@ -32,18 +67,18 @@
 </head>
 <body>
 
-  <!-- Ionic's root component and where the app will load -->
-  <ion-app></ion-app>
+<!-- Ionic's root component and where the app will load -->
+<ion-app></ion-app>
 
-  <!-- The polyfills js is generated during the build process -->
-  <script src="build/polyfills.js"></script>
+<!-- The polyfills js is generated during the build process -->
+<script src="build/polyfills.js"></script>
 
-  <!-- The vendor js is generated during the build process
-       It contains all of the dependencies in node_modules -->
-  <script src="build/vendor.js"></script>
+<!-- The vendor js is generated during the build process
+     It contains all of the dependencies in node_modules -->
+<script src="build/vendor.js"></script>
 
-  <!-- The main bundle js is generated during the build process -->
-  <script src="build/main.js"></script>
+<!-- The main bundle js is generated during the build process -->
+<script src="build/main.js"></script>
 
 </body>
 </html>

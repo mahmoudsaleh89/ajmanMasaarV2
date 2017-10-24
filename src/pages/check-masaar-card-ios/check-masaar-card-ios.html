@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>Masaar card balance</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="element_content">
+    <!--masaar card top up for ios and android -->
+    <div *ngIf="platform.is('ios')">
+      <ion-card class="custom-card">
+        <ion-item>
+          <ion-card-content>
+
+            <div class="card-masaar">
+              <div class="pt" text-left>
+                <img src="img/res-ptc-logo.png" style="width: 80px">
+              </div>
+              <div text-center>
+                <img src="img/card-logo.png">
+              </div>
+              <ion-row *ngIf="showBalanceIos">
+                <ion-col>
+                  <ion-item *ngIf="showBalanceIos" text-center>
+                    <ion-label text-center>AED</ion-label>
+                    <ion-input [ngClass]="{'infinite flash' :showBalanceIos}" class="animated" disabled text-center
+                               type="text" [(ngModel)]="balance.massarCardBlance"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col *ngIf="!showBalanceIos" class="animated infinite flash"
+                         style="text-align: -webkit-right; color: #c18224;">
+                  1234XXXXXX
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="phone-unm">
+                  600599997
+                </ion-col>
+                <ion-col style="font-size: 6px;padding-top: 5%;text-align: right;">
+                  *هذه البطاقة خاضعة لاحكام وشروط الاستخدام
+                </ion-col>
+
+              </ion-row>
+            </div>
+          </ion-card-content>
+        </ion-item>
+      </ion-card>
+      <ion-list *ngIf="!showBalanceIos">
+        <ion-item>
+          <ion-label stacked>Card number</ion-label>
+          <ion-input required [(ngModel)]="cardSerial" [minlength]="10" [maxlength]="10" type="number"
+                     placeholder="123XXXXXXX"></ion-input>
+          <button (click)="CheckCardBySerial()" ion-button outline item-end>
+            Check card
+          </button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

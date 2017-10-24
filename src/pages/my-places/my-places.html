@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Places</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content has-bouncing="false">
+  <div>
+    <ion-segment [(ngModel)]="setTab" color="{{settings.themeColor}}" padding-top>
+      <ion-segment-button color="light" value="favorite">
+        Favorites
+      </ion-segment-button>
+      <ion-segment-button color="light" value="history">
+        History
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!--class="animated rotateInDownRight"-->
+  <div [ngSwitch]="setTab" class="element_content">
+    <ion-row *ngSwitchCase="'favorite'" class="fav">
+      <ion-col>
+        <ion-list>
+          <ion-item-sliding #slidingItem *ngFor="let  fav of favLocation ;let j = index;" ngClass="enter-delay-{{j}}"
+                            >
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="img/bus-stop.png" item-start>
+              </ion-avatar>
+              <h2>{{fav}}</h2>
+            </ion-item>
+            <ion-item-options side="right">
+              <button (click)="removeFromFav(fav,slidingItem)" ion-button color="danger">
+                <ion-icon name="trash"></ion-icon>
+                Remove
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <!--class="animated rotateInDownRight"-->
+    <ion-row *ngSwitchCase="'history'" class="fav">
+      <ion-col>
+        <ion-list *ngIf="locations.trips?.length > 0">
+          <ion-item-sliding #slidingItem *ngFor="let trip of locations.trips;let i = index;" ngClass="enter-delay-{{j}}"
+                          >
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="img/route.png">
+              </ion-avatar>
+              <h2>{{trip.from}}</h2>
+              <p>{{trip.to}}</p>
+            </ion-item>
+            <ion-item-options side="right">
+              <button (click)="removeFromHis(trip,slidingItem)" ion-button color="danger">
+                <ion-icon name="trash"></ion-icon>
+                Remove
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+        <ion-list *ngIf="locations.trips?.length <= 0">
+          <ion-item class="empty-result-array" text-center>
+            <ion-icon name="happy"></ion-icon>
+            <p>Don't have any trip ...</p>
+            <button ion-button text-center block large clear color="{{settings.themeColor}}" (click)="backToHome()">
+              Start
+              Now
+            </button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

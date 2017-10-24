@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>Add Credit Card</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content has-bouncing="false">
+  <form #f="ngForm" (ngSubmit)="onsavecard(f)">
+  <ion-list inset>
+    <ion-item>
+      <ion-avatar item-end>
+        <img src="img/vc.png">
+      </ion-avatar>
+      <ion-avatar item-end>
+        <img src="img/ms.png">
+      </ion-avatar>
+
+    </ion-item>
+    <ion-item>
+      <ion-label>Card number</ion-label>
+      <ion-input name="cardnum" type="text" required [minlength]="14" [maxlength]="16" ngModel placeholder="Enter your card number here"></ion-input>
+    </ion-item>
+ <ion-item>
+      <ion-label>Expiration Date</ion-label>
+      <ion-input name="expiry" type="text" required [minlength]="5" [maxlength]="5" [value]="exp" [(ngModel)]="exp" (ngModelChange)='changeexp()' placeholder="MM/YY"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>CVV</ion-label>
+      <ion-input name="ccv" type="text" required [minlength]="3" [maxlength]="4" ngModel placeholder="CVV"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cardholder Name</ion-label>
+      <ion-input name="holder" type="text" required ngModel placeholder="Name"></ion-input>
+    </ion-item>
+  </ion-list>
+  <p padding>
+    <button large type="submit" ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+      Next
+    </button>
+  </p>
+   <div class="note">
+    <ion-icon name="lock" item-left></ion-icon>
+    <span>All your information is safe and secured</span>
+  </div>
+  </form>
+</ion-content>

@@ -1,0 +1,26 @@
+page-verification-code {
+  .toolbar-background-md {
+    border-color: #ffffff;
+    background: #ffffff;
+  }
+  .header-md::after {
+    height: 0px;
+  }
+  .edit-number {
+    color: #06bbd3;
+    padding: 0px 10px;
+  }
+  p {
+    color: #a2a2a2;
+  }
+
+  .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+    width: 0px;
+    height: 0px;
+  }
+
+  div.scroll-content {
+    padding-top: 0px !important;
+  }
+
+}

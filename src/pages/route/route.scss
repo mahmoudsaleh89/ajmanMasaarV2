@@ -1,0 +1,95 @@
+page-route {
+  #map-diriction {
+    height: 30%;
+  }
+  #map-diriction.full {
+    height: 100%;
+  }
+  #map-diriction.normal {
+    height: 30%;
+  }
+
+  .adp-fullwidth, .adp-warnbox, .adp-placemark {
+    display: none;
+
+  }
+  ion-card-content {
+    padding: 0px !important;
+  }
+  #suggestedRoute {
+    margin: 0px 2px;
+    width: 100%;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+  }
+  #suggestedRoute .col {
+    color: #ffffff !important;
+    font-size: 18px;
+    padding: 0;
+  }
+  span.time {
+    color: #d4d4d4;
+  }
+
+  .dep-time {
+    font-size: 25px;
+    padding-left: 10%;
+  }
+  .min-text {
+    font-size: 13px !important;
+  }
+  .header-md::after {
+    left: 0;
+    bottom: 0px !important;
+    background-position: left 0 top 0px !important;
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    background-image: none !important;
+    background-repeat: repeat-x;
+    content: "";
+  }
+  .toolbar-md {
+    min-height: 30px;
+  }
+  .scroll-content, .fixed-content {
+    margin-top: 40px !important;
+  }
+  .transport-name {
+    background-color: #5f5d5d;
+    padding: 3px;
+    border-radius: 6PX;
+    color: #fff;
+    vertical-align: super;
+  }
+
+  #custom-panel ion-icon {
+    font-size: 2em;
+    padding: 3px;
+  }
+  #custom-panel .item-md ion-avatar[item-start] {
+    margin: 0px 9px;
+  }
+  p.secondary {
+    color: #32db64;
+  }
+
+  div#custom-panel {
+    height: 50%;
+    overflow-y: scroll;
+  }
+  #rout_fare {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(27, 25, 25, 0.59);
+    bottom: 0;
+  }
+  /*.content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+    width: 0px;
+    height: 0px;
+  }
+
+  div.scroll-content {
+    padding-top: 0px !important;
+  }*/
+
+}

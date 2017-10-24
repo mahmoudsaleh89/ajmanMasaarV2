@@ -1,0 +1,33 @@
+<ion-content class="modal-cusom-bg" has-bouncing="false">
+  <div class="background-rate">
+    <div class="close-modal">
+      <button color="light" ion-button clear block text-center (click)="onCloseModal()">
+        <ion-icon name="ios-close-circle-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="faces">
+      <img style="width:75%" src="img/card-logo.png">
+      <h4 text-center> We care about your opinion</h4>
+      <img [ngClass]="{'active-face' :sad}" (click)="setRate('1')" src="img/sad.png">
+      <img [ngClass]="{'active-face' :normal}" (click)="setRate('2')" src="img/emoticon.png">
+      <img [ngClass]="{'active-face' :happy}" (click)="setRate('3')" src="img/smile.png">
+      <img [ngClass]="{'active-face' :veryhappy}" (click)="setRate('4')" src="img/happy.png">
+
+      <ion-list inset>
+        <ion-item style="background-color: transparent;">
+          <ion-label stacked>Comment</ion-label>
+          <ion-textarea [(ngModel)]="desc" placeholder="type your comment here" type="text"></ion-textarea>
+        </ion-item>
+        <ion-item text-center style="background-color: transparent;">
+          <button (click)="onSubmitRate()" [disabled]="!rateValue" ion-button large outline
+                  color="{{settings.themeColor}}">
+            submit &nbsp;
+            <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
+          </button>
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()"
+                 (ionCancel)="dismiss()" placeholder="Type place name to search">
+
+  </ion-searchbar>
+  <div class="element_content">
+    <!--<ion-list class="search-custom">-->
+      <!--<ion-item>
+
+      </ion-item>-->
+
+      <!-- <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+         {{ item }}
+       </ion-item>-->
+   <!-- </ion-list>-->
+    <!--saved list-->
+    <ion-list>
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+        {{ item }}
+      </ion-item>
+      <ion-list-header>
+        Favorites
+      </ion-list-header>
+      <div *ngFor="let fav of locations.favoritsLocation;let j = index;">
+        <ion-item (click)="chooseItem(fav)" *ngIf=" j < 6" ngClass="enter-delay-{{j}}">
+          <ion-icon name="pin" item-start></ion-icon>
+          <h3>{{fav}}</h3>
+          <!--<ion-icon name="ios-star-outline" item-end></ion-icon>-->
+        </ion-item>
+      </div>
+    </ion-list>
+    <!--recent search -->
+    <ion-list>
+      <ion-list-header>
+        recent search
+      </ion-list-header>
+      <div *ngFor="let trip of locations.trips;let i = index;">
+        <ion-item *ngIf=" i < 3">
+          <ion-icon name="ios-clock-outline" item-start></ion-icon>
+          <h3 (click)="chooseItem(trip.from)">From : {{trip.from}}</h3>
+          <p (click)="chooseItem(trip.to)">To : {{trip.to}}</p>
+          <!-- <ion-icon name="ios-star-outline" (click)="onAddtoFavorite(trip.from)" item-end></ion-icon>-->
+        </ion-item>
+      </div>
+    </ion-list>
+    <!--nearby places-->
+    <ion-list>
+      <ion-list-header>
+        nearby places
+      </ion-list-header>
+      <ion-item *ngFor="let place of nearbyPlaces">
+        <ion-avatar item-start>
+          <img src="{{place.icon}}">
+        </ion-avatar>
+        <div (click)="chooseItem(place.name)">{{place.name}}</div>
+        <!-- <p>distance</p>-->
+        <ion-icon name="ios-star-outline" item-end (click)="onAddtoFavorite(place.name)"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+    <div #map id="map"></div>
+  </div>
+</ion-content>

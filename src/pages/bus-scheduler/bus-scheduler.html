@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="{{settings.themeColor}}">
+    <ion-title>Bus Scheduler</ion-title>
+  </ion-navbar>
+</ion-header>
+<!--class="animated rotateInDownRight"-->
+<ion-content color="light-custom">
+  <ion-card-header text-center>{{name}}</ion-card-header>
+  <div  class="element_content" *ngIf="stations.data?.length > 0">
+    <ion-card *ngFor="let item of stations.data" ngClass="enter-delay-{{j}}" >
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="img/massarbus.png">
+        </ion-avatar>
+        <h2>Name :{{item.Equipment_Id}}</h2>
+        <h3>Scheduled Time :{{item.Projected_Arrival}}</h3>
+        <!-- <p>Status :{{item.Status}}</p>-->
+      </ion-item>
+
+    </ion-card>
+  </div>
+  <ion-item *ngIf="stations.data?.length <= 0" class="empty-result-array" text-center>
+    <ion-icon name="happy"></ion-icon>
+    <p>Sorry no result's ...</p>
+    <p>this data will be available soon </p>
+  </ion-item>
+</ion-content>

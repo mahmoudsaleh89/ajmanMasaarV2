@@ -1,0 +1,26 @@
+page-my-wallet {
+  .list-header{
+    background-color: #f5f5f5;
+    text-transform: uppercase;
+  }
+  .list-header .label-md{
+    margin: 0;
+    color:#655c5c;
+    font-weight: 600;
+  }
+  .item-md{
+    padding: 0 10px;
+  }
+  .label-md{
+    margin-top: 3px;
+  }
+  .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
+    width: 0px;
+    height: 0px;
+  }
+
+  div.scroll-content {
+    padding-top: 0px !important;
+  }
+
+}

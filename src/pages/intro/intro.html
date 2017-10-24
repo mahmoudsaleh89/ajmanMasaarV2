@@ -1,0 +1,27 @@
+
+
+<ion-content padding>
+  <ion-slides pager>
+
+    <ion-slide>
+      <h2>Slide 1</h2>
+    </ion-slide>
+
+    <ion-slide>
+      <h2>Select Language</h2>
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button clear (click)="onSetLang('ar')">العربية</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear (click)="onSetLang('en')">English</button>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+
+    <!-- <ion-slide style="background-color: red">
+       <h2>Slide 3</h2>
+     </ion-slide>-->
+
+  </ion-slides>
+</ion-content>
