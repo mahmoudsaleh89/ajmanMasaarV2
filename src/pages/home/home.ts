@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
-  AlertController, IonicPage, LoadingController, ModalController, NavController,
+  AlertController, IonicPage, LoadingController, ModalController, NavController, Platform,
   ToastController
 } from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
@@ -51,8 +51,9 @@ export class HomePage implements OnInit {
               public toastCtrl: ToastController,
               public loadingCtrl: LoadingController,
               public alertCtr: AlertController,
-              public translate:TranslateService) {
-    this.translate.setDefaultLang('ar');
+              public translate:TranslateService,
+              public platform: Platform) {
+
     this.addressFrom = {
       place: '',
       subLocality: '',
@@ -392,5 +393,29 @@ export class HomePage implements OnInit {
   changeLang(lang: string){
 
     console.log(lang)
+  }
+
+  setLangAndDirction(){
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+
+    });
   }
 }
