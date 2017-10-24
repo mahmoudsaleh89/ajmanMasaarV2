@@ -17,6 +17,7 @@ export class GeneralSettingsProvider {
   /* cardInfo:any;*/
   statusBarColor: string;
   loder: any;
+  side: string;
 
   /* massarCard:any;*/
   constructor(public http: Http,

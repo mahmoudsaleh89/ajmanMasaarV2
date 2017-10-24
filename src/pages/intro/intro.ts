@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import {TranslateService} from "@ngx-translate/core";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
-
+import {Storage} from '@ionic/storage';
 
 @IonicPage({
   name: 'IntroPage'

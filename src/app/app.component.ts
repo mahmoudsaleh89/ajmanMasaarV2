@@ -61,8 +61,8 @@ export class MyApp {
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
-      this.translate.setDefaultLang('ar');
       setTimeout(() => {
         this.splashScreen.hide();
       }, 100);
@@ -77,6 +77,11 @@ export class MyApp {
           this.account.userLoginSuccess = data.user;
           this.account.cardInfo = data.cardInfo;
           this.account.massarCard = data.massarCard;
+          if (data.lang == 'ar') {
+            this.settings.side = 'right';
+          } else if (data.lang == 'en') {
+            this.settings.side = 'left';
+          }
           this.account.onGetMasaarCardInfo(this.usertemp.NFCCardId);
         } else {
 
@@ -93,6 +98,8 @@ export class MyApp {
           this.settings.themeColor = 'm-orange';
           this.settings.statusBarColor = 'ce5713';
           this.account.massarCard = 'XX.00';
+          this.settings.lang = 'en';
+          this.settings.side = 'left';
         }
       });
       this.settings.themeColor = 'm-orange';
@@ -100,7 +107,37 @@ export class MyApp {
       this.account.massarCard = 'XX.00';
       this.statusBar.backgroundColorByHexString('e16c28');
 
-      this.nav.setRoot('HomePage');
+      this.storage.get('firstRun').then((first) => {
+        debugger;
+        if (first == false) {
+          this.storage.set('firstRun', false);
+          this.storage.get('lang').then((result) => {
+            debugger;
+            if (result == 'ar') {
+              this.translate.setDefaultLang('ar');
+              this.platform.setDir('rtl', true);
+              this.platform.setLang('ar', true);
+              this.settings.side = 'right';
+            } else if (result == 'en') {
+              this.translate.setDefaultLang('en');
+              this.platform.setDir('ltr', true);
+              this.platform.setLang('en', true);
+              this.settings.side = 'left';
+            }
+            else {
+              this.translate.setDefaultLang('en');
+              this.platform.setDir('ltr', true);
+              this.platform.setLang('en', true);
+              this.settings.side = 'left';
+            }
+            this.nav.setRoot(HomePage);
+          });
+        } else if (first == null || first == true) {
+          this.nav.setRoot('IntroPage');
+          this.storage.set('firstRun', false);
+        }
+      });
+
     });
     /*  this.platform.ready().then(() => {
 
