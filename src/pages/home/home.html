@@ -14,7 +14,7 @@
 
 </ion-header>
 
-<!--<ion-content overflow-scroll="false" class="no-scroll">
+<ion-content overflow-scroll="false" class="no-scroll">
 
   <div #mapHome id="map-home"></div>
 
@@ -22,7 +22,7 @@
 
     <ion-item class="btn-from">
       <ion-icon item-start name="locate" color="secondary"></ion-icon>
-      <ion-input placeholder="From" disabled (click)="onAddPlace('from')" [(ngModel)]="addressFrom.place" block clear
+      <ion-input placeholder="{{'FROM' | translate}}" disabled (click)="onAddPlace('from')" [(ngModel)]="addressFrom.place" block clear
                  text-start>
         Current location
       </ion-input>
@@ -34,7 +34,7 @@
 
     <ion-item class="btn-from">
       <ion-icon item-start name="pin" color="danger"></ion-icon>
-      <ion-input placeholder="To" disabled (click)="onAddPlace('to')" [(ngModel)]="addressTo.place" block clear
+      <ion-input placeholder="{{'TO' | translate}}" disabled (click)="onAddPlace('to')" [(ngModel)]="addressTo.place" block clear
                  text-start>
         click to add destination
       </ion-input>
@@ -51,79 +51,13 @@
         <button class=" duration5" (click)="onRideNow()" ion-button block round item-end icon-start
                 color="secondary">
           <ion-icon name="flag"></ion-icon>
-          Ride Now
+          {{'RIDE_NOW' | translate}}
         </button>
       </ion-col>
       <ion-col col-6>
         <button (click)="onRideLater()" ion-button block round item-end icon-start color="light">
           <ion-icon name="clock"></ion-icon>
-          Ride Later
-        </button>
-      </ion-col>
-    </ion-row>
-
-  </div>
-  <ion-fab end bottom>
-    <button ion-fab color="{{settings.themeColor}}">
-      <ion-icon name="more"></ion-icon>
-    </button>
-    <ion-fab-list side="left">
-      <button ion-fab (click)="ToggelMarker()" color="{{settings.themeColor}}">
-        <ion-icon name="bus"></ion-icon>
-      </button>
-      <button ion-fab (click)="onClickFabs(placesPage)" color="{{settings.themeColor}}">
-        <ion-icon name="star"></ion-icon>
-      </button>
-      <button ion-fab (click)="onGetLocation()" color="{{settings.themeColor}}">
-        <ion-icon name="locate"></ion-icon>
-      </button>
-    </ion-fab-list>
-  </ion-fab>
-</ion-content>-->
-<ion-content overflow-scroll="false" class="no-scroll">
-
-  <div #mapHome id="map-home"></div>
-
-  <div id="btn-from-to">
-
-    <ion-item class="btn-from">
-      <ion-icon item-start name="locate" color="secondary"></ion-icon>
-      <ion-input placeholder="From" disabled (click)="onAddPlace('from')" [(ngModel)]="addressFrom.place" block clear
-                 text-start>
-        Current location
-      </ion-input>
-      <span class="sub-location">other location</span>
-      <ion-icon item-end name="search"></ion-icon>
-      <ion-icon (click)="onAddtoFavorite(addressFrom)" clear item-end name="ios-star-outline"></ion-icon>
-    </ion-item>
-
-
-    <ion-item class="btn-from">
-      <ion-icon item-start name="pin" color="danger"></ion-icon>
-      <ion-input placeholder="To" disabled (click)="onAddPlace('to')" [(ngModel)]="addressTo.place" block clear
-                 text-start>
-        click to add destination
-      </ion-input>
-      <span class="sub-location">other location</span>
-      <ion-icon item-end name="search"></ion-icon>
-
-      <ion-icon (click)="onAddtoFavorite(addressTo)" item-end name="ios-star-outline"></ion-icon>
-    </ion-item>
-
-  </div>
-  <div id="btn-now-late">
-    <ion-row>
-      <ion-col col-6>
-        <button class=" duration5" (click)="onRideNow()" ion-button block round item-end icon-left
-                color="secondary">
-          <ion-icon name="flag"></ion-icon>
-          Ride Now
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button (click)="onRideLater()" ion-button block round item-end icon-left color="light">
-          <ion-icon name="clock"></ion-icon>
-          Ride Later
+          {{'RIDE_LATER' | translate}}
         </button>
       </ion-col>
     </ion-row>
