@@ -7,6 +7,7 @@ import {AccountProvider} from "../../providers/account/account";
 import {VerificationCodePage} from "../verification-code/verification-code";
 import {Ndef, NFC} from "@ionic-native/nfc";
 import {BalanceProvider} from "../../providers/balance/balance";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -39,7 +40,9 @@ export class LoginPage {
               private nfc: NFC,
               private platform: Platform,
               private ndef: Ndef,
-              public balance: BalanceProvider) {
+              public balance: BalanceProvider,
+              public translate: TranslateService) {
+    this.setLangAndDirction();
 
   }
 
@@ -260,5 +263,29 @@ export class LoginPage {
     });
   }
 
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+
+    });
+  }
 
 }

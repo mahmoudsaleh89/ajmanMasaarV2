@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()"
-                 (ionCancel)="dismiss()" placeholder="Type place name to search">
+                 (ionCancel)="dismiss()" placeholder="{{'TYPE_PLACE_NAME_TO_SEARCH' | translate}}">
 
   </ion-searchbar>
   <div class="element_content">
@@ -30,7 +30,7 @@
         {{ item }}
       </ion-item>
       <ion-list-header>
-        Favorites
+        {{'FAVORITES' | translate}}
       </ion-list-header>
       <div *ngFor="let fav of locations.favoritsLocation;let j = index;">
         <ion-item (click)="chooseItem(fav)" *ngIf=" j < 6" ngClass="enter-delay-{{j}}">
@@ -43,7 +43,7 @@
     <!--recent search -->
     <ion-list>
       <ion-list-header>
-        recent search
+        {{'RECENT' | translate}}
       </ion-list-header>
       <div *ngFor="let trip of locations.trips;let i = index;">
         <ion-item *ngIf=" i < 3">
@@ -57,7 +57,7 @@
     <!--nearby places-->
     <ion-list>
       <ion-list-header>
-        nearby places
+        {{'NEARBY_PLACES' | translate}}
       </ion-list-header>
       <ion-item *ngFor="let place of nearbyPlaces">
         <ion-avatar item-start>
