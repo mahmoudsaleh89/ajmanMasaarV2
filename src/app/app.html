@@ -18,7 +18,7 @@
         <ion-icon name="{{page.icon}}" ion-start color="{{settings.themeColor}}"></ion-icon>
         <button>
           <p class="main-lable">{{page.title | translate}}</p>
-          <p>{{page.subtitle}}</p>
+          <p>{{page.subtitle | translate}}</p>
         </button>
 
       </ion-item>
@@ -26,16 +26,16 @@
         (click)="onGoToRatePage()">
         <ion-icon name="star" ion-start color="{{settings.themeColor}}"></ion-icon>
         <button>
-          <p class="main-lable">Rate this app</p>
-          <p>We care about your opinion</p>
+          <p class="main-lable">{{'RATE_THIS_APP' | translate}}</p>
+          <p>{{'RATE_THIS_APP_DESC' | translate}}</p>
         </button>
       </ion-item>
 
       <ion-item (click)="onGoToContactPage()">
         <ion-icon name="ios-call" ion-start color="{{settings.themeColor}}"></ion-icon>
         <button>
-          <p class="main-lable">Contact us</p>
-          <p>We would like to serve you</p>
+          <p class="main-lable">{{'CONTACT_US' | translate}}</p>
+          <p>{{'CONTACT_US_DESC' | translate}}</p>
         </button>
 
       </ion-item>

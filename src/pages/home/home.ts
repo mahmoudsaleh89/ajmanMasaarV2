@@ -51,9 +51,9 @@ export class HomePage implements OnInit {
               public toastCtrl: ToastController,
               public loadingCtrl: LoadingController,
               public alertCtr: AlertController,
-              public translate:TranslateService,
+              public translate: TranslateService,
               public platform: Platform) {
-
+    this.setLangAndDirction();
     this.addressFrom = {
       place: '',
       subLocality: '',
@@ -389,13 +389,7 @@ export class HomePage implements OnInit {
     this.onStartHomePage();
   }
 
-
-  changeLang(lang: string){
-
-    console.log(lang)
-  }
-
-  setLangAndDirction(){
+  setLangAndDirction() {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {

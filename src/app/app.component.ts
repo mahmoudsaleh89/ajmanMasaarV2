@@ -36,12 +36,12 @@ export class MyApp {
     this.initializeApp();
     this.pages = [
       {
-        title: 'journey-planner',
+        title: 'JOURNY_PLANNER',
         component: 'HomePage',
-        subtitle: 'plan how to get from A to b',
+        subtitle: 'JOURNY_PLANNER_DESC',
         icon: 'md-trending-up'
       },
-      {title: 'My Wallet', subtitle: 'Check,top up your masaar credit', component: 'MyWalletPage', icon: 'briefcase'},
+      {title: 'MY_WALLET', subtitle: 'MY_WALLET_DESC', component: 'MyWalletPage', icon: 'briefcase'},
       /*{
         title: 'Rate this app',
         subtitle: 'We care about your opinion',
@@ -49,14 +49,14 @@ export class MyApp {
         icon: 'star'
       },*/
       {
-        title: 'My Places',
-        subtitle: 'Track your history mark your favorite',
+        title: 'MY_PLACES',
+        subtitle: 'TMY_PLACES_DESC',
         component: 'MyPlacesPage',
         icon: 'ios-bulb'
       },
-      {title: 'Bus Stations', subtitle: 'We care about your opinion', component: 'BusStationsPage', icon: 'bus'},
-      {title: 'Settings', subtitle: 'Take the control for your App', component: 'SettingsPage', icon: 'cog'},
-      {title: 'About', subtitle: '', component: 'AboutPage', icon: 'information-circle'},
+      {title: 'BUS_STATIONS', subtitle: 'BUS_STATIONS_DESC', component: 'BusStationsPage', icon: 'bus'},
+      {title: 'SETTINGS', subtitle: 'SETTINGS_DESC', component: 'SettingsPage', icon: 'cog'},
+      {title: 'ABOUT_US', subtitle: 'ABOUT_US_DESC', component: 'AboutPage', icon: 'information-circle'},
     ];
   }
 
@@ -130,7 +130,7 @@ export class MyApp {
               this.platform.setLang('en', true);
               this.settings.side = 'left';
             }
-            this.nav.setRoot(HomePage);
+            this.nav.setRoot('HomePage');
           });
         } else if (first == null || first == true) {
           this.nav.setRoot('IntroPage');
