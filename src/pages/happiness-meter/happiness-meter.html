@@ -7,7 +7,7 @@
     </div>
     <div class="faces">
       <img style="width:75%" src="img/card-logo.png">
-      <h4 text-center> We care about your opinion</h4>
+      <h4 text-center> {{'RATE_THIS_APP_DESC' | translate}}</h4>
       <img [ngClass]="{'active-face' :sad}" (click)="setRate('1')" src="img/sad.png">
       <img [ngClass]="{'active-face' :normal}" (click)="setRate('2')" src="img/emoticon.png">
       <img [ngClass]="{'active-face' :happy}" (click)="setRate('3')" src="img/smile.png">
@@ -15,13 +15,14 @@
 
       <ion-list inset>
         <ion-item style="background-color: transparent;">
-          <ion-label stacked>Comment</ion-label>
-          <ion-textarea [(ngModel)]="desc" placeholder="type your comment here" type="text"></ion-textarea>
+          <ion-label stacked>{{'COMMENT' | translate}}</ion-label>
+          <ion-textarea [(ngModel)]="desc" placeholder="{{'TYPE_YOUR_COMMENT_HERE' | translate}}"
+                        type="text"></ion-textarea>
         </ion-item>
         <ion-item text-center style="background-color: transparent;">
           <button (click)="onSubmitRate()" [disabled]="!rateValue" ion-button large outline
                   color="{{settings.themeColor}}">
-            submit &nbsp;
+            {{'SEND' | translate}} &nbsp;
             <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
           </button>
         </ion-item>

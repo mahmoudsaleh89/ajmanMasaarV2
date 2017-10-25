@@ -1,8 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {NgForm} from "@angular/forms";
-
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,11 @@ export class HappinessMeterPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public settings: GeneralSettingsProvider,
-              public tstCTR: ToastController) {
+              public tstCTR: ToastController,
+              public storage: Storage,
+              public translate: TranslateService,
+              public platform: Platform) {
+    this.setLangAndDirction();
   }
 
   ionViewDidLoad() {
@@ -84,5 +89,28 @@ export class HappinessMeterPage {
 
   onCloseModal() {
     this.navCtrl.pop();
+  }
+
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+    });
   }
 }

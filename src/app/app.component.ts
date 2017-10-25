@@ -50,7 +50,7 @@ export class MyApp {
       },*/
       {
         title: 'MY_PLACES',
-        subtitle: 'TMY_PLACES_DESC',
+        subtitle: 'MY_PLACES_DESC',
         component: 'MyPlacesPage',
         icon: 'ios-bulb'
       },

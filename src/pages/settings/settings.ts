@@ -4,6 +4,7 @@ import {GeneralSettingsProvider} from "../../providers/general-settings/general-
 import {AccountProvider} from "../../providers/account/account";
 import {Storage} from '@ionic/storage';
 import {NgForm} from "@angular/forms";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -25,7 +26,10 @@ export class SettingsPage {
               public acc: AccountProvider,
               public settings: GeneralSettingsProvider,
               public storage: Storage,
-              public alertCtr: AlertController) {
+              public alertCtr: AlertController,
+              public translate: TranslateService,
+              public platform: Platform) {
+    this.setLangAndDirction();
   }
 
   ionViewDidLoad() {
@@ -142,4 +146,26 @@ export class SettingsPage {
     this.navCtrl.popTo('HomePage');
   }
 
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+    });
+  }
 }

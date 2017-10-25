@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My Places</ion-title>
+    <ion-title>{{'MY_PLACES' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,10 +12,10 @@
   <div>
     <ion-segment [(ngModel)]="setTab" color="{{settings.themeColor}}" padding-top>
       <ion-segment-button color="light" value="favorite">
-        Favorites
+        {{'FAVORITES' | translate}}
       </ion-segment-button>
       <ion-segment-button color="light" value="history">
-        History
+        {{'HISTORY' | translate}}
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -26,7 +26,7 @@
       <ion-col>
         <ion-list>
           <ion-item-sliding #slidingItem *ngFor="let  fav of favLocation ;let j = index;" ngClass="enter-delay-{{j}}"
-                            >
+          >
             <ion-item>
               <ion-avatar item-start>
                 <img src="img/bus-stop.png" item-start>
@@ -36,7 +36,7 @@
             <ion-item-options side="right">
               <button (click)="removeFromFav(fav,slidingItem)" ion-button color="danger">
                 <ion-icon name="trash"></ion-icon>
-                Remove
+                {{'REMOVE' | translate}}
               </button>
             </ion-item-options>
           </ion-item-sliding>
@@ -48,7 +48,7 @@
       <ion-col>
         <ion-list *ngIf="locations.trips?.length > 0">
           <ion-item-sliding #slidingItem *ngFor="let trip of locations.trips;let i = index;" ngClass="enter-delay-{{j}}"
-                          >
+          >
             <ion-item>
               <ion-avatar item-start>
                 <img src="img/route.png">
@@ -59,7 +59,7 @@
             <ion-item-options side="right">
               <button (click)="removeFromHis(trip,slidingItem)" ion-button color="danger">
                 <ion-icon name="trash"></ion-icon>
-                Remove
+                {{'REMOVE' | translate}}
               </button>
             </ion-item-options>
           </ion-item-sliding>
@@ -67,10 +67,9 @@
         <ion-list *ngIf="locations.trips?.length <= 0">
           <ion-item class="empty-result-array" text-center>
             <ion-icon name="happy"></ion-icon>
-            <p>Don't have any trip ...</p>
+            <p>{{'HISTORY_WARNING' | translate}}</p>
             <button ion-button text-center block large clear color="{{settings.themeColor}}" (click)="backToHome()">
-              Start
-              Now
+              {{'RIDE_NOW' | translate}}
             </button>
           </ion-item>
         </ion-list>
