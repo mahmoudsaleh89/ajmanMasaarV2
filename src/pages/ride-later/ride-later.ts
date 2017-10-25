@@ -1,8 +1,10 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {Geolocation} from '@ionic-native/geolocation';
 import {DatePicker} from "@ionic-native/date-picker";
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
 declare var google;
 
@@ -24,7 +26,11 @@ export class RideLaterPage {
               public settings: GeneralSettingsProvider,
               private datePicker: DatePicker,
               public geolocation: Geolocation,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public translate: TranslateService,
+              public platform: Platform,
+              public storage: Storage) {
+    this.setLangAndDirction();
     this.addressFrom = {
       place: this.navParams.get('orgin'),
       subLocality: '',
@@ -130,6 +136,29 @@ export class RideLaterPage {
       infoWindow.open(this.map, marker);
     });
 
+  }
+
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+    });
   }
 
 }

@@ -5,8 +5,12 @@ import {BalanceProvider} from "../../providers/balance/balance";
 import {AccountProvider} from "../../providers/account/account";
 import {Ndef, NFC} from "@ionic-native/nfc";
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
-@IonicPage()
+@IonicPage({
+  name: 'TopupMasaarCardPage'
+})
 @Component({
   selector: 'page-topup-masaar-card',
   templateUrl: 'topup-masaar-card.html'
@@ -30,8 +34,10 @@ export class TopupMasaarCardPage {
               private ndef: Ndef,
               public toastCtrl: ToastController,
               public alertCtrl: AlertController,
-              private theInAppBrowser: InAppBrowser) {
-
+              private theInAppBrowser: InAppBrowser,
+              public translate: TranslateService,
+              public storage: Storage) {
+    this.setLangAndDirction();
     /*this.platform.ready().then(() => {
 
     });*/
@@ -238,6 +244,29 @@ export class TopupMasaarCardPage {
         this.showCard = true;
       }
 
+    });
+  }
+
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
     });
   }
 }

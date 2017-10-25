@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="{{settings.themeColor}}">
-    <ion-title>Top up</ion-title>
+    <ion-title>{{'TOPUP_CREDIT' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,7 +13,7 @@
       <div>
         <img src="img/card-logo.png">
         <p text-center>{{balance.massarCardBlance}}</p>
-        <span>AED</span>
+        <span>{{'AED' | translate}}</span>
       </div>
     </div>
 
@@ -50,50 +50,51 @@
       </ion-card>
       <ion-list>
         <ion-item>
-          <ion-label stacked>Card number</ion-label>
+          <ion-label stacked>{{'CARD_NUMBER' | translate}}</ion-label>
           <ion-input required [(ngModel)]="cardSerial" [minlength]="10" [maxlength]="10" type="number"
                      placeholder="123XXXXXXX"></ion-input>
           <button (click)="CheckCardBySerial()" ion-button outline item-end>
-            Check card
+            {{'CHECK_CARD' | translate}}
           </button>
         </ion-item>
       </ion-list>
     </div>
     <div class="nfc-area" *ngIf="!showCard && platform.is('android')" text-center>
-      <p>Scan your Masaar card to topup</p>
+      <p>{{'SCAN_YOUR_MASAAR_CARD' | translate}}</p>
       <img src="img/nfc-t.gif">
     </div>
 
     <p *ngIf="showCard" class="header-p" text-center padding>
-      Please enter the amount you would like to top up
+      {{'AMOUNT_MESSAGE' | translate}}
     </p>
     <ion-list *ngIf="showCard" no-padding>
       <ion-item text-center>
-        <ion-label text-center>AED</ion-label>
+        <ion-label text-center>{{'AED' | translate}}</ion-label>
         <ion-input text-center type="number" [(ngModel)]="value"></ion-input>
       </ion-item>
     </ion-list>
     <ion-row text-center>
       <ion-col>
         <button large *ngIf="showCard" class="active-btn" (click)="setInput(5)" ion-button
-                color="{{settings.themeColor}}">AED<br>5
+                color="{{settings.themeColor}}">{{'AED_S' | translate}}<br>5
         </button>
       </ion-col>
       <ion-col>
         <button large *ngIf="showCard" class="active-btn" (click)="setInput(10)" ion-button
                 color="{{settings.themeColor}}">
-          AED<br>
+          {{'AED_S' | translate}}<br>
           10
         </button>
       </ion-col>
       <ion-col>
-        <button large *ngIf="showCard" ion-button color="{{settings.themeColor}}" (click)="setInput(20)">AED<br>20
+        <button large *ngIf="showCard" ion-button color="{{settings.themeColor}}" (click)="setInput(20)">
+          {{'AED_S' | translate}}<br>20
         </button>
       </ion-col>
     </ion-row>
     <div padding>
       <button *ngIf="showCard" (click)="onTopupBalance()" block text-center ion-button color="secondary">
-        Continue &nbsp;
+        {{'CONTINUE' | translate}} &nbsp;
         <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
       </button>
     </div>

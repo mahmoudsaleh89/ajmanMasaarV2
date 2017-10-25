@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {BalanceProvider} from "../../providers/balance/balance";
 import {AccountProvider} from "../../providers/account/account";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -22,7 +24,11 @@ export class TopupMyAccountPage {
               public balance: BalanceProvider,
               public account: AccountProvider,
               private theInAppBrowser: InAppBrowser,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public translate: TranslateService,
+              public platform: Platform,
+              public storage: Storage) {
+    this.setLangAndDirction();
   }
 
   ionViewDidLoad() {
@@ -148,4 +154,26 @@ export class TopupMyAccountPage {
 
   }
 
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+    });
+  }
 }
