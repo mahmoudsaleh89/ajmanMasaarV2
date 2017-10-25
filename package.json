@@ -50,7 +50,11 @@
     "rxjs": "5.4.3",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18",
-    "cordova-android": "~6.3.0"
+    "cordova-android": "~6.3.0",
+    "cordova-ios": "^4.4.0",
+    "cordova-plugin-crosswalk-webview": "^2.3.0",
+    "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-statusbar": "^2.2.2"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
@@ -69,10 +73,20 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-crosswalk-webview": {
+        "XWALK_VERSION": "23+",
+        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+        "XWALK_MODE": "embedded",
+        "XWALK_MULTIPLEAPK": "true"
+      },
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
