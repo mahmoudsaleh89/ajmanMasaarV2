@@ -215,9 +215,9 @@ export class MyApp {
 
   openPage(page) {
 
-    if (this.settings.isLoggedIn == false && (page.component == 'MyWalletPage' || page.component == 'SettingsPage')) {
+    /*if (this.settings.isLoggedIn == false && (page.component == 'MyWalletPage' || page.component == 'SettingsPage')) {
       this.nav.push('LoginPage');
-    } else if (page.component == 'HomePage') {
+    } else*/ if (page.component == 'HomePage') {
       this.nav.setRoot(page.component)
     }
     else {

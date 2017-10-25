@@ -5,6 +5,7 @@ import {Storage} from '@ionic/storage'
 import {BalanceProvider} from "../../providers/balance/balance";
 import {Ndef, NFC} from "@ionic-native/nfc";
 import {AccountProvider} from "../../providers/account/account";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -26,7 +27,9 @@ export class MyWalletPage {
               private platform: Platform,
               private ndef: Ndef,
               public alertCtrl: AlertController,
-              public account: AccountProvider) {
+              public account: AccountProvider,
+              public  translate: TranslateService) {
+    this.setLangAndDirction();
     /*this.platform.ready().then(() => {
 
     });*/
@@ -133,5 +136,31 @@ export class MyWalletPage {
     }
   }
 
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+
+    });
+  }
 
 }
