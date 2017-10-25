@@ -5,19 +5,19 @@
     </button>
   </div>
   <div class="form-area">
-    <h3>Contact us !</h3>
+    <h3>{{'CONTACT_US' | translate}} !</h3>
     <p>
-      thanks for reaching out.<br>
-      Our team will be happy to ssupport you.
+      {{'CONTACT_TEXT_1' | translate}}<br>
+      {{'CONTACT_TEXT_2' | translate}}
     </p>
     <p style="color: #b3acac;">
-      We are available for calls during or shortly after a ride
+      {{'CONTACT_TEXT_3' | translate}}
     </p>
     <ion-item>
       <a href="tel:00971600599997" ion-button clear item-end color="dark">
-        <ion-icon name="call"></ion-icon>&nbsp; call</a>
+        <ion-icon name="call"></ion-icon>&nbsp; {{'CALL' | translate}}</a>
       <button (click)="onGoToFormPage()" ion-button clear item-end color="{{settings.themeColor}}">
-        <ion-icon name="mail"></ion-icon>&nbsp; Email us
+        <ion-icon name="mail"></ion-icon>&nbsp; {{'EMAIL_US' | translate}}
       </button>
     </ion-item>
     <ion-row>
