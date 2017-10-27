@@ -117,13 +117,11 @@ export class MyApp {
               this.translate.setDefaultLang('ar');
               this.platform.setDir('rtl', true);
               this.platform.setLang('ar', true);
-              this.settings.side = 'right';
               this.storage.set('lang', 'ar');
             } else if (result == 'en') {
               this.translate.setDefaultLang('en');
               this.platform.setDir('ltr', true);
               this.platform.setLang('en', true);
-              this.settings.side = 'left';
               this.storage.set('lang', 'en');
             }
             else {
@@ -131,7 +129,6 @@ export class MyApp {
               this.platform.setDir('ltr', true);
               this.platform.setLang('en', true);*/
               this.storage.set('lang', 'en');
-              this.settings.side = 'left';
             }
             this.nav.setRoot('HomePage');
           });

@@ -1,5 +1,4 @@
-<ion-menu [content]="content">
-
+<ion-menu [side]="platform.isRTL==true?'right':'left'" [content]="content">
 
   <ion-content id="menu-custom">
     <ion-item color="{{settings.themeColor}}" class="logo-menu" (click)="onGoToTopup()">

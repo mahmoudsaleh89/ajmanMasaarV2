@@ -14,6 +14,11 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+[dir="ltr"] ion-menu[side=left] > .menu-inner, [dir="rtl"] ion-menu[side=left] > .menu-inner {
+  right: auto;
+  left: auto;
+}
+
 /*animation time*/
 .duration1 {
   -webkit-animation-delay: 300ms !important;
