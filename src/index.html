@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
   <style>
     @media only screen and (min-height: 600px) and (min-width: 768px) {
@@ -33,7 +33,7 @@
       overflow-y: scroll !important;
       position: absolute;
       left: 0;
-      right:0;
+      right: 0;
     }
 
   </style>
@@ -48,8 +48,6 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
   <!--Google APi -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDybbxuFt_FlJYAduPS-iiBB1fLy1yk7oI&libraries=places"></script>
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
@@ -79,6 +77,10 @@
 
 <!-- The main bundle js is generated during the build process -->
 <script src="build/main.js"></script>
-
+<script
+  src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDybbxuFt_FlJYAduPS-iiBB1fLy1yk7oI&language=en&libraries=places">
+</script>
 </body>
+
+
 </html>
