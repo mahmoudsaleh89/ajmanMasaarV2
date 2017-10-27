@@ -5,6 +5,8 @@ import {BalanceProvider} from "../../providers/balance/balance";
 import {AccountProvider} from "../../providers/account/account";
 import {Ndef, NFC} from "@ionic-native/nfc";
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage'
 
 @IonicPage()
 @Component({
@@ -29,7 +31,10 @@ export class CheckMasaarCardIosPage {
               private ndef: Ndef,
               public toastCtrl: ToastController,
               public alertCtrl: AlertController,
-              private theInAppBrowser: InAppBrowser) {
+              private theInAppBrowser: InAppBrowser,
+              public  translate: TranslateService,
+              public storage: Storage) {
+
 
     /*this.platform.ready().then(() => {
 
@@ -230,6 +235,33 @@ export class CheckMasaarCardIosPage {
         this.tagIdValue = this.cardResult.Card_ID;
         this.balance.massarCardBlance = this.cardResult.Balance;
         this.showBalanceIos = true;
+      }
+
+    });
+  }
+
+  setLangAndDirction() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      } else if (result == 'en') {
+
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
       }
 
     });

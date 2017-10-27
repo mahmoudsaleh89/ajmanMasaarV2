@@ -30,22 +30,23 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule,
+    IonicStorageModule.forRoot(),
     HttpModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [HttpClient]
+        deps: [Http]
       }
-    }),
-    IonicStorageModule,
-    IonicStorageModule.forRoot(),
-    BrowserModule
+    })
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

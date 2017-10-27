@@ -79,7 +79,7 @@ export class HappinessMeterPage {
       this.progress = false;
       if (res) {
         this.tstCTR.create({
-          message: 'Thanks for your review',
+          message: "{{'PHONE_VERIFY_1'  | translate}}",
           duration: 3000
         }).present();
         this.navCtrl.popTo('HomePage');

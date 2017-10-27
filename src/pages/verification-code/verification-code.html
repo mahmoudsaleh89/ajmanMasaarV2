@@ -5,11 +5,12 @@
 </ion-header>
 <ion-content padding has-bouncing="false">
   <h2>
-    Verify your mobile number
+    {{'PHONE_VERIFY_1' | translate}}
   </h2>
-  <p>Enter the code you have received via SMS on {{phone}}
+  <p>{{ 'PHONE_VERIFY_2' | translate}} {{phone}}
   </p>
-  <button ion-button clear (click)="onResendVerifyCode()" [disabled]="inactive" class="edit-number"> Resend code
+  <button ion-button clear (click)="onResendVerifyCode()" [disabled]="inactive" class="edit-number">
+    {{'RESEND_CODE' | translate}}
   </button>
   <form #f="ngForm" (ngSubmit)="onVerification(f)">
     <ion-list>
@@ -18,7 +19,7 @@
       </ion-item>
       <ion-item>
         <button large type="submit" ion-button block [disabled]="!f.valid" color="secondary">
-          Send
+          {{'SEND' | translate}}
         </button>
       </ion-item>
     </ion-list>
