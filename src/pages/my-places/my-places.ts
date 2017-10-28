@@ -15,6 +15,12 @@ import {Storage} from '@ionic/storage';
 export class MyPlacesPage {
   setTab: string = "favorite";
   favLocation: any;
+  /*translate issue*/
+  RemoveFav: string;
+  SureQus: string;
+  Cancel: string;
+  OK: string;
+  RemoveHis: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -46,17 +52,17 @@ export class MyPlacesPage {
   removeFromFav(location, slideItem: ItemSliding) {
     debugger;
     this.alertCtrl.create({
-      title: 'Remove Favorite',
-      message: 'Are you sure?',
+      title: this.RemoveFav,
+      message: this.SureQus,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.Cancel,
           handler: () => {
             slideItem.close();
           }
         },
         {
-          text: 'Ok',
+          text: this.OK,
           handler: () => {
             this.locations.removeFromFavorits(location);
             this.locations.getToFavorits();
@@ -70,17 +76,17 @@ export class MyPlacesPage {
   removeFromHis(location, slideItem: ItemSliding) {
     debugger;
     this.alertCtrl.create({
-      title: 'Remove Favorite',
-      message: 'Are you sure?',
+      title: this.RemoveHis,
+      message: this.SureQus,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.Cancel,
           handler: () => {
             slideItem.close();
           }
         },
         {
-          text: 'Ok',
+          text: this.OK,
           handler: () => {
             this.locations.removeFromHistory(location);
             this.locations.loadTrips();
@@ -95,17 +101,31 @@ export class MyPlacesPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.RemoveFav= "حذف من المفضلة" ;
+        this.SureQus = "هل أنت متأكد ؟";
+        this.Cancel ="الغاء";
+        this.OK="نعم";
+        this.RemoveHis="";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.RemoveFav= "Remove Favorite" ;
+        this.SureQus = "Are you sure?";
+        this.Cancel ="Cancel";
+        this.OK="Ok";
+        this.RemoveHis="Remove History";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }
       else {
+        this.RemoveFav= "Remove Favorite" ;
+        this.SureQus = "Are you sure?";
+        this.Cancel ="Cancel";
+        this.OK="Ok";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
