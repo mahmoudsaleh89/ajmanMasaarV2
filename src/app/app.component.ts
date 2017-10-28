@@ -81,6 +81,8 @@ export class MyApp {
             this.settings.side = 'right';
           } else if (data.lang == 'en') {
             this.settings.side = 'left';
+          } else if (data.lang == 'ur') {
+            this.settings.side = 'right';
           }
           this.account.onGetMasaarCardInfo(this.usertemp.NFCCardId);
         } else {
@@ -130,9 +132,14 @@ export class MyApp {
               this.platform.setDir('ltr', true);
               this.platform.setLang('en', true);
               this.storage.set('lang', 'en');
+            } else if (result == 'ur') {
+              this.storage.set('lang', 'ur');
+              this.translate.setDefaultLang('ur');
+              this.platform.setDir('rtl', true);
+              this.platform.setLang('ur', true);
+              this.settings.side = 'right';
             }
             else {
-
               this.storage.set('lang', 'en');
             }
             this.nav.setRoot('HomePage');
@@ -145,7 +152,6 @@ export class MyApp {
           this.settings.side = 'left';
           this.storage.set('firstRun', false);
           this.nav.setRoot('IntroPage');
-
         }
       });
 

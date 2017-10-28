@@ -406,7 +406,6 @@ export class HomePage implements OnInit {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
         this.PleaseWait = 'يرجى الانتظار'
         this.Warning = 'تحذير';
         this.NoInternetAccess = " تأكد من اتصالك بالانترنت و تغيل خدمة المواقع";
@@ -439,6 +438,13 @@ export class HomePage implements OnInit {
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
+      }
+      else if (result == 'ur') {
+        this.storage.set('lang', 'ur');
+        this.translate.setDefaultLang('ur');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ur', true);
+        this.settings.side = 'right';
       }
       else {
         this.PleaseWait = 'Please Wait'
