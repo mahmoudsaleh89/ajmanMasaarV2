@@ -77,23 +77,23 @@
       <ion-list>
         <ion-item>
           <ion-label>{{'LANGUAGE' | translate}}</ion-label>
-          <ion-select disabled name="language" [(ngModel)]="settings.lang">
+          <ion-select name="language" [(ngModel)]="settings.lang">
             <ion-option value="english">English</ion-option>
             <ion-option value="arabic">العربية</ion-option>
-            <ion-option value="ardo">ارڈو</ion-option>
+            <ion-option value="urdu">ارڈو</ion-option>
           </ion-select>
           <ion-icon name="ios-globe-outline" item-start></ion-icon>
-          <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
+
         </ion-item>
         <ion-item>
           <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
           <ion-label>{{'THEME_COLOR' | translate}}</ion-label>
-          <ion-select disabled name="themecolor" [(ngModel)]="settings.themeColor">
-            <ion-option (click)="onSelectTheme('m-orange')" value="m-orange">Orange</ion-option>
-            <ion-option (click)="onSelectTheme('m-pink')" value="m-pink">Pink</ion-option>
-            <ion-option (click)="onSelectTheme('m-dark-blue')" value="m-dark-blue">Dark blue</ion-option>
-            <ion-option (click)="onSelectTheme('m-blue')" value="m-blue">Light blue</ion-option>
-            <ion-option (click)="onSelectTheme('m-brown')" value="m-brown">Brown</ion-option>
+          <ion-select  name="themecolor" [(ngModel)]="settings.themeColor">
+            <ion-option value="Orange">Orange</ion-option>
+            <ion-option value="Pink">Pink</ion-option>
+            <ion-option value="Dark blue">Dark blue</ion-option>
+            <ion-option value="Light blue">Light blue</ion-option>
+            <ion-option value="Brown">Brown</ion-option>
           </ion-select>
         </ion-item>
         <ion-item hidden>
@@ -109,13 +109,7 @@
             <ion-option value="lesswalk">Less Walk</ion-option>
           </ion-select>
           <ion-icon name="ios-globe-outline" item-start></ion-icon>
-          <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
         </ion-item>
-        <!--<ion-item class="sign-up-btn">
-          <button type="submit" ion-button block clear text-center>
-            update
-          </button>
-        </ion-item>-->
       </ion-list>
     </form>
     <!--View Mode-->
@@ -165,7 +159,7 @@
       <ion-item>
         <ion-icon name="md-color-filter" item-start></ion-icon>
         <ion-label>{{'BLIND_MODE' | translate}}</ion-label>
-          <ion-toggle [disabled]="!editMode" checked="false"></ion-toggle>
+        <ion-toggle [disabled]="!editMode" checked="false"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon name="ios-browsers-outline" item-start></ion-icon>
