@@ -33,6 +33,7 @@ export class RoutePage implements OnInit {
   classAded: string = 'normal';
   label = 'show map';
   hide: boolean = false;
+  PlzWait:string ="Please wait...";
 
 
   constructor(public navCtrl: NavController,
@@ -61,7 +62,7 @@ export class RoutePage implements OnInit {
 
   startNavigating(start, end) {
     let loading = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: this.PlzWait
     });
     loading.present();
 
@@ -261,6 +262,9 @@ export class RoutePage implements OnInit {
     }
 
   }
+
+
+
 
 
 }

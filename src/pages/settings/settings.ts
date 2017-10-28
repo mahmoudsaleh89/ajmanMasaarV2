@@ -19,6 +19,11 @@ export class SettingsPage {
   editMode: boolean = false;
   configInfo: any;
   code: any;
+  /*translate issue*/
+  Warning: string;
+  Msg: string;
+  SaveChanges: string;
+  DiscardChanges: string;
   @ViewChild('myForm', {read: NgForm}) myForm: any;
 
   constructor(public navCtrl: NavController,
@@ -45,18 +50,17 @@ export class SettingsPage {
 
   closeEditMode() {
     this.alertCtr.create({
-      title: 'Warning !',
-      message: 'You will lose all changes , what do you want ?',
+      title: this.Warning,
+      message: this.Msg,
       buttons: [
         {
-          text: 'Save changes',
+          text: this.SaveChanges,
           handler: () => {
-            console.log('Agree clicked');
             this.editMode = false;
           }
         },
         {
-          text: 'Discard changes',
+          text: this.DiscardChanges,
           handler: () => {
             console.log('Disagree clicked');
             this.editMode = false;
@@ -150,17 +154,29 @@ export class SettingsPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.Warning = "تحذير !";
+        this.Msg = "لم تقم بحفظ الاعدادت,هل انت متأكد؟";
+        this.SaveChanges = "حفظ التعديلات";
+        this.DiscardChanges = "الغاء التعديلات";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.Warning = "Warning !";
+        this.Msg = "You will lose all changes , what do you want ?";
+        this.SaveChanges = "Save changes";
+        this.DiscardChanges = "Discard changes";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }
       else {
+        this.Warning = "Warning !";
+        this.Msg = "You will lose all changes , what do you want ?";
+        this.SaveChanges = "Save changes";
+        this.DiscardChanges = "Discard changes";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
