@@ -16,6 +16,10 @@ export class MyWalletPage {
   tagIdValue;
   showCard: boolean;
   showAcount: boolean;
+  NFC_DISABLED: string;
+  OK: string;
+  GO_SETTING: string;
+  NFC_NOT_DETECTED: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -69,10 +73,10 @@ export class MyWalletPage {
       this.addListenNFC();
     }).catch(err => {
       let alert = this.alertCtrl.create({
-        subTitle: 'NFC DISABLED',
-        buttons: [{text: 'OK'},
+        subTitle: this.NFC_DISABLED,
+        buttons: [{text: this.OK},
           {
-            text: "GO SETTING",
+            text: this.GO_SETTING,
             handler: () => {
               this.nfc.showSettings().then(() => {
                 this.addListenNFC();
@@ -93,7 +97,7 @@ export class MyWalletPage {
         this.balance.onGetMasaarCardBalance(this.tagIdValue);
 
         if (!tagId) {
-          this.showToast('NFC NOT DETECTED')
+          this.showToast(this.NFC_NOT_DETECTED)
         }
         this.showCard = true;
         this.showAcount = false;
@@ -140,20 +144,29 @@ export class MyWalletPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
+        this.NFC_DISABLED="NFC تم ايقاف";
+        this.OK="موافق";
+        this.GO_SETTING="أذهب الى الأعدادات";
+        this.NFC_NOT_DETECTED="لم يتم العثور على NFC";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-
+        this.NFC_DISABLED="NFC DISABLED";
+        this.OK="OK";
+        this.GO_SETTING="GO SETTING";
+        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }
       else {
-
+        this.NFC_DISABLED="NFC DISABLED";
+        this.OK="OK";
+        this.GO_SETTING="GO SETTING";
+        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
