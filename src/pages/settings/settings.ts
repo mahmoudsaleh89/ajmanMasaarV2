@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, Platform} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {AccountProvider} from "../../providers/account/account";
 import {Storage} from '@ionic/storage';
@@ -24,6 +24,7 @@ export class SettingsPage {
   Msg: string;
   SaveChanges: string;
   DiscardChanges: string;
+  SavingData: string;
   @ViewChild('myForm', {read: NgForm}) myForm: any;
 
   constructor(public navCtrl: NavController,
@@ -33,7 +34,8 @@ export class SettingsPage {
               public storage: Storage,
               public alertCtr: AlertController,
               public translate: TranslateService,
-              public platform: Platform) {
+              public platform: Platform,
+              public loadingCtrl: LoadingController) {
     this.setLangAndDirction();
   }
 
@@ -113,7 +115,60 @@ export class SettingsPage {
       cardInfo: this.acc.cardInfo,
       massarCard: this.acc.massarCard
     }
+
+    switch (this.myForm.value.themecolor) {
+      case 'Orange':
+        this.configInfo.themeColor = 'm-orange';
+        this.settings.themeColor = 'm-orange';
+        break;
+      case 'Pink':
+        this.configInfo.themeColor = 'm-pink';
+        this.settings.themeColor = 'm-pink';
+        break;
+      case 'Dark blue':
+        this.configInfo.themeColor = 'm-dark-blue';
+        this.settings.themeColor = 'm-dark-blue';
+        break;
+      case 'Light blue':
+        this.configInfo.themeColor = 'm-blue';
+        this.settings.themeColor = 'm-blue';
+        break;
+      case 'Brown':
+        this.configInfo.themeColor = 'm-brown';
+        this.settings.themeColor = 'm-brown';
+        break;
+    }
+    switch (this.myForm.value.language) {
+      case 'arabic':
+        this.configInfo.lang = 'ar';
+        this.settings.themeColor = 'ar';
+        this.SavingData = 'جاري حفظ الاعدادات';
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        break;
+      case 'english':
+        this.configInfo.lang = 'en';
+        this.settings.lang = 'en';
+        this.SavingData = 'Saving your changes';
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        break;
+      case 'urdu':
+        this.translate.setDefaultLang('ur');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ur', true);
+        this.configInfo.lang = 'ur';
+        this.settings.lang = 'ur';
+        break;
+    }
     debugger;
+    let loader = this.loadingCtrl.create({
+      content: this.SavingData,
+      duration: 3000
+    });
+    loader.present();
     this.acc.updateUserInfo(this.acc.userLoginSuccess.Id, this.myForm.value.firstName, this.myForm.value.lastName, this.myForm.value.pobox, this.myForm.value.email, this.myForm.value.billingaddress)
       .then((data) => {
         debugger;
@@ -121,8 +176,11 @@ export class SettingsPage {
           this.configInfo.user = data;
           this.storage.set('config', this.configInfo);
           this.acc.userLoginSuccess = data;
-          this.settings.lang = 'en';
-          this.settings.themeColor = 'm-orange';
+          this.storage.set("lang", this.configInfo.lang);
+          this.storage.set("tc", this.configInfo.themeColor);
+          loader.dismiss();
+          /*this.platform.*/
+          this.navCtrl.setRoot('HomePage');
         }
       });
 
@@ -158,6 +216,7 @@ export class SettingsPage {
         this.Msg = "لم تقم بحفظ الاعدادت,هل انت متأكد؟";
         this.SaveChanges = "حفظ التعديلات";
         this.DiscardChanges = "الغاء التعديلات";
+        this.SavingData = 'جاري حفظ الاعدادات';
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
@@ -167,6 +226,7 @@ export class SettingsPage {
         this.Msg = "You will lose all changes , what do you want ?";
         this.SaveChanges = "Save changes";
         this.DiscardChanges = "Discard changes";
+        this.SavingData = 'Saving your changes';
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
@@ -177,6 +237,7 @@ export class SettingsPage {
         this.Msg = "You will lose all changes , what do you want ?";
         this.SaveChanges = "Save changes";
         this.DiscardChanges = "Discard changes";
+        this.SavingData = 'Saving your changes';
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

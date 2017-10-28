@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, MenuController, ModalController, Nav, Platform} from 'ionic-angular';
+import {AlertController, LoadingController, MenuController, ModalController, Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {GeneralSettingsProvider} from "../providers/general-settings/general-settings";
@@ -102,8 +102,15 @@ export class MyApp {
           this.settings.side = 'left';
         }
       });
-      this.settings.themeColor = 'm-orange';
-      this.settings.statusBarColor = 'ce5713';
+      this.storage.get('tc').then((tcr) => {
+        if (tcr) {
+          this.settings.themeColor = tcr;
+          this.settings.statusBarColor = 'ce5713';
+        } else {
+          this.settings.themeColor = 'm-orange';
+          this.settings.statusBarColor = 'ce5713';
+        }
+      })
       this.account.massarCard = 'XX.00';
       this.statusBar.backgroundColorByHexString('e16c28');
 
@@ -125,9 +132,7 @@ export class MyApp {
               this.storage.set('lang', 'en');
             }
             else {
-              /*this.translate.setDefaultLang('en');
-              this.platform.setDir('ltr', true);
-              this.platform.setLang('en', true);*/
+
               this.storage.set('lang', 'en');
             }
             this.nav.setRoot('HomePage');
@@ -145,76 +150,15 @@ export class MyApp {
       });
 
     });
-    /*  this.platform.ready().then(() => {
 
-        this.storage.get('themeColor').then((data) => {
-          if (data) {
-            this.settings.themeColor = data;
-          } else {
-            this.settings.themeColor = 'm-orange';
-            this.storage.set('themeColor', 'm-orange');
-          }
-        });
-        this.storage.get('statusBarColor').then((data) => {
-          if (data) {
-            this.statusBarColor = data;
-          } else {
-            this.statusBarColor = 'e16c28';
-            this.storage.set('statusBarColor', 'e16c28');
-          }
-        });
-        this.storage.get('isLoggedIn').then((data) => {
-          if (data) {
-            this.settings.isLoggedIn = data;
-          } else {
-            this.settings.isLoggedIn = false;
-            this.storage.set('isLoggedIn', false);
-          }
-        });
-        this.storage.get('lang').then((data) => {
-          if (data) {
-            this.settings.lang = data;
-          } else {
-            this.settings.lang = 'en';
-            this.storage.set('lang', 'en');
-          }
-        });
-        this.statusBar.backgroundColorByHexString('e16c28');
-
-
-        this.storage.set('Incubeuser', this.usertemp);
-        this.storage.get('Incubeuser').then((data) => {
-          if (data) {
-            this.usertemp = data
-            this.settings.isLoggedIn = true;
-            this.storage.set('isLoggedIn', true);
-            this.storage.set('Incubeuser', this.usertemp);
-            this.account.userLoginSuccess = data;
-            this.account.onGetMasaarCardInfo(this.usertemp.NFCCardId);
-            setTimeout(() => {
-              this.splashScreen.hide();
-            }, 100);
-            this.nav.setRoot('HomePage');
-
-          } else {
-            this.usertemp = {};
-            this.account.massarCard = 'XX.00';
-            setTimeout(() => {
-              this.splashScreen.hide();
-            }, 100);
-            this.nav.push('LoginPage');
-          }
-
-
-        });
-      });*/
   }
 
   openPage(page) {
 
     /*if (this.settings.isLoggedIn == false && (page.component == 'MyWalletPage' || page.component == 'SettingsPage')) {
       this.nav.push('LoginPage');
-    } else*/ if (page.component == 'HomePage') {
+    } else*/
+    if (page.component == 'HomePage') {
       this.nav.setRoot(page.component)
     }
     else {

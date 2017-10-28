@@ -398,18 +398,22 @@ export class HomePage implements OnInit {
   }
 
   setLangAndDirction() {
+    this.storage.get('tc').then((tcr) => {
+      if (tcr) {
+        this.settings.themeColor = tcr;
+      }
+    });
     this.storage.get('lang').then((result) => {
       debugger;
-
       if (result == 'ar') {
 
         this.PleaseWait = 'يرجى الانتظار'
         this.Warning = 'تحذير';
         this.NoInternetAccess = " تأكد من اتصالك بالانترنت و تغيل خدمة المواقع";
-        this.OK="موافق";
-        this.OrginLocation="يرجى اختيار نقطة الانطلاق";
-        this.DestnitionLocation=" يرجى اختيار نقطة الوصول";
-        this.DifferentPlaces="الرجاء اختيار موقعين مختلفين";
+        this.OK = "موافق";
+        this.OrginLocation = "يرجى اختيار نقطة الانطلاق";
+        this.DestnitionLocation = " يرجى اختيار نقطة الوصول";
+        this.DifferentPlaces = "الرجاء اختيار موقعين مختلفين";
 
         /* OK: string;
          OrginLocation: string;
@@ -426,10 +430,10 @@ export class HomePage implements OnInit {
         this.PleaseWait = 'Please Wait'
         this.Warning = 'Warning';
         this.NoInternetAccess = "please enable gps and make sure you have internet access";
-        this.OK="Ok";
-        this.OrginLocation="please select you origin place";
-        this.DestnitionLocation="please select you destination";
-        this.DifferentPlaces="please select different places";
+        this.OK = "Ok";
+        this.OrginLocation = "please select you origin place";
+        this.DestnitionLocation = "please select you destination";
+        this.DifferentPlaces = "please select different places";
         this.storage.set('lang', 'en');
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
@@ -440,10 +444,10 @@ export class HomePage implements OnInit {
         this.PleaseWait = 'Please Wait'
         this.Warning = 'Warning';
         this.NoInternetAccess = "please enable gps and make sure you have internet access";
-        this.OK="Ok";
-        this.OrginLocation="please select you origin place";
-        this.DestnitionLocation="please select you destination";
-        this.DifferentPlaces="please select different places";
+        this.OK = "Ok";
+        this.OrginLocation = "please select you origin place";
+        this.DestnitionLocation = "please select you destination";
+        this.DifferentPlaces = "please select different places";
         this.storage.set('lang', 'en');
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
