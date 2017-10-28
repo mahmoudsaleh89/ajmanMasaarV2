@@ -40,6 +40,14 @@ export class HomePage implements OnInit {
   marker: any;
   showBus = false;
   loading: any;
+  /*translate issue*/
+  PleaseWait: string;
+  Warning: string;
+  NoInternetAccess: string;
+  OK: string;
+  OrginLocation: string;
+  DestnitionLocation: string;
+  DifferentPlaces: string;
 
   constructor(public navCtrl: NavController,
               public settings: GeneralSettingsProvider,
@@ -85,7 +93,7 @@ export class HomePage implements OnInit {
 
   onStartHomePage() {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: this.PleaseWait
     })
     loading.present();
     this.busStationPage = 'BusStationsPage';
@@ -113,9 +121,9 @@ export class HomePage implements OnInit {
         } else {
           loading.dismiss();
           this.alertCtr.create({
-            title: 'Warning !',
-            subTitle: 'please enable gps and make sure you have internet access ',
-            buttons: ['ok']
+            title: this.Warning,
+            subTitle: this.NoInternetAccess,
+            buttons: [this.OK]
           }).present();
         }
 
@@ -242,7 +250,7 @@ export class HomePage implements OnInit {
     if (!this.addressFrom.place) {
       this.toastCtrl.create(
         {
-          message: 'please select you origin place',
+          message: this.OrginLocation,
           duration: 3000,
           position: 'middle'
         }
@@ -251,7 +259,7 @@ export class HomePage implements OnInit {
     } else if (!this.addressTo.place) {
       this.toastCtrl.create(
         {
-          message: 'please select you destination',
+          message: this.DestnitionLocation,
           duration: 3000,
           position: 'middle'
         }
@@ -263,7 +271,7 @@ export class HomePage implements OnInit {
 
         this.toastCtrl.create(
           {
-            message: 'please select different places',
+            message: this.DifferentPlaces,
             duration: 3000,
             position: 'middle'
           }
@@ -280,7 +288,7 @@ export class HomePage implements OnInit {
     if (!this.addressFrom.place) {
       this.toastCtrl.create(
         {
-          message: 'please select you origin place',
+          message: this.OrginLocation,
           duration: 3000,
           position: 'middle'
         }
@@ -289,7 +297,7 @@ export class HomePage implements OnInit {
     } else if (!this.addressTo.place) {
       this.toastCtrl.create(
         {
-          message: 'please select you destination',
+          message: this.DestnitionLocation,
           duration: 3000,
           position: 'middle'
         }
@@ -301,7 +309,7 @@ export class HomePage implements OnInit {
 
         this.toastCtrl.create(
           {
-            message: 'please select different places',
+            message: this.DifferentPlaces,
             duration: 3000,
             position: 'middle'
           }
@@ -393,28 +401,55 @@ export class HomePage implements OnInit {
     this.storage.get('lang').then((result) => {
       debugger;
 
-        if (result == 'ar') {
-          this.storage.set('lang','ar');
-          this.translate.setDefaultLang('ar');
-          this.platform.setDir('rtl', true);
-          this.platform.setLang('ar', true);
-          this.settings.side = 'right';
-        }
-        else if (result == 'en') {
-          this.storage.set('lang','en');
-          this.translate.setDefaultLang('en');
-          this.platform.setDir('ltr', true);
-          this.platform.setLang('en', true);
-          this.settings.side = 'left';
-        }
-        else {
-          this.storage.set('lang','en');
-          this.translate.setDefaultLang('en');
-          this.platform.setDir('ltr', true);
-          this.platform.setLang('en', true);
-          this.settings.side = 'left';
-        }
+      if (result == 'ar') {
 
+        this.PleaseWait = 'يرجى الانتظار'
+        this.Warning = 'تحذير';
+        this.NoInternetAccess = " تأكد من اتصالك بالانترنت و تغيل خدمة المواقع";
+        this.OK="موافق";
+        this.OrginLocation="يرجى اختيار نقطة الانطلاق";
+        this.DestnitionLocation=" يرجى اختيار نقطة الوصول";
+        this.DifferentPlaces="الرجاء اختيار موقعين مختلفين";
+
+        /* OK: string;
+         OrginLocation: string;
+         DestnitionLocation: string;
+         DifferentPlaces: string;
+         */
+        this.storage.set('lang', 'ar');
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      }
+      else if (result == 'en') {
+        this.PleaseWait = 'Please Wait'
+        this.Warning = 'Warning';
+        this.NoInternetAccess = "please enable gps and make sure you have internet access";
+        this.OK="Ok";
+        this.OrginLocation="please select you origin place";
+        this.DestnitionLocation="please select you destination";
+        this.DifferentPlaces="please select different places";
+        this.storage.set('lang', 'en');
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else {
+        this.PleaseWait = 'Please Wait'
+        this.Warning = 'Warning';
+        this.NoInternetAccess = "please enable gps and make sure you have internet access";
+        this.OK="Ok";
+        this.OrginLocation="please select you origin place";
+        this.DestnitionLocation="please select you destination";
+        this.DifferentPlaces="please select different places";
+        this.storage.set('lang', 'en');
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
 
 
     });
