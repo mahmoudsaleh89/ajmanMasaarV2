@@ -1,3 +1,31 @@
 page-intro {
-
+  .scroll-content {
+    padding: 0px !important;
+  }
+  ion-slide.lang_slider {
+    background-image: url("../assets/img/Langauage.png");
+    background-size: contain;
+  }
+  ion-slide.first_slider {
+    background-image: url("../assets/img/android_slide1.png");
+    background-size: contain;
+  }
+  ion-slide.second_slider {
+    background-image: url("../assets/img/android_slide2.png");
+    background-size: contain;
+  }
+  ion-slide.thired_slider {
+    background-image: url("../assets/img/android_slide3.png");
+    background-size: contain;
+  }
+  .select_lang {
+    background-color: rgba(212, 211, 211, 0.75);
+    padding: 8%;
+    margin: 0 10px;
+    border-radius: 11%;
+    color: #fff;
+  }
+  .swiper-pagination-bullet-active {
+    background: #ffffff;
+  }
 }
