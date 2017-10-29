@@ -29,6 +29,16 @@ export class LoginPage {
   cardNumber: any;
   tempUser: any;
   progress: boolean;
+  PaymentAlert : string;
+  PaymentAlertQus:string;
+  Disagree:string;
+  Agree: string;
+  NFC_DISABLED:string;
+  OK:string;
+  GO_SETTING:string;
+  NFC_NOT_DETECTED:string;
+  NFC_Failed:string;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -117,11 +127,11 @@ export class LoginPage {
 
 
     this.alertCtrl.create({
-      title: 'Payment Alert?',
-      message: 'do you want use our payment method?',
+      title: this.PaymentAlert,
+      message: this.PaymentAlertQus,
       buttons: [
         {
-          text: 'Disagree',
+          text: this.Disagree,
           handler: () => {
             debugger;
             this.usePayment = false;
@@ -147,7 +157,7 @@ export class LoginPage {
           }
         },
         {
-          text: 'Agree',
+          text: this.Agree,
           handler: () => {
             debugger;
             this.progress = false;
@@ -209,10 +219,10 @@ export class LoginPage {
       this.addListenNFC();
     }).catch(err => {
       let alert = this.alertCtrl.create({
-        subTitle: 'NFC DISABLED',
-        buttons: [{text: 'OK'},
+        subTitle: this.NFC_DISABLED,
+        buttons: [{text: this.OK},
           {
-            text: "GO SETTING",
+            text: this.GO_SETTING,
             handler: () => {
               this.nfc.showSettings().then(() => {
                 this.addListenNFC();
@@ -232,7 +242,7 @@ export class LoginPage {
         this.balance.onGetMasaarCardBalance(this.tagIdValue);
 
         if (!tagId) {
-          this.showToast('NFC NOT DETECTED')
+          this.showToast(this.NFC_NOT_DETECTED)
         }
       });
   }
@@ -254,7 +264,7 @@ export class LoginPage {
   }
 
   failNFC(err) {
-    this.showToast('NFC Failed ');
+    this.showToast(this.NFC_Failed);
   }
 
   onReceivedNFC() {
@@ -267,17 +277,43 @@ export class LoginPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
+        this.PaymentAlert = "خدمات الدفع !";
+        this.PaymentAlertQus="هل ترغب بأستخدام عمليات الدفع المتوفرة لدينا ؟";
+        this.Disagree="مواقف";
+        this.Agree= "غير موافق";
+        this.NFC_DISABLED=" NFC تم ايقاف";
+        this.OK="نعم";
+        this.GO_SETTING="الذهاب للأعدادات";
+        this.NFC_NOT_DETECTED="لايوجد NFC";
+        this.NFC_Failed="NFC معطل";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.PaymentAlert = " Payment Alert !";
+        this.PaymentAlertQus="do you want use our payment method ?";
+        this.Disagree="Disagree";
+        this.Agree= "Agree";
+        this.NFC_DISABLED="NFC DISABLED";
+        this.OK="OK";
+        this.GO_SETTING="GO SETTING";
+        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
+        this.NFC_Failed="NFC Failed";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+        this.PaymentAlert = "ادائیگی کی انتباہ !";
+        this.PaymentAlertQus="آپ اپنا ادائیگی کا طریقہ استعمال کرنا چاہتے ہیں ؟ ";
+        this.Disagree="متفق ہوں";
+        this.Agree= "اتفاق";
+        this.NFC_DISABLED="این ایف سی کی خرابی";
+        this.OK="ٹھیک ہے\n";
+        this.GO_SETTING="سیٹنگنگ جاؤ";
+        this.NFC_NOT_DETECTED="NFC وضاحت نہیں کی";
+        this.NFC_Failed="NFC ناکام";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -285,6 +321,15 @@ export class LoginPage {
         this.settings.side = 'right';
       }
       else {
+        this.PaymentAlert = " Payment Alert !";
+        this.PaymentAlertQus="do you want use our payment method ?";
+        this.Disagree="Disagree";
+        this.Agree= "Agree";
+        this.NFC_DISABLED="NFC DISABLED";
+        this.OK="OK";
+        this.GO_SETTING="GO SETTING";
+        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
+        this.NFC_Failed="NFC Failed";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
