@@ -116,6 +116,12 @@ export class VerificationCodePage {
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
+      }else if (result == 'ur') {
+        this.storage.set('lang', 'ur');
+        this.translate.setDefaultLang('ur');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ur', true);
+        this.settings.side = 'right';
       }
       else {
 
