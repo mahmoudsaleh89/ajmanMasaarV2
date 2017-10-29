@@ -232,6 +232,11 @@ export class SettingsPage {
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+        this.Warning = "انتباہ !";
+        this.Msg = "آپ تمام تبدیلیوں کو کھو دیں گے، آپ کیا چاہتے ہیں ؟ ";
+        this.SaveChanges = "تبدیلیاں محفوظ کرو";
+        this.DiscardChanges = "تبدیلیاں مسترد کریں";
+        this.SavingData = 'آپ کی تبدیلیوں کو محفوظ کرنا';
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);

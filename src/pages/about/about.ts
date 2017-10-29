@@ -27,7 +27,6 @@ export class AboutPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
