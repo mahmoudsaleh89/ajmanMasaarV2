@@ -1,37 +1,39 @@
-<ion-content padding>
-  <ion-slides pager>
-    <ion-slide class="first_slider">
-    </ion-slide>
-    <ion-slide class="second_slider">
-    </ion-slide>
-    <ion-slide class="thired_slider">
-    </ion-slide>
-    <ion-slide class="lang_slider">
-      <div class="select_lang">
-        <h2 style="color:#44230f">Select Language</h2>
-        <ion-row text-center>
-          <ion-col>
-            <button ion-button round color="m-dark-blue" (click)="onSetLang('en')">English</button>
-          </ion-col>
-        </ion-row>
+<ion-header class="skip_header" *ngIf="!hide">
+  <button ion-button clear (click)="goToSelectLang()">Skip</button>
+</ion-header>
+<ion-slides pager (ionSlideWillChange)="onGetIndex()">
+  <ion-slide class="first_slider">
+  </ion-slide>
+  <ion-slide class="second_slider">
+  </ion-slide>
+  <ion-slide class="thired_slider">
+  </ion-slide>
+  <ion-slide class="lang_slider">
+    <div class="select_lang">
+      <h2 style="color:#44230f">Select Language</h2>
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button round color="m-dark-blue" (click)="onSetLang('en')">English</button>
+        </ion-col>
+      </ion-row>
 
-        <ion-row text-center>
-          <ion-col>
-            <button ion-button color="m-pink" round (click)="onSetLang('ur')">اردو</button>
-          </ion-col>
-        </ion-row>
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button color="m-pink" round (click)="onSetLang('ur')">اردو</button>
+        </ion-col>
+      </ion-row>
 
-        <ion-row text-center>
-          <ion-col>
-            <button ion-button color="m-brown" round (click)="onSetLang('ar')">العربية</button>
-          </ion-col>
-        </ion-row>
-      </div>
-    </ion-slide>
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button color="m-brown" round (click)="onSetLang('ar')">العربية</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-slide>
 
-    <!-- <ion-slide style="background-color: red">
-       <h2>Slide 3</h2>
-     </ion-slide>-->
+  <!-- <ion-slide style="background-color: red">
+     <h2>Slide 3</h2>
+   </ion-slide>-->
 
-  </ion-slides>
-</ion-content>
+</ion-slides>
+

@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, NavParams, Platform, Slides} from 'ionic-angular';
 import {TranslateService} from "@ngx-translate/core";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {Storage} from '@ionic/storage';
@@ -12,6 +12,8 @@ import {Storage} from '@ionic/storage';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
+  @ViewChild(Slides) slides: Slides;
+  hide: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public platform: Platform,
@@ -41,7 +43,7 @@ export class IntroPage {
       this.platform.setLang('en', true);
       this.storage.set('lang', language);
 
-    }   else if (language == 'ur') {
+    } else if (language == 'ur') {
       this.storage.set('lang', 'ur');
       this.translate.setDefaultLang('ur');
       this.platform.setDir('rtl', true);
@@ -58,4 +60,15 @@ export class IntroPage {
     this.navCtrl.setRoot('HomePage');
   }
 
+  goToSelectLang() {
+    this.slides.slideTo(4, 500);
+  }
+
+  onGetIndex() {
+    let index = this.slides.getActiveIndex();
+    if (index > 2) {
+      this.hide = true;
+    }
+
+  }
 }
