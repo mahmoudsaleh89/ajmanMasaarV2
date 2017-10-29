@@ -426,12 +426,12 @@ export class HomePage implements OnInit {
         this.settings.side = 'right';
       }
       else if (result == 'en') {
-        this.PleaseWait = 'Please Wait'
+        this.PleaseWait = 'Please Wait';
         this.Warning = 'Warning';
         this.NoInternetAccess = "please enable gps and make sure you have internet access";
         this.OK = "Ok";
-        this.OrginLocation = "please select you origin place";
-        this.DestnitionLocation = "please select you destination";
+        this.OrginLocation = "please select your origin place";
+        this.DestnitionLocation = "please select your destination";
         this.DifferentPlaces = "please select different places";
         this.storage.set('lang', 'en');
         this.translate.setDefaultLang('en');
@@ -440,6 +440,13 @@ export class HomePage implements OnInit {
         this.settings.side = 'left';
       }
       else if (result == 'ur') {
+        this.PleaseWait = 'برائے مہربانی انتظار کریں';
+        this.Warning = 'انتباہ';
+        this.NoInternetAccess = "براہ کرم جی پی ایس کو فعال کریں اور اس بات کو یقینی بنائیں کہ آپ انٹرنیٹ تک رسائی حاصل کریں";
+        this.OK = "ٹھیک ہے";
+        this.OrginLocation = "براہ کرم اپنی اصل جگہ کا انتخاب کریں";
+        this.DestnitionLocation = "براہ مہربانی اپنی منزل منتخب کریں";
+        this.DifferentPlaces = "براہ مہربانی مختلف مقامات کو منتخب کریں";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -447,7 +454,7 @@ export class HomePage implements OnInit {
         this.settings.side = 'right';
       }
       else {
-        this.PleaseWait = 'Please Wait'
+        this.PleaseWait = 'Please Wait';
         this.Warning = 'Warning';
         this.NoInternetAccess = "please enable gps and make sure you have internet access";
         this.OK = "Ok";
