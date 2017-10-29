@@ -143,7 +143,7 @@ export class MyApp {
               this.storage.set('lang', 'en');
             }
             /*this.nav.setRoot('HomePage');*/
-            this.nav.setRoot('IntroPage');
+            this.nav.setRoot('HomePage');
           });
         } else if (first == null || first == true) {
           this.storage.set('lang', 'en');

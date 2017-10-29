@@ -4,19 +4,19 @@ page-intro {
   }
   ion-slide.lang_slider {
     background-image: url("../assets/img/Langauage.png");
-    background-size: contain;
+    background-size: cover;
   }
   ion-slide.first_slider {
     background-image: url("../assets/img/android_slide1.png");
-    background-size: contain;
+    background-size: cover;
   }
   ion-slide.second_slider {
     background-image: url("../assets/img/android_slide2.png");
-    background-size: contain;
+    background-size: cover;
   }
   ion-slide.thired_slider {
     background-image: url("../assets/img/android_slide3.png");
-    background-size: contain;
+    background-size: cover;
   }
   .select_lang {
     background-color: rgba(212, 211, 211, 0.75);
@@ -28,8 +28,12 @@ page-intro {
   .swiper-pagination-bullet-active {
     background: #ffffff;
   }
-  .skip_header{
+  .skip_header {
     background-color: rgba(232, 232, 232, 0.38);
 
+  }
+  .skip_header .button {
+    font-size: 18px;
+    color: #ffffff;
   }
 }

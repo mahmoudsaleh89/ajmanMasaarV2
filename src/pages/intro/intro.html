@@ -1,5 +1,5 @@
-<ion-header class="skip_header" *ngIf="!hide">
-  <button ion-button clear (click)="goToSelectLang()">Skip</button>
+<ion-header text-end class="skip_header" *ngIf="!hide">
+  <button  ion-button clear (click)="goToSelectLang()">Skip</button>
 </ion-header>
 <ion-slides pager (ionSlideWillChange)="onGetIndex()">
   <ion-slide class="first_slider">
