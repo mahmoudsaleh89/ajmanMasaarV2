@@ -5,6 +5,7 @@ import {AccountProvider} from "../../providers/account/account";
 import {Storage} from '@ionic/storage';
 import {NgForm} from "@angular/forms";
 import {TranslateService} from "@ngx-translate/core";
+import {MyApp} from "../../app/app.component";
 
 @IonicPage()
 @Component({
@@ -35,7 +36,8 @@ export class SettingsPage {
               public alertCtr: AlertController,
               public translate: TranslateService,
               public platform: Platform,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController,
+              private myAPP: MyApp) {
     this.setLangAndDirction();
   }
 
@@ -180,7 +182,8 @@ export class SettingsPage {
           this.storage.set("tc", this.configInfo.themeColor);
           loader.dismiss();
           /*this.platform.*/
-          this.navCtrl.setRoot('HomePage');
+          this.myAPP.initializeApp();/*
+          this.navCtrl.setRoot('HomePage');*/
         }
       });
 
@@ -231,7 +234,7 @@ export class SettingsPage {
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
         this.Warning = "انتباہ !";
         this.Msg = "آپ تمام تبدیلیوں کو کھو دیں گے، آپ کیا چاہتے ہیں ؟ ";
         this.SaveChanges = "تبدیلیاں محفوظ کرو";
