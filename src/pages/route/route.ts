@@ -1,8 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams, Platform} from 'ionic-angular';
 import {LocationsProvider} from "../../providers/locations/locations";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
-
+import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage';
 
 declare var google;
 
@@ -31,16 +32,20 @@ export class RoutePage implements OnInit {
   iconUse: string = "ios-arrow-down";
   fare: string;
   classAded: string = 'normal';
-  label = 'show map';
+  label = 'show_map';
   hide: boolean = false;
-  PlzWait:string ="Please wait...";
+  PlzWait: string = "Please wait...";
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
               public locations: LocationsProvider,
-              public settings: GeneralSettingsProvider) {
+              public settings: GeneralSettingsProvider,
+              public translate: TranslateService,
+              public platform: Platform,
+              public storage: Storage) {
+    this.setLangAndDirction();
     this.directionsService = new google.maps.DirectionsService;
     this.directionsDisplay = new google.maps.DirectionsRenderer;
   }
@@ -244,27 +249,74 @@ export class RoutePage implements OnInit {
     if (this.classAded == 'normal') {
       this.classAded = 'full';
       this.hide = true;
-      this.label = 'hide map';
+      this.label = 'hide_map';
       this.drowRoute(0);
     } else {
       this.classAded = 'normal'
       this.hide = false;
-      this.label = 'show map';
+      this.label = 'show_map';
       this.drowRoute(0);
     }
   }
 
   OnGoToWallet() {
-    if(this.settings.isLoggedIn){
+    if (this.settings.isLoggedIn) {
       this.navCtrl.push('MyWalletPage');
-    }else{
+    } else {
       this.navCtrl.push('TopupMasaarCardPage')
     }
 
   }
 
+  setLangAndDirction() {
+    this.storage.get('tc').then((tcr) => {
+      if (tcr) {
+        this.settings.themeColor = tcr;
+      }
+    });
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.PlzWait = 'يرجى الانتظار'
+        /* OK: string;
+         OrginLocation: string;
+         DestnitionLocation: string;
+         DifferentPlaces: string;
+         */
+        this.storage.set('lang', 'ar');
+        this.translate.setDefaultLang('ar');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ar', true);
+        this.settings.side = 'right';
+      }
+      else if (result == 'en') {
+        this.PlzWait = 'Please Wait';
+        this.storage.set('lang', 'en');
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
+      else if (result == 'ur') {
+        this.PlzWait = 'برائے مہربانی انتظار کریں';
+        this.storage.set('lang', 'ur');
+        this.translate.setDefaultLang('ur');
+        this.platform.setDir('rtl', true);
+        this.platform.setLang('ur', true);
+        this.settings.side = 'right';
+      }
+      else {
+        this.PlzWait = 'Please Wait';
+        this.storage.set('lang', 'en');
+        this.translate.setDefaultLang('en');
+        this.platform.setDir('ltr', true);
+        this.platform.setLang('en', true);
+        this.settings.side = 'left';
+      }
 
 
+    });
+  }
 
 
 }

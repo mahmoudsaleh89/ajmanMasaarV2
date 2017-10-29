@@ -12,14 +12,15 @@
         <ion-card-content color="{{settings.themeColor}}">
           <ion-row [hidden]="!open" (click)="onSelectRoute(i)" *ngFor="let route of suggestedRoute ;let i = index">
             <ion-col *ngIf="i < 4" col-4>
-              <p>Departure on</p>
+              <p>{{'DEPARTURE_ON' | translate}}</p>
               <p class="dep-time">
                 {{route[0].departure_on}} <span class="min-text">min</span>
               </p>
             </ion-col>
             <ion-col *ngIf="i < 4" col-8>
-              <p>Travel Time : <span item-left class="time">{{route[0].duration.text}}</span>&nbsp;<span item-end
-                                                                                                         class="time">{{route[0].arrival_time.text}}</span>
+              <p>{{'Travel_Time' | translate}}: <span item-left
+                                                      class="time">{{route[0].duration.text}}</span>&nbsp;<span item-end
+                                                                                                                class="time">{{route[0].arrival_time.text}}</span>
               </p>
               <span *ngFor="let step of route[0].steps ; let j = index" item-left>
                       <ion-icon *ngIf="j>0" class="arrow" color="main-brawen" name="ios-arrow-forward-outline"
@@ -40,14 +41,16 @@
           </ion-row>
           <ion-row [hidden]="open" (click)="onSelectRoute(i)" *ngFor="let route of firstRoute ;let i = index">
             <ion-col col-4>
-              <p>Departure on</p>
+              <p>{{'DEPARTURE_ON' | translate}}</p>
               <p class="dep-time">
                 {{route[0].departure_on}} <span class="min-text">min</span>
               </p>
             </ion-col>
             <ion-col col-8>
-              <p>Travel Time : <span item-left class="time">{{route[0].duration.text}}</span>&nbsp;<span item-end
-                                                                                                         class="time">{{route[0].arrival_time.text}}</span>
+              <p>{{'Travel_Time' | translate}} : <span item-left
+                                                       class="time">{{route[0].duration.text}}</span>&nbsp;<span
+                item-end
+                class="time">{{route[0].arrival_time.text}}</span>
               </p>
               <span *ngFor="let step of route[0].steps ; let j = index" item-left>
                       <ion-icon *ngIf="j>0" class="arrow" color="main-brawen" name="ios-arrow-forward-outline"
@@ -122,7 +125,7 @@
           <button class="animated flash duration5" (click)="onShowMap()" ion-button block round item-end icon-left
                   color="secondary">
             <ion-icon name="ios-map-outline"></ion-icon>
-            {{label}}
+            {{label | translate}}
           </button>
         </ion-col>
         <ion-col col-6>
