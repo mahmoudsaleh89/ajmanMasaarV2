@@ -10,9 +10,11 @@ export class StationSchedulerProvider {
   data: any;
 
   load(id) {
+    debugger;
     return new Promise(resolve => {
       this.http.get('http://151.253.35.253:9015/MasaarWebAPI/api/BusStop/GetStopBuses?StopId=' + id).map(res => res.json())
         .subscribe(data => {
+          debugger;
           this.data = data;
           resolve(this.data);
         });

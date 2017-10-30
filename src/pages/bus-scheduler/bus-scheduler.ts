@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import {StationSchedulerProvider} from "../../providers/station-scheduler/station-scheduler";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {TranslateService} from "@ngx-translate/core";
+import {Storage} from '@ionic/storage'
 
 @IonicPage()
 @Component({
@@ -26,8 +27,10 @@ export class BusSchedulerPage {
   }
 
   ionViewDidLoad() {
+    debugger;
     this.stations.load(this.id);
   }
+
   setLangAndDirction() {
     this.storage.get('lang').then((result) => {
       debugger;
@@ -41,7 +44,7 @@ export class BusSchedulerPage {
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);

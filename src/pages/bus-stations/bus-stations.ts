@@ -26,6 +26,7 @@ export class BusStationsPage {
 
   }
   onGoToBusScheduler(id,name) {
+    debugger;
     this.navCtrl.push('BusSchedulerPage',{'id':id,'name':name});
 
   }
