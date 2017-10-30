@@ -5,7 +5,6 @@ import {GeneralSettingsProvider} from "../../providers/general-settings/general-
 import {LocationsProvider} from "../../providers/locations/locations";
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
-import {replaceTemplateUrl} from "@ionic/app-scripts/dist/template";
 
 declare var google;
 
