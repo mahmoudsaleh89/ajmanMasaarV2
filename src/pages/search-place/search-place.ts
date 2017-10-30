@@ -5,6 +5,7 @@ import {GeneralSettingsProvider} from "../../providers/general-settings/general-
 import {LocationsProvider} from "../../providers/locations/locations";
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
+import {replaceTemplateUrl} from "@ionic/app-scripts/dist/template";
 
 declare var google;
 
@@ -24,7 +25,7 @@ export class SearchPlacePage {
   currentPos: Geoposition;
   service = new google.maps.places.AutocompleteService();
   favLocation: any;
-  arrowDir: string;
+  arrowDir: boolean;
   tempDataLocation;
   selectedPos = {
     locality: '',
@@ -121,18 +122,19 @@ export class SearchPlacePage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-        this.arrowDir = 'forward';
+        this.arrowDir = false;
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-        this.arrowDir = 'back';
+        this.arrowDir = true;
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
+        this.arrowDir = false;
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -140,7 +142,7 @@ export class SearchPlacePage {
         this.settings.side = 'right';
       }
       else {
-        this.arrowDir = 'back';
+        this.arrowDir = true;
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

@@ -142,8 +142,9 @@ export class MyApp {
             else {
               this.storage.set('lang', 'en');
             }
-            /*this.nav.setRoot('HomePage');*/
-            this.nav.setRoot('HomePage');
+
+           this.nav.setRoot('HomePage');
+          /*  this.nav.setRoot('IntroPage');*/
           });
         } else if (first == null || first == true) {
           this.storage.set('lang', 'en');
