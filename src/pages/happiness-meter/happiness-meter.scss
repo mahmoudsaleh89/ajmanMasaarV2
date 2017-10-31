@@ -65,4 +65,7 @@ page-happiness-meter {
   $spinner-ios-dots-color: #e16c28 !default;
 
   $spinner-md-dots-color: #e16c28 !default;
+  .close-modal ion-icon {
+    font-size: 30px !important;
+  }
 }
