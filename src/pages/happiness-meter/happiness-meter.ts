@@ -19,7 +19,7 @@ export class HappinessMeterPage {
   rateValue: any;
   desc: string;
   progress: boolean;
-
+  thx_rate:string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public settings: GeneralSettingsProvider,
@@ -79,7 +79,7 @@ export class HappinessMeterPage {
       this.progress = false;
       if (res) {
         this.tstCTR.create({
-          message: "{{'PHONE_VERIFY_1'  | translate}}",
+          message: this.thx_rate,
           duration: 3000
         }).present();
         this.navCtrl.popTo('HomePage');
@@ -95,16 +95,19 @@ export class HappinessMeterPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.thx_rate = "شكرا لك لتقيمك";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.thx_rate = "Thanks for rat our app";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+        this.thx_rate = "ہمارے ایپ چوہا کے لئے شکریہ";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -112,6 +115,7 @@ export class HappinessMeterPage {
         this.settings.side = 'right';
       }
       else {
+        this.thx_rate = "Thanks for rat our app";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

@@ -77,7 +77,8 @@
       <ion-list>
         <ion-item>
           <ion-label>{{'LANGUAGE' | translate}}</ion-label>
-          <ion-select name="language" [(ngModel)]="settings.lang">
+          <ion-select name="language" [(ngModel)]="settings.lang" [(ngModel)]="settings.themeColor"
+                      okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value="english">English</ion-option>
             <ion-option value="arabic">العربية</ion-option>
             <ion-option value="urdu">ارڈو</ion-option>
@@ -88,8 +89,7 @@
         <ion-item>
           <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
           <ion-label>{{'THEME_COLOR' | translate}}</ion-label>
-          <ion-select disabled  name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}"
-                      cancelText="{{'CANCEL_BTN' | translate}}">
+          <ion-select disabled name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value="Orange">Orange</ion-option>
             <ion-option value="Pink">Pink</ion-option>
             <ion-option value="Dark blue">Dark blue</ion-option>
@@ -107,9 +107,10 @@
           <ion-select disabled name="searchroute" [(ngModel)]="searchRoute" okText="{{'OK_BTN' | translate}}"
                       cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value=" bestrout
-          ">Best route</ion-option>
-          <ion-option value="lesstransfers">less transfers</ion-option>
-          <ion-option value="lesswalk">Less Walk</ion-option>
+          ">Best route
+            </ion-option>
+            <ion-option value="lesstransfers">less transfers</ion-option>
+            <ion-option value="lesswalk">Less Walk</ion-option>
           </ion-select>
           <ion-icon name="ios-globe-outline" item-start></ion-icon>
         </ion-item>
