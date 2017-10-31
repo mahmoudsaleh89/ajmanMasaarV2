@@ -20,6 +20,7 @@ export class RideLaterPage {
   selectedTime: any;
   addressFrom: any;
   addressTo: any;
+  SIT_TIME_WARNING: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -85,7 +86,7 @@ export class RideLaterPage {
       },
       err => {
         let toast = this.toastCtrl.create({
-          message: 'please select time',
+          message: this.SIT_TIME_WARNING,
           duration: 3000,
           position: 'middle'
         }).present();
@@ -97,6 +98,10 @@ export class RideLaterPage {
     if (this.selectedTime) {
       this.navCtrl.push('RoutePage', {'orgin': this.addressTo.place, 'dist': this.addressFrom.place});
     } else {
+      this.toastCtrl.create({
+        message: this.SIT_TIME_WARNING,
+        duration: 3000
+      }).present();
       return;
     }
   }
@@ -142,16 +147,19 @@ export class RideLaterPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.SIT_TIME_WARNING="الرجاء احديد الوقت !";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.SIT_TIME_WARNING="Please sit your time !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
+        this.SIT_TIME_WARNING="اپنا وقت بیٹھو !";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -159,6 +167,7 @@ export class RideLaterPage {
         this.settings.side = 'right';
       }
       else {
+        this.SIT_TIME_WARNING="Please sit your time !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
