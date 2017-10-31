@@ -121,6 +121,10 @@ export class MyPlacesPage {
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+        this.RemoveFav= "پسندیدہ ہٹائیں" ;
+        this.SureQus = "کیا تمہیں یقین ہے ؟";
+        this.Cancel ="منسوخ کریں";
+        this.OK="ٹھیک ہے";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);

@@ -24,7 +24,8 @@
   <div [ngSwitch]="setTab" class="element_content">
     <ion-row *ngSwitchCase="'favorite'" class="fav">
       <ion-col>
-        <ion-list>
+
+        <ion-list *ngIf="locations.favoritsLocation?.length > 0">
           <ion-item-sliding #slidingItem *ngFor="let  fav of favLocation ;let j = index;" ngClass="enter-delay-{{j}}"
           >
             <ion-item>
@@ -40,6 +41,15 @@
               </button>
             </ion-item-options>
           </ion-item-sliding>
+        </ion-list>
+        <ion-list *ngIf="locations.favoritsLocation?.length <= 0">
+          <ion-item class="empty-result-array" text-center>
+            <ion-icon name="happy"></ion-icon>
+            <p>{{'FAV_WARNING' | translate}}</p>
+            <button ion-button text-center block large clear color="{{settings.themeColor}}" (click)="backToHome()">
+              {{'FAV_BTN_LABEL' | translate}}
+            </button>
+          </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
