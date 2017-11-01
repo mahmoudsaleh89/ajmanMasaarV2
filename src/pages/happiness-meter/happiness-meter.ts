@@ -101,7 +101,7 @@ export class HappinessMeterPage {
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-        this.thx_rate = "Thanks for rat our app";
+        this.thx_rate = "Thanks for rating our app";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
