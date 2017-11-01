@@ -29,15 +29,15 @@ export class LoginPage {
   cardNumber: any;
   tempUser: any;
   progress: boolean;
-  PaymentAlert : string;
-  PaymentAlertQus:string;
-  Disagree:string;
+  PaymentAlert: string;
+  PaymentAlertQus: string;
+  Disagree: string;
   Agree: string;
-  NFC_DISABLED:string;
-  OK:string;
-  GO_SETTING:string;
-  NFC_NOT_DETECTED:string;
-  NFC_Failed:string;
+  NFC_DISABLED: string;
+  OK: string;
+  GO_SETTING: string;
+  NFC_NOT_DETECTED: string;
+  NFC_Failed: string;
 
 
   constructor(public navCtrl: NavController,
@@ -106,13 +106,22 @@ export class LoginPage {
       return;
     }
     this.progress = true;
-    console.log(form.value);
+
     this.code = form.value.code;
     if (this.code == '') {
       this.code = '+971';
     } else {
-      this.code = form.value.code;
+      if (this.code != "") {
+        form.value.code.replace('00', '+');
+        this.code = form.value.code.replace('00', '+');
+      }
+      /* this.code = form.value.code;*/
     }
+    if (form.value.phone.charAt([0]) == '0') {
+      form.value.phone = form.value.phone.substring(1);
+    }
+    console.log(form.value.phone);
+    console.log(this.code);
     if (this.tagIdValue) {
       this.masarType = 'NFC';
       this.cardNumber = this.tagIdValue;
@@ -145,6 +154,7 @@ export class LoginPage {
               NFCCardId: this.cardNumber,
               MasaarType: this.masarType
             }
+            console.log(this.tempUser);
             this.account.onVerifySubscriper(form.value.username, form.value.firstName, form.value.lastName, form.value.password, this.code, form.value.phone, this.cardNumber, '', '', '', this.masarType).then(() => {
               debugger;
               this.progress = false;
@@ -177,6 +187,7 @@ export class LoginPage {
     }
     this.progress = true;
     if (this.usePayment) {
+      console.log(this.tempUser);
       this.account.onVerifySubscriper(this.tempformData.username, this.tempformData.firstName, this.tempformData.lastName, this.tempformData.password, this.code, this.tempformData.phone, this.cardNumber, formFull.value.pobox, formFull.value.email, formFull.value.billingaddress, this.masarType)
         .then(() => {
           debugger;
@@ -278,42 +289,42 @@ export class LoginPage {
       debugger;
       if (result == 'ar') {
         this.PaymentAlert = "خدمات الدفع !";
-        this.PaymentAlertQus="هل ترغب بأستخدام عمليات الدفع المتوفرة لدينا ؟";
-        this.Disagree="مواقف";
-        this.Agree= "غير موافق";
-        this.NFC_DISABLED=" NFC تم ايقاف";
-        this.OK="نعم";
-        this.GO_SETTING="الذهاب للأعدادات";
-        this.NFC_NOT_DETECTED="لايوجد NFC";
-        this.NFC_Failed="NFC معطل";
+        this.PaymentAlertQus = "هل ترغب بأستخدام عمليات الدفع المتوفرة لدينا ؟";
+        this.Disagree = "غير موافق";
+        this.Agree = "مواقف";
+        this.NFC_DISABLED = " NFC تم ايقاف";
+        this.OK = "نعم";
+        this.GO_SETTING = "الذهاب للأعدادات";
+        this.NFC_NOT_DETECTED = "لايوجد NFC";
+        this.NFC_Failed = "NFC معطل";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
         this.PaymentAlert = " Payment Alert !";
-        this.PaymentAlertQus="do you want use our payment method ?";
-        this.Disagree="Disagree";
-        this.Agree= "Agree";
-        this.NFC_DISABLED="NFC DISABLED";
-        this.OK="OK";
-        this.GO_SETTING="GO SETTING";
-        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
-        this.NFC_Failed="NFC Failed";
+        this.PaymentAlertQus = "do you want use our payment method ?";
+        this.Disagree = "Disagree";
+        this.Agree = "Agree";
+        this.NFC_DISABLED = "NFC DISABLED";
+        this.OK = "OK";
+        this.GO_SETTING = "GO SETTING";
+        this.NFC_NOT_DETECTED = "NFC NOT DETECTED";
+        this.NFC_Failed = "NFC Failed";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
         this.PaymentAlert = "ادائیگی کی انتباہ !";
-        this.PaymentAlertQus="آپ اپنا ادائیگی کا طریقہ استعمال کرنا چاہتے ہیں ؟ ";
-        this.Disagree="متفق ہوں";
-        this.Agree= "اتفاق";
-        this.NFC_DISABLED="این ایف سی کی خرابی";
-        this.OK="ٹھیک ہے\n";
-        this.GO_SETTING="سیٹنگنگ جاؤ";
-        this.NFC_NOT_DETECTED="NFC وضاحت نہیں کی";
-        this.NFC_Failed="NFC ناکام";
+        this.PaymentAlertQus = "آپ اپنا ادائیگی کا طریقہ استعمال کرنا چاہتے ہیں ؟ ";
+        this.Disagree = "متفق ہوں";
+        this.Agree = "اتفاق";
+        this.NFC_DISABLED = "این ایف سی کی خرابی";
+        this.OK = "ٹھیک ہے\n";
+        this.GO_SETTING = "سیٹنگنگ جاؤ";
+        this.NFC_NOT_DETECTED = "NFC وضاحت نہیں کی";
+        this.NFC_Failed = "NFC ناکام";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -322,14 +333,14 @@ export class LoginPage {
       }
       else {
         this.PaymentAlert = " Payment Alert !";
-        this.PaymentAlertQus="do you want use our payment method ?";
-        this.Disagree="Disagree";
-        this.Agree= "Agree";
-        this.NFC_DISABLED="NFC DISABLED";
-        this.OK="OK";
-        this.GO_SETTING="GO SETTING";
-        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
-        this.NFC_Failed="NFC Failed";
+        this.PaymentAlertQus = "do you want use our payment method ?";
+        this.Disagree = "Disagree";
+        this.Agree = "Agree";
+        this.NFC_DISABLED = "NFC DISABLED";
+        this.OK = "OK";
+        this.GO_SETTING = "GO SETTING";
+        this.NFC_NOT_DETECTED = "NFC NOT DETECTED";
+        this.NFC_Failed = "NFC Failed";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

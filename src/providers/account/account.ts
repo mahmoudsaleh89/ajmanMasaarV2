@@ -14,12 +14,17 @@ export class AccountProvider {
   cardInfo: any;
   massarCard: any;
   isLoggedIn: boolean;
-
+  numberRegisterErr: string;
+  userNameError: string;
+  OK: string;
+  Err: string;
+  userNameRes: string;
 
   constructor(public http: Http,
               public toastCtrl: ToastController,
               public alertCtrl: AlertController,
               public storage: Storage) {
+    this.translate();
 
   }
 
@@ -45,7 +50,7 @@ export class AccountProvider {
           this.errorApi = 'err';
           if (err.status == 406) {
             this.toastCtrl.create({
-              message: 'Wrong user name or password',
+              message: this.userNameError,
               duration: 5000,
               position: 'middle'
             }).present();
@@ -61,6 +66,7 @@ export class AccountProvider {
   addSubscriber(userData) {
     debugger;
     this.data = userData;
+    this.data.pars
     console.log(JSON.stringify(this.data));
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers})
@@ -69,6 +75,7 @@ export class AccountProvider {
         .subscribe(data => {
           debugger;
           if (data) {
+            console.log('hello' + data);
             resolve(data);
           }
 
@@ -106,16 +113,16 @@ export class AccountProvider {
             resolve(this.userLoginSuccess);
           } else if (data == 3) {
             this.alertCtrl.create({
-              title: 'Error!',
-              subTitle: 'This phone number already registered !',
-              buttons: ['OK']
+              title: this.Err,
+              subTitle: this.numberRegisterErr,
+              buttons: [this.OK]
             }).present();
             return;
           } else if (data == 4) {
             this.alertCtrl.create({
-              title: 'Error!',
-              subTitle: 'This user name already reserved !',
-              buttons: ['OK']
+              title: this.Err,
+              subTitle: this.userNameError,
+              buttons: [this.OK]
             }).present();
             return;
           }
@@ -132,10 +139,11 @@ export class AccountProvider {
   }
 
   onVerifyCode(phone, code) {
-
+    debugger;
     let msg = 'Your Masar verification number is';
     this.http.get('http://www.smsglobal.com/http-api.php?action=sendsms&user=ajmant&password=5ud9gjgd&from=AJtransport&to=' + phone + '&text=' + msg + ' ' + code).map(res => res.json())
       .subscribe(data => {
+        debugger;
         console.log(data);
       });
   }
@@ -185,4 +193,33 @@ export class AccountProvider {
     });
   }
 
+  translate() {
+    this.storage.get('lang').then((result) => {
+      debugger;
+      if (result == 'ar') {
+        this.userNameError = "يوجد خطأ في اسم المستخدم او الرقم السري !";
+        this.numberRegisterErr = "هذا الرقم تم تسجيله سابقا !";
+        this.OK = "موافق";
+        this.Err = "خطأ";
+        this.userNameRes = "أسم المستخدم الذي ادخلنه محجوز مسبقا !"
+
+      }
+      else if (result == 'ur') {
+        this.userNameError = "غلط استعملاتی نام یا خفیہ کوڈ !";
+        this.numberRegisterErr = "یہ فون نمبر پہلے ہی رجسٹرڈ ہے !";
+        this.OK = "ٹھیک ہے";
+        this.Err = "غلطی";
+        this.userNameRes = "اس صارف کا نام پہلے ہی محفوظ ہے !";
+      }
+      else {
+        this.userNameError = "Wrong user name or password !";
+        this.numberRegisterErr = "This phone number already registered !";
+        this.OK = "ok";
+        this.Err = "Error";
+        this.userNameRes = "This user name already reserved !";
+      }
+
+    });
+
+  }
 }

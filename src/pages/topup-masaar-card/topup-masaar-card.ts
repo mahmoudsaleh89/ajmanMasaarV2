@@ -23,6 +23,7 @@ export class TopupMasaarCardPage {
   cardSerial: string;
   cardResult: any;
   progress: boolean;
+  paymentCancel: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -217,7 +218,7 @@ export class TopupMasaarCardPage {
           }
           else {
             this.toastCtrl.create({
-              message: 'Payment proccess was canceled',
+              message: this.paymentCancel,
               duration: 3000
             }).present();
 
@@ -251,16 +252,19 @@ export class TopupMasaarCardPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.paymentCancel = "تم إلغاء عملية الدفع !";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.paymentCancel = "Payment process was canceled !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+        this.paymentCancel = "ادائیگی کی ادائیگی منسوخ کردی گئی تھی !";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -268,6 +272,7 @@ export class TopupMasaarCardPage {
         this.settings.side = 'right';
       }
       else {
+        this.paymentCancel = "Payment process was canceled !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

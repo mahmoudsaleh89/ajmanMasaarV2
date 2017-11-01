@@ -66,7 +66,8 @@
             <ion-row>
               <ion-col ion-item col-4>
                 <ion-label stacked color="dark-gray-custom">{{'CODE' | translate}}</ion-label>
-                <ion-input required placeholder="+971" name="code" ngModel color="{{settings.themeColor}}"
+                <ion-input [maxlength]="5"  placeholder="+971" name="code" ngModel
+                           color="{{settings.themeColor}}"
                            type="number"></ion-input>
               </ion-col>
               <ion-col ion-item col-8>
@@ -79,7 +80,7 @@
           <ion-list inset>
             <ion-item class="ios-last">
               <ion-label color="dark-gray-custom" stacked>{{'USER_NAME' | translate}}</ion-label>
-              <ion-input required name="username" required [minlength]="6" ngModel color="{{settings.themeColor}}"
+              <ion-input required name="username" required [minlength]="5" ngModel color="{{settings.themeColor}}"
                          type="text"></ion-input>
             </ion-item>
             <ion-item>
@@ -89,7 +90,8 @@
             </ion-item>
             <ion-item *ngIf="platform.is('android')">
               <ion-label color="dark-gray-custom" stacked>{{'MASAAR_CARD' | translate}}</ion-label>
-              <ion-input placeholder="{{'SCAN_YOUR_MASAAR_CARD' | translate}}" disabled name="cardidandroid"
+              <ion-input readonly [minlength]="5" required placeholder="{{'SCAN_YOUR_MASAAR_CARD' | translate}}"
+                         name="cardidandroid"
                          [(ngModel)]="tagIdValue"
                          color="{{settings.themeColor}}"
                          type="text"></ion-input>
@@ -97,7 +99,7 @@
             </ion-item>
             <ion-item *ngIf="platform.is('ios')">
               <ion-label color="dark-gray-custom" stacked>{{'MASAAR_CARD' | translate}}</ion-label>
-              <ion-input placeholder="{{'TYPE_MASSAR_CARD_NUMBER' | translate}}" name="cardidios" ngModel
+              <ion-input required [minlength]="5" placeholder="{{'TYPE_MASSAR_CARD_NUMBER' | translate}}" name="cardidios" ngModel
                          color="{{settings.themeColor}}"
 
                          type="text"></ion-input>

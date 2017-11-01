@@ -17,6 +17,7 @@ export class VerificationCodePage {
   storeCode: any;
   user: any;
   inactive = true;
+  CodeErr: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -35,6 +36,7 @@ export class VerificationCodePage {
 
   ionViewDidLoad() {
     if (this.phone) {
+      debugger;
       this.account.onVerifyCode(this.phone, this.verifyCode);
       this.storage.set('code', this.verifyCode);
     }
@@ -48,12 +50,10 @@ export class VerificationCodePage {
   }
 
   onVerification(form: NgForm) {
-
     this.storage.get('code').then((data) => {
       this.storeCode = data;
       if (this.storeCode == form.value.code) {
         debugger;
-
         this.account.addSubscriber(this.user).then((res) => {
           debugger;
           if (res) {
@@ -66,6 +66,11 @@ export class VerificationCodePage {
               cardInfo: {},
               massarCard: ''
             };
+            this.storage.get('lang').then((res) => {
+              if (res) {
+                configInfo.lang = res;
+              }
+            });
             this.account.userLoginSuccess = res;
             /* this.account.userLoginSuccess.NFCCardId = res.NFCCardId;*/
             this.storage.set('config', configInfo);
@@ -84,7 +89,7 @@ export class VerificationCodePage {
       } else {
         debugger;
         this.toastCtrl.create({
-          message: "code you entered didn't match ",
+          message: this.CodeErr,
           duration: 3000
         }).present();
       }
@@ -105,18 +110,19 @@ export class VerificationCodePage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
+        this.CodeErr = "الرمز الذي ادخلتة غير متطابق !";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-
+        this.CodeErr = "code you entered didn't match";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
+        this.CodeErr = "code you entered didn't match";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -124,7 +130,7 @@ export class VerificationCodePage {
         this.settings.side = 'right';
       }
       else {
-
+        this.CodeErr = "آپ نے درج کردہ کوڈ نہیں ملا";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

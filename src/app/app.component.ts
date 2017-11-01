@@ -19,7 +19,10 @@ export class MyApp {
   usertemp: any;
   rootPage: any;
   massarCard: any;
-
+  WARNING_TEAXT: string;
+  PLEASE_LOGIN_MSG:string;
+  LOGIN_LABLE:string;
+  CANCEL_LABEL:string;
   pages: Array<{ title: string, subtitle: string, component: any, icon: string }>;
 
   constructor(public platform: Platform,
@@ -123,16 +126,28 @@ export class MyApp {
           this.storage.get('lang').then((result) => {
             debugger;
             if (result == 'ar') {
+              this.WARNING_TEAXT="تنبيه";
+              this.PLEASE_LOGIN_MSG="يرجى تسجيل الدخول للاستفادة من هذة الخدمة";
+              this.LOGIN_LABLE="دخول";
+              this.CANCEL_LABEL="الغاء";
               this.translate.setDefaultLang('ar');
               this.platform.setDir('rtl', true);
               this.platform.setLang('ar', true);
               this.storage.set('lang', 'ar');
             } else if (result == 'en') {
+              this.WARNING_TEAXT="Warning";
+              this.PLEASE_LOGIN_MSG="please login to use this feature !";
+              this.LOGIN_LABLE="Login";
+              this.CANCEL_LABEL="Cancel";
               this.translate.setDefaultLang('en');
               this.platform.setDir('ltr', true);
               this.platform.setLang('en', true);
               this.storage.set('lang', 'en');
             } else if (result == 'ur') {
+              this.WARNING_TEAXT="انتباہ";
+              this.PLEASE_LOGIN_MSG="اس خصوصیت کو استعمال کرنے کے لئے لاگ ان کریں";
+              this.LOGIN_LABLE="لاگ ان";
+              this.CANCEL_LABEL="منسوخ کریں";
               this.storage.set('lang', 'ur');
               this.translate.setDefaultLang('ur');
               this.platform.setDir('rtl', true);
@@ -140,11 +155,15 @@ export class MyApp {
               this.settings.side = 'right';
             }
             else {
+              this.WARNING_TEAXT="Warning";
+              this.PLEASE_LOGIN_MSG="please login to use this feature !";
+              this.LOGIN_LABLE="Login";
+              this.CANCEL_LABEL="Cancel";
               this.storage.set('lang', 'en');
             }
 
-           this.nav.setRoot('HomePage');
-          /*  this.nav.setRoot('IntroPage');*/
+            this.nav.setRoot('HomePage');
+            /*  this.nav.setRoot('IntroPage');*/
           });
         } else if (first == null || first == true) {
           this.storage.set('lang', 'en');
@@ -181,14 +200,14 @@ export class MyApp {
     } else {
       /*if (this.platform.is('ios')) {*/
       this.alertCtr.create({
-        title: 'Warning !',
-        subTitle: 'please login to use this feature ',
+        title: this.WARNING_TEAXT !,
+        subTitle: this.PLEASE_LOGIN_MSG,
         buttons: [
           {
-            text: 'Cancel'
+            text: this.CANCEL_LABEL
           },
           {
-            text: 'Login',
+            text: this.LOGIN_LABLE,
             handler: () => {
               this.nav.push('LoginPage');
             }
