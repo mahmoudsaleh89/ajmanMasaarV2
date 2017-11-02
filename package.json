@@ -23,6 +23,7 @@
     "@ionic-native/core": "4.3.0",
     "@ionic-native/date-picker": "^4.3.2",
     "@ionic-native/email-composer": "^4.3.2",
+    "@ionic-native/fcm": "^4.3.3",
     "@ionic-native/geolocation": "^4.3.2",
     "@ionic-native/in-app-browser": "^4.3.2",
     "@ionic-native/native-geocoder": "^4.3.2",
@@ -39,6 +40,7 @@
     "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-email-composer": "^0.8.10",
+    "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-geolocation": "^2.4.3",
     "cordova-plugin-inappbrowser": "^1.7.1",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -82,7 +84,8 @@
         "XWALK_MULTIPLEAPK": "true"
       },
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-fcm": {}
     },
     "platforms": [
       "android",
