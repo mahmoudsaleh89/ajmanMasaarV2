@@ -74,8 +74,9 @@ export class HomePage implements OnInit {
       lat: '',
       long: ''
     };
-
     this.myDate = new Date().toISOString();
+
+
   }
 
   ngOnInit() {

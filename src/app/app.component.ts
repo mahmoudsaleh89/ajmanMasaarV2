@@ -9,6 +9,7 @@ import {Storage} from '@ionic/storage';
 import {AccountProvider} from "../providers/account/account";
 import {HomePage} from "../pages/home/home";
 import {TranslateService} from "@ngx-translate/core";
+import {FCM} from "@ionic-native/fcm";
 
 
 @Component({
@@ -20,9 +21,9 @@ export class MyApp {
   rootPage: any;
   massarCard: any;
   WARNING_TEAXT: string;
-  PLEASE_LOGIN_MSG:string;
-  LOGIN_LABLE:string;
-  CANCEL_LABEL:string;
+  PLEASE_LOGIN_MSG: string;
+  LOGIN_LABLE: string;
+  CANCEL_LABEL: string;
   pages: Array<{ title: string, subtitle: string, component: any, icon: string }>;
 
   constructor(public platform: Platform,
@@ -34,7 +35,8 @@ export class MyApp {
               public menuCtrl: MenuController,
               public alertCtr: AlertController,
               public modalCtrl: ModalController,
-              public translate: TranslateService) {
+              public translate: TranslateService,
+              public fcm: FCM) {
 
     this.initializeApp();
     this.pages = [
@@ -66,6 +68,10 @@ export class MyApp {
   initializeApp() {
 
     this.platform.ready().then(() => {
+
+      //area to call push notification function >>>
+      this.onStartPusNotification();
+
       setTimeout(() => {
         this.splashScreen.hide();
       }, 100);
@@ -126,28 +132,31 @@ export class MyApp {
           this.storage.get('lang').then((result) => {
             debugger;
             if (result == 'ar') {
-              this.WARNING_TEAXT="تنبيه";
-              this.PLEASE_LOGIN_MSG="يرجى تسجيل الدخول للاستفادة من هذة الخدمة";
-              this.LOGIN_LABLE="دخول";
-              this.CANCEL_LABEL="الغاء";
+
+              this.WARNING_TEAXT = "تنبيه";
+              this.PLEASE_LOGIN_MSG = "يرجى تسجيل الدخول للاستفادة من هذة الخدمة";
+              this.LOGIN_LABLE = "دخول";
+              this.CANCEL_LABEL = "الغاء";
               this.translate.setDefaultLang('ar');
               this.platform.setDir('rtl', true);
               this.platform.setLang('ar', true);
               this.storage.set('lang', 'ar');
             } else if (result == 'en') {
-              this.WARNING_TEAXT="Warning";
-              this.PLEASE_LOGIN_MSG="please login to use this feature !";
-              this.LOGIN_LABLE="Login";
-              this.CANCEL_LABEL="Cancel";
+
+              this.WARNING_TEAXT = "Warning";
+              this.PLEASE_LOGIN_MSG = "please login to use this feature !";
+              this.LOGIN_LABLE = "Login";
+              this.CANCEL_LABEL = "Cancel";
               this.translate.setDefaultLang('en');
               this.platform.setDir('ltr', true);
               this.platform.setLang('en', true);
               this.storage.set('lang', 'en');
             } else if (result == 'ur') {
-              this.WARNING_TEAXT="انتباہ";
-              this.PLEASE_LOGIN_MSG="اس خصوصیت کو استعمال کرنے کے لئے لاگ ان کریں";
-              this.LOGIN_LABLE="لاگ ان";
-              this.CANCEL_LABEL="منسوخ کریں";
+
+              this.WARNING_TEAXT = "انتباہ";
+              this.PLEASE_LOGIN_MSG = "اس خصوصیت کو استعمال کرنے کے لئے لاگ ان کریں";
+              this.LOGIN_LABLE = "لاگ ان";
+              this.CANCEL_LABEL = "منسوخ کریں";
               this.storage.set('lang', 'ur');
               this.translate.setDefaultLang('ur');
               this.platform.setDir('rtl', true);
@@ -155,17 +164,20 @@ export class MyApp {
               this.settings.side = 'right';
             }
             else {
-              this.WARNING_TEAXT="Warning";
-              this.PLEASE_LOGIN_MSG="please login to use this feature !";
-              this.LOGIN_LABLE="Login";
-              this.CANCEL_LABEL="Cancel";
+
+              this.WARNING_TEAXT = "Warning";
+              this.PLEASE_LOGIN_MSG = "please login to use this feature !";
+              this.LOGIN_LABLE = "Login";
+              this.CANCEL_LABEL = "Cancel";
               this.storage.set('lang', 'en');
             }
+
 
             this.nav.setRoot('HomePage');
             /*  this.nav.setRoot('IntroPage');*/
           });
         } else if (first == null || first == true) {
+
           this.storage.set('lang', 'en');
           this.translate.setDefaultLang('en');
           /* this.platform.setDir('ltr', true);
@@ -232,5 +244,26 @@ export class MyApp {
     this.menuCtrl.close();
   }
 
+  onStartPusNotification() {
+    /*to get device token*/
+    this.fcm.getToken().then(token => {
+      /**/
+      console.log(token);
+    });
+    /*to set what is going on when message recived*/
+    this.fcm.onNotification().subscribe(data => {
+      if (data.wasTapped) {
+        console.log("Received in background");
+      } else {
+        console.log("Received in foreground");
+      }
+      /*this method for change token id*/
+      this.fcm.onTokenRefresh().subscribe(token => {
+        console.log(token);
+      });
+    })
+
+
+  }
 
 }

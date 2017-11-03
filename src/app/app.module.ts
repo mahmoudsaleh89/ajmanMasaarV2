@@ -23,6 +23,7 @@ import {EmailComposer} from "@ionic-native/email-composer";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {FCM} from "@ionic-native/fcm";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     NFC,
     Ndef,
     InAppBrowser,
-    EmailComposer
+    EmailComposer,
+    FCM
 
   ]
 })
