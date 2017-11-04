@@ -6,29 +6,55 @@
       </button>
     </div>
     <div class="faces">
-      <img style="width:75%" src="img/card-logo.png">
-      <h4 text-center> {{'RATE_THIS_APP_DESC' | translate}}</h4>
-      <img [ngClass]="{'active-face' :sad}" (click)="setRate('1')" src="img/sad.png">
-      <img [ngClass]="{'active-face' :normal}" (click)="setRate('2')" src="img/emoticon.png">
-      <img [ngClass]="{'active-face' :happy}" (click)="setRate('3')" src="img/smile.png">
-      <img [ngClass]="{'active-face' :veryhappy}" (click)="setRate('4')" src="img/happy.png">
+      <div [hidden]="showCharts">
+        <button text-center (click)="toggleCharts()"ion-button clear
+                color="m-dark-blue">
+          {{'REVIEW' | translate}} &nbsp;
+        </button>
+        <img style="width:75%" src="img/card-logo.png">
+        <h4 text-center> {{'RATE_THIS_APP_DESC' | translate}}</h4>
+        <img [ngClass]="{'active-face' :sad}" (click)="setRate('1')" src="img/sad.png">
+        <img [ngClass]="{'active-face' :normal}" (click)="setRate('2')" src="img/emoticon.png">
+        <img [ngClass]="{'active-face' :happy}" (click)="setRate('3')" src="img/smile.png">
+        <img [ngClass]="{'active-face' :veryhappy}" (click)="setRate('4')" src="img/happy.png">
+        <ion-list inset>
+          <ion-item style="background-color: transparent;">
+            <ion-label stacked>{{'COMMENT' | translate}}</ion-label>
+            <ion-textarea [(ngModel)]="desc" placeholder="{{'TYPE_YOUR_COMMENT_HERE' | translate}}"
+                          type="text"></ion-textarea>
+          </ion-item>
+          <ion-item text-center style="background-color: transparent;">
+            <button (click)="onSubmitRate()" [disabled]="!rateValue" ion-button large outline
+                    color="{{settings.themeColor}}">
+              {{'SEND' | translate}} &nbsp;
+              <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
+            </button>
 
-      <ion-list inset>
-        <ion-item style="background-color: transparent;">
-          <ion-label stacked>{{'COMMENT' | translate}}</ion-label>
-          <ion-textarea [(ngModel)]="desc" placeholder="{{'TYPE_YOUR_COMMENT_HERE' | translate}}"
-                        type="text"></ion-textarea>
-        </ion-item>
-        <ion-item text-center style="background-color: transparent;">
-          <button (click)="onSubmitRate()" [disabled]="!rateValue" ion-button large outline
-                  color="{{settings.themeColor}}">
-            {{'SEND' | translate}} &nbsp;
-            <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
-          </button>
-        </ion-item>
-      </ion-list>
-
+          </ion-item>
+        </ion-list>
+      </div>
+      <div [hidden]="!showCharts">
+        <button color="m-dark-blue" ion-button clear block text-center (click)="toggleCharts()">
+          {{ 'BACK' | translate}}
+        </button>
+        <canvas #doughnutCanvas></canvas>
+      </div>
     </div>
-
+    <!--<ion-card>
+      <ion-card-header>
+        Bar Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>-->
+   <!-- <ion-card>
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>-->
   </div>
 </ion-content>
