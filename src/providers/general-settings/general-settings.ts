@@ -18,6 +18,7 @@ export class GeneralSettingsProvider {
   statusBarColor: any;
   loder: any;
   side: string;
+  sortRouteIs:string = 'Best route';
 
   /* massarCard:any;*/
   constructor(public http: Http,

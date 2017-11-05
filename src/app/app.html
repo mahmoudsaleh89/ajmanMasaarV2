@@ -29,7 +29,14 @@
           <p>{{'RATE_THIS_APP_DESC' | translate}}</p>
         </button>
       </ion-item>
-
+      <ion-item
+        (click)="onGoToAppReview()">
+        <ion-icon name="people" ion-start color="m-{{settings.themeColor}}"></ion-icon>
+        <button>
+          <p class="main-lable">{{'APP_REVIEW' | translate}}</p>
+          <p>{{'APP_REVIEW_DESC' | translate}}</p>
+        </button>
+      </ion-item>
       <ion-item (click)="onGoToContactPage()">
         <ion-icon name="ios-call" ion-start color="m-{{settings.themeColor}}"></ion-icon>
         <button>

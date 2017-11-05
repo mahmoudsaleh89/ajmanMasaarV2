@@ -14,7 +14,7 @@ import {MyApp} from "../../app/app.component";
 })
 export class SettingsPage {
   user: any;
- /* themecolor: string = 'orange';*/
+  /* themecolor: string = 'orange';*/
   language: string = 'English';
   searchRoute: string = 'lesswalk';
   editMode: boolean = false;
@@ -46,7 +46,7 @@ export class SettingsPage {
   }
 
   onSelectTheme(data) {
-  /*  this.themecolor = data;*/
+    /*  this.themecolor = data;*/
     this.settings.themeColor = data;
     this.storage.set('statusBarColor', data);
     this.storage.set('themeColor', this.settings.themeColor)
@@ -116,6 +116,13 @@ export class SettingsPage {
       cardInfo: this.acc.cardInfo,
       massarCard: this.acc.massarCard
     }
+    if (this.myForm.value.searchRoute == 'lesstransfers') {
+      this.storage.set('routOption', 'FEWER_TRANSFERS  ');
+      this.settings.sortRouteIs = 'Less transfers';
+    } else if (this.myForm.value.searchRoute == 'lesswalk') {
+      this.storage.set('routOption', 'LESS_WALKING ');
+      this.settings.sortRouteIs = 'Less walk';
+    }
 
     switch (this.myForm.value.themecolor) {
       case 'orange':
@@ -173,8 +180,9 @@ export class SettingsPage {
           this.storage.set("tc", this.configInfo.themeColor);
           loader.dismiss();
           /*this.platform.*/
-          this.myAPP.initializeApp();/*
-          this.navCtrl.setRoot('HomePage');*/
+          this.myAPP.initializeApp();
+          /*
+                    this.navCtrl.setRoot('HomePage');*/
         }
       });
 

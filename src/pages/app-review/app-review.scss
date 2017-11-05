@@ -1,17 +1,17 @@
-page-happiness-meter {
+page-app-review {
   .background-rate {
     width: 100%;
     position: absolute;
     height: 100%;
     background-size: 100%;
     padding: 0 4%;
-    padding-top: 15%;
+    padding-top:20%;
     background: transparent !important;
   }
   .faces {
     text-align: center !important;
     background-color: #ffffff;
-    padding: 3% 0%;
+    padding: 16% 0%;
     border-radius: 20px;
     padding-top: 6%;
   }
@@ -41,23 +41,10 @@ page-happiness-meter {
       background-color: rgba(0, 0, 0, 0.45) !important;
     }
   }
-  /*.scroll-content{
-    background-color: red;
-  }*/
-
-  /*ion-modal.show-page {
-    background-color: red;
-  }*/
-  .active-face {
-    background-color: yellow;
-    border-radius: 100%;
-    padding: 0px !important;
-  }
   .content-ios:not([no-bounce]) > .scroll-content::before, .content-ios:not([no-bounce]) > .scroll-content::after {
     width: 0px;
     height: 0px;
   }
-
   div.scroll-content {
     padding-top: 0px !important;
   }

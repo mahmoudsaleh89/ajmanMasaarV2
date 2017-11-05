@@ -6,11 +6,6 @@
       </button>
     </div>
     <div class="faces">
-      <div [hidden]="showCharts">
-        <button text-center (click)="toggleCharts()"ion-button clear
-                color="m-dark-blue">
-          {{'REVIEW' | translate}} &nbsp;
-        </button>
         <img style="width:75%" src="img/card-logo.png">
         <h4 text-center> {{'RATE_THIS_APP_DESC' | translate}}</h4>
         <img [ngClass]="{'active-face' :sad}" (click)="setRate('1')" src="img/sad.png">
@@ -32,13 +27,6 @@
 
           </ion-item>
         </ion-list>
-      </div>
-      <div [hidden]="!showCharts">
-        <button color="m-dark-blue" ion-button clear block text-center (click)="toggleCharts()">
-          {{ 'BACK' | translate}}
-        </button>
-        <canvas #doughnutCanvas></canvas>
-      </div>
     </div>
   </div>
 </ion-content>

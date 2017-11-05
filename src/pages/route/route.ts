@@ -17,6 +17,7 @@ export class RoutePage implements OnInit {
   @ViewChild('directionsPanelx') directionsPanel: ElementRef;
   map: any;
   directionsService: any;
+  sortBy: string;
   directionsDisplay: any;
   startPosition: any;
   endPosition: any;
@@ -48,6 +49,7 @@ export class RoutePage implements OnInit {
     this.setLangAndDirction();
     this.directionsService = new google.maps.DirectionsService;
     this.directionsDisplay = new google.maps.DirectionsRenderer;
+
   }
 
   ngOnInit() {
@@ -73,42 +75,93 @@ export class RoutePage implements OnInit {
 
     this.directionsDisplay.setMap(this.map);
     /*this.directionsDisplay.setPanel(this.directionsPanel.nativeElement);*/
-    this.directionsService.route({
-      origin: start,
-      destination: end,
-      provideRouteAlternatives: true,
-      travelMode: google.maps.TravelMode['TRANSIT'],
+    this.storage.get('routOption').then((data) => {
+      if (data) {
+        this.sortBy = data;
+        this.directionsService.route({
+          origin: start,
+          destination: end,
+          provideRouteAlternatives: true,
+          travelMode: google.maps.TravelMode['TRANSIT'],
+          transitOptions: {
+            modes: ['BUS'],
+            routingPreference: this.sortBy
+          }
 
-    }, (res, status) => {
+        }, (res, status) => {
 
-      loading.dismiss();
-      if (status == google.maps.DirectionsStatus.OK) {
+          loading.dismiss();
+          if (status == google.maps.DirectionsStatus.OK) {
 
-        this.allResponse = res;
-        for (let i = 0; i < res.routes.length; i++) {
-          let currentDate: any = new Date();
-          let departure_time = res.routes[i].legs[0].departure_time.value;
-          let min: any = Math.ceil((Date.parse(departure_time) - currentDate) / 1000 / 60);
+            this.allResponse = res;
+            for (let i = 0; i < res.routes.length; i++) {
+              let currentDate: any = new Date();
+              let departure_time = res.routes[i].legs[0].departure_time.value;
+              let min: any = Math.ceil((Date.parse(departure_time) - currentDate) / 1000 / 60);
 
-          res.routes[i].legs[0].departure_on = min;
-          if (this.allResponse.routes[i].fare) {
-            res.routes[i].legs[0].the_fare = this.allResponse.routes[i].fare.text;
+              res.routes[i].legs[0].departure_on = min;
+              if (this.allResponse.routes[i].fare) {
+                res.routes[i].legs[0].the_fare = this.allResponse.routes[i].fare.text;
+              } else {
+                res.routes[i].legs[0].the_fare = 'unknown';
+              }
+
+              this.suggestedRoute.push(res.routes[i].legs);
+              if (i == 0) {
+                this.firstRoute = [];
+                this.firstRoute.push(res.routes[i].legs);
+              }
+            }
+            this.onSelectRoute(0);
+            /* this.directionsDisplay.setDirections(res);*/
           } else {
-            res.routes[i].legs[0].the_fare = 'unknown';
+            console.warn(status);
+          }
+        });
+      } else {
+        this.directionsService.route({
+          origin: start,
+          destination: end,
+          provideRouteAlternatives: true,
+          travelMode: google.maps.TravelMode['TRANSIT'],
+          transitOptions: {
+            modes: ['BUS'],
+            routingPreference: this.sortBy
           }
 
-          this.suggestedRoute.push(res.routes[i].legs);
-          if (i == 0) {
-            this.firstRoute = [];
-            this.firstRoute.push(res.routes[i].legs);
+        }, (res, status) => {
+
+          loading.dismiss();
+          if (status == google.maps.DirectionsStatus.OK) {
+
+            this.allResponse = res;
+            for (let i = 0; i < res.routes.length; i++) {
+              let currentDate: any = new Date();
+              let departure_time = res.routes[i].legs[0].departure_time.value;
+              let min: any = Math.ceil((Date.parse(departure_time) - currentDate) / 1000 / 60);
+
+              res.routes[i].legs[0].departure_on = min;
+              if (this.allResponse.routes[i].fare) {
+                res.routes[i].legs[0].the_fare = this.allResponse.routes[i].fare.text;
+              } else {
+                res.routes[i].legs[0].the_fare = 'unknown';
+              }
+
+              this.suggestedRoute.push(res.routes[i].legs);
+              if (i == 0) {
+                this.firstRoute = [];
+                this.firstRoute.push(res.routes[i].legs);
+              }
+            }
+            this.onSelectRoute(0);
+            /* this.directionsDisplay.setDirections(res);*/
+          } else {
+            console.warn(status);
           }
-        }
-        this.onSelectRoute(0);
-        /* this.directionsDisplay.setDirections(res);*/
-      } else {
-        console.warn(status);
+        });
       }
     });
+
 
   }
 

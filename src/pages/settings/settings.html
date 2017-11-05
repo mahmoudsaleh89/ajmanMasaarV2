@@ -89,7 +89,8 @@
         <ion-item>
           <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
           <ion-label>{{'THEME_COLOR' | translate}}</ion-label>
-          <ion-select name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
+          <ion-select name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}"
+                      cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value="orange">Orange</ion-option>
             <ion-option value="pink">Pink</ion-option>
             <ion-option value="blue">Blue</ion-option>
@@ -102,7 +103,7 @@
         </ion-item>
         <ion-item>
           <ion-label>{{'SEARCH_ROUTE' | translate}}</ion-label>
-          <ion-select disabled name="searchroute" [(ngModel)]="searchRoute" okText="{{'OK_BTN' | translate}}"
+          <ion-select name="searchroute" [(ngModel)]="settings.sortRouteIs" okText="{{'OK_BTN' | translate}}"
                       cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value=" bestrout
           ">Best route
@@ -166,7 +167,7 @@
       <ion-item>
         <ion-icon name="ios-browsers-outline" item-start></ion-icon>
         <h3>{{'SORT_BY' | translate}} </h3>
-        <p>{{'lESS_WALK' | translate}}</p>
+        {{settings.sortRouteIs}}
         <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
       </ion-item>
     </ion-list>

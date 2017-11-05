@@ -1,0 +1,14 @@
+<ion-content class="modal-cusom-bg" has-bouncing="false">
+  <div class="close-modal">
+    <button color="light" ion-button clear block text-center (click)="onCloseModal()">
+      <ion-icon name="ios-close-circle-outline"></ion-icon>
+    </button>
+  </div>
+  <div class="background-rate">
+
+    <div class="faces">
+      <ion-header text-center>{{'APP_REVIEW' | translate}}</ion-header>
+      <canvas #doughnutCanvas></canvas>
+    </div>
+  </div>
+</ion-content>

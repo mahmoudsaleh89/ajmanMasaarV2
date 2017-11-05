@@ -47,12 +47,6 @@ export class MyApp {
         icon: 'md-trending-up'
       },
       {title: 'MY_WALLET', subtitle: 'MY_WALLET_DESC', component: 'MyWalletPage', icon: 'briefcase'},
-      /*{
-        title: 'Rate this app',
-        subtitle: 'We care about your opinion',
-        component: 'HappinessMeterPage',
-        icon: 'star'
-      },*/
       {
         title: 'MY_PLACES',
         subtitle: 'MY_PLACES_DESC',
@@ -274,4 +268,8 @@ export class MyApp {
 
   }
 
+  onGoToAppReview() {
+    this.modalCtrl.create('AppReviewPage').present();
+    this.menuCtrl.close();
+  }
 }
