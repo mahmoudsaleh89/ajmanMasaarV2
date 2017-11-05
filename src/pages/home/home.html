@@ -9,6 +9,10 @@
       <button *ngIf="!settings.isLoggedIn" large ion-button (click)="onGotologin()">
         <ion-icon name="contact"></ion-icon>
       </button>
+      <button item-starts large ion-button (click)="onOpenNotification()">
+        <div class="notification_dots"></div>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
