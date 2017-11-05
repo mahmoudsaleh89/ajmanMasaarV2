@@ -18,7 +18,7 @@
         <ion-input name="code" required [minlength]="3" ngModel type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <button large type="submit" ion-button block [disabled]="!f.valid" color="secondary">
+        <button large type="submit" ion-button block [disabled]="!f.valid" color=m-btn-{{settings.themeColor}}>
           {{'SEND' | translate}}
         </button>
       </ion-item>

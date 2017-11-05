@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -21,7 +21,7 @@
   <div id="btn-from-to">
 
     <ion-item class="btn-from">
-      <ion-icon item-start name="locate" color="secondary"></ion-icon>
+      <ion-icon item-start name="locate" color=m-btn-{{settings.themeColor}}></ion-icon>
       <ion-input placeholder="{{'FROM' | translate}}" disabled (click)="onAddPlace('from')" [(ngModel)]="addressFrom.place" block clear
                  text-start>
         Current location
@@ -49,7 +49,7 @@
     <ion-row>
       <ion-col col-6>
         <button class=" duration5" (click)="onRideNow()" ion-button block round item-end icon-start
-                color="secondary">
+                color=m-btn-{{settings.themeColor}}>
           <ion-icon name="flag"></ion-icon>
           {{'RIDE_NOW' | translate}}
         </button>
@@ -64,17 +64,17 @@
 
   </div>
   <ion-fab end bottom>
-    <button ion-fab color="{{settings.themeColor}}">
+    <button ion-fab color="m-{{settings.themeColor}}">
       <ion-icon name="more"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-fab (click)="ToggelMarker()" color="{{settings.themeColor}}">
+      <button ion-fab (click)="ToggelMarker()" color="m-{{settings.themeColor}}">
         <ion-icon name="bus"></ion-icon>
       </button>
-      <button ion-fab (click)="onClickFabs(placesPage)" color="{{settings.themeColor}}">
+      <button ion-fab (click)="onClickFabs(placesPage)" color="m-{{settings.themeColor}}">
         <ion-icon name="star"></ion-icon>
       </button>
-      <button ion-fab (click)="onGetLocation()" color="{{settings.themeColor}}">
+      <button ion-fab (click)="onGetLocation()" color="m-{{settings.themeColor}}">
         <ion-icon name="locate"></ion-icon>
       </button>
     </ion-fab-list>

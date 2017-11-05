@@ -25,7 +25,7 @@
           </ion-item>
           <ion-item text-center style="background-color: transparent;">
             <button (click)="onSubmitRate()" [disabled]="!rateValue" ion-button large outline
-                    color="{{settings.themeColor}}">
+                    color="m-{{settings.themeColor}}">
               {{'SEND' | translate}} &nbsp;
               <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
             </button>
@@ -40,21 +40,5 @@
         <canvas #doughnutCanvas></canvas>
       </div>
     </div>
-    <!--<ion-card>
-      <ion-card-header>
-        Bar Chart
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #barCanvas></canvas>
-      </ion-card-content>
-    </ion-card>-->
-   <!-- <ion-card>
-      <ion-card-header>
-        Doughnut Chart
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
-      </ion-card-content>
-    </ion-card>-->
   </div>
 </ion-content>

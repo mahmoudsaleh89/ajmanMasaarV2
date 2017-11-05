@@ -106,7 +106,7 @@ export class MyApp {
             massarCard: 'XX.00'
           }
           this.storage.set('config', configInfo);
-          this.settings.themeColor = 'm-orange';
+          this.settings.themeColor = 'orange';
           this.settings.statusBarColor = 'ce5713';
           this.account.massarCard = 'XX.00';
           this.settings.lang = 'en';
@@ -114,17 +114,25 @@ export class MyApp {
         }
       });
       this.storage.get('tc').then((tcr) => {
-        if (tcr) {
-          this.settings.themeColor = tcr;
-          this.settings.statusBarColor = 'ce5713';
+        if (tcr == 'orange') {
+          this.settings.themeColor = 'orange';
+          this.settings.statusBarColor = 'b95921';
+          this.statusBar.backgroundColorByHexString('b95921');
+        } else if (tcr == 'pink') {
+          this.settings.themeColor = 'pink';
+          this.settings.statusBarColor = 'd81a65';
+          this.statusBar.backgroundColorByHexString('ab134f');
+        } else if (tcr == 'blue') {
+          this.settings.themeColor = 'blue';
+          this.settings.statusBarColor = '03a6bb';
+          this.statusBar.backgroundColorByHexString('06bbd3');
         } else {
-          this.settings.themeColor = 'm-orange';
-          this.settings.statusBarColor = 'ce5713';
+          this.settings.themeColor = 'orange';
+          this.settings.statusBarColor = 'e16c28';
+          this.statusBar.backgroundColorByHexString('b95921');
         }
       })
       this.account.massarCard = 'XX.00';
-      this.statusBar.backgroundColorByHexString('e16c28');
-
       this.storage.get('firstRun').then((first) => {
         debugger;
         if (first == false) {

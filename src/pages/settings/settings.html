@@ -1,6 +1,6 @@
 <!--Header-->
 <ion-header>
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -30,25 +30,25 @@
           <ion-col ion-item col-6>
             <ion-label stacked color="dark-gray-custom">{{'FIRST_NAME' | translate}}</ion-label>
             <ion-input required name="firstName" [(ngModel)]="acc.userLoginSuccess.FirstName"
-                       color="{{settings.themeColor}}"
+                       color="m-{{settings.themeColor}}"
                        type="text"></ion-input>
           </ion-col>
           <ion-col ion-item col-6>
             <ion-label stacked color="dark-gray-custom">{{'LAST_NAME' | translate}}</ion-label>
             <ion-input required name="lastName" [(ngModel)]="acc.userLoginSuccess.LastName"
-                       color="{{settings.themeColor}}" type="text"></ion-input>
+                       color="m-{{settings.themeColor}}" type="text"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <!--<ion-col ion-item col-4>
             <ion-label stacked color="dark-gray-custom">{{'CODE' | translate}}</ion-label>
-            <ion-input disabled required placeholder="+971" name="code" ngModel color="{{settings.themeColor}}"
+            <ion-input disabled required placeholder="+971" name="code" ngModel color="m-{{settings.themeColor}}"
                        type="number"></ion-input>
           </ion-col>-->
           <ion-col ion-item>
             <ion-label stacked color="dark-gray-custom">{{'PHONE_NUMBER' | translate}}</ion-label>
             <ion-input disabled required name="phone" [(ngModel)]="acc.userLoginSuccess.Phone"
-                       color="{{settings.themeColor}}"
+                       color="m-{{settings.themeColor}}"
                        type="number"></ion-input>
           </ion-col>
         </ion-row>
@@ -57,19 +57,19 @@
         <ion-item>
           <ion-label color="dark-gray-custom" stacked>{{'POBOX' | translate}}</ion-label>
           <ion-input required name="pobox" required [minlength]="3" [(ngModel)]="acc.userLoginSuccess.POBox"
-                     color="{{settings.themeColor}}"
+                     color="m-{{settings.themeColor}}"
                      type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="dark-gray-custom" stacked>{{'EMAIL' | translate}}</ion-label>
           <ion-input required name="email" required [minlength]="8" [(ngModel)]="acc.userLoginSuccess.Email"
-                     color="{{settings.themeColor}}"
+                     color="m-{{settings.themeColor}}"
                      type="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="dark-gray-custom" stacked>{{'BILLING_ADDRESS' | translate}}</ion-label>
           <ion-input required name="billingaddress" [(ngModel)]="acc.userLoginSuccess.BillingAddress" required
-                     [minlength]="4" color="{{settings.themeColor}}"
+                     [minlength]="4" color="m-{{settings.themeColor}}"
                      type="text"></ion-input>
         </ion-item>
       </ion-list>
@@ -89,12 +89,10 @@
         <ion-item>
           <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
           <ion-label>{{'THEME_COLOR' | translate}}</ion-label>
-          <ion-select disabled name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
-            <ion-option value="Orange">Orange</ion-option>
-            <ion-option value="Pink">Pink</ion-option>
-            <ion-option value="Dark blue">Dark blue</ion-option>
-            <ion-option value="Light blue">Light blue</ion-option>
-            <ion-option value="Brown">Brown</ion-option>
+          <ion-select name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
+            <ion-option value="orange">Orange</ion-option>
+            <ion-option value="pink">Pink</ion-option>
+            <ion-option value="blue">Blue</ion-option>
           </ion-select>
         </ion-item>
         <ion-item hidden>

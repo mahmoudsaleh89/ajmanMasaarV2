@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <ion-buttons large left>
       <button (click)="onback()" ion-button>
         <ion-icon name="arrow-back"></ion-icon>
@@ -39,7 +39,7 @@
                       placeholder="{{'DESCRIPE_YOUR_ISSUE' | translate}}"></ion-textarea>
       </ion-item>
       <ion-item>
-        <button type="submit" large ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+        <button type="submit" large ion-button block [disabled]="!f.valid" color="m-{{settings.themeColor}}">
           {{'SEND' | translate}}
         </button>
       </ion-item>

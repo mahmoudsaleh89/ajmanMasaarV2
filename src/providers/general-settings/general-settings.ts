@@ -15,7 +15,7 @@ export class GeneralSettingsProvider {
   mastercard: any;
   data: any;
   /* cardInfo:any;*/
-  statusBarColor: string;
+  statusBarColor: any;
   loder: any;
   side: string;
 

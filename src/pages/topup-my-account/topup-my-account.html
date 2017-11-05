@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <ion-title>{{'TOPUP_CREDIT' | translate}}</ion-title>
   </ion-navbar>
 
@@ -20,23 +20,23 @@
     </ion-list>
     <ion-row text-center>
       <ion-col>
-        <button large class="active-btn" (click)="setInput(5)" ion-button color="{{settings.themeColor}}">
+        <button large class="active-btn" (click)="setInput(5)" ion-button color="m-{{settings.themeColor}}">
           {{'AED_S' | translate}}<br>5
         </button>
       </ion-col>
       <ion-col>
-        <button large class="active-btn" (click)="setInput(10)" ion-button color="{{settings.themeColor}}">
+        <button large class="active-btn" (click)="setInput(10)" ion-button color="m-{{settings.themeColor}}">
           {{'AED_S' | translate}}<br>
           10
         </button>
       </ion-col>
       <ion-col>
-        <button large ion-button color="{{settings.themeColor}}" (click)="setInput(20)">{{'AED_S' | translate}}<br>20
+        <button large ion-button color="m-{{settings.themeColor}}" (click)="setInput(20)">{{'AED_S' | translate}}<br>20
         </button>
       </ion-col>
     </ion-row>
     <div padding>
-      <button (click)="onTopupBalance()" block text-center ion-button color="secondary">
+      <button (click)="onTopupBalance()" block text-center ion-button color=m-btn-{{settings.themeColor}}>
         {{'CONTINUE' | translate}}
         <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
       </button>

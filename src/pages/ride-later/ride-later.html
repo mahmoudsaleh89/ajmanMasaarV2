@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <ion-title>{{'RIDE_LATER' | translate}}</ion-title>
   </ion-navbar>
 
@@ -18,6 +18,6 @@
     <button block (click)="openTimePicker()" ion-button>{{currentTime}}</button>
   </div>
   <div class="schedule">
-    <button block large (click)="onSetSchedule()" ion-button color="secondary">{{'SCHEDULE' | translate}}</button>
+    <button block large (click)="onSetSchedule()" ion-button color=m-btn-{{settings.themeColor}}>{{'SCHEDULE' | translate}}</button>
   </div>
 </ion-content>

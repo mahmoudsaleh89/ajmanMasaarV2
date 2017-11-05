@@ -32,12 +32,12 @@
             </ion-item>
           </ion-list>
           <div>
-            <button type="submit" ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+            <button type="submit" ion-button block [disabled]="!f.valid" color="m-{{settings.themeColor}}">
               {{'SIGN_IN' | translate}}
             </button>
           </div>
           <div hidden>
-            <button type="button" class="forgot-btn" ion-button clear block color="{{settings.themeColor}}">
+            <button type="button" class="forgot-btn" ion-button clear block color="m-{{settings.themeColor}}">
               {{'FORGOT_PASSWORD' | translate}}
             </button>
           </div>
@@ -55,24 +55,24 @@
             <ion-row>
               <ion-col ion-item col-6>
                 <ion-label stacked color="dark-gray-custom">{{'FIRST_NAME' | translate}}</ion-label>
-                <ion-input required name="firstName" ngModel color="{{settings.themeColor}}"
+                <ion-input required name="firstName" ngModel color="m-{{settings.themeColor}}"
                            type="text"></ion-input>
               </ion-col>
               <ion-col ion-item col-6>
                 <ion-label stacked color="dark-gray-custom">{{'LAST_NAME' | translate}}</ion-label>
-                <ion-input required name="lastName" ngModel color="{{settings.themeColor}}" type="text"></ion-input>
+                <ion-input required name="lastName" ngModel color="m-{{settings.themeColor}}" type="text"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col ion-item col-4>
                 <ion-label stacked color="dark-gray-custom">{{'CODE' | translate}}</ion-label>
                 <ion-input [maxlength]="5"  placeholder="+971" name="code" ngModel
-                           color="{{settings.themeColor}}"
+                           color="m-{{settings.themeColor}}"
                            type="number"></ion-input>
               </ion-col>
               <ion-col ion-item col-8>
                 <ion-label stacked color="dark-gray-custom">{{'PHONE_NUMBER' | translate}}</ion-label>
-                <ion-input required name="phone" ngModel color="{{settings.themeColor}}" type="number"></ion-input>
+                <ion-input required name="phone" ngModel color="m-{{settings.themeColor}}" type="number"></ion-input>
               </ion-col>
             </ion-row>
           </ion-list>
@@ -80,12 +80,12 @@
           <ion-list inset>
             <ion-item class="ios-last">
               <ion-label color="dark-gray-custom" stacked>{{'USER_NAME' | translate}}</ion-label>
-              <ion-input required name="username" required [minlength]="5" ngModel color="{{settings.themeColor}}"
+              <ion-input required name="username" required [minlength]="5" ngModel color="m-{{settings.themeColor}}"
                          type="text"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label color="dark-gray-custom" stacked>{{'PASSWORD' | translate}}</ion-label>
-              <ion-input required name="password" ngModel required [minlength]="6" color="{{settings.themeColor}}"
+              <ion-input required name="password" ngModel required [minlength]="6" color="m-{{settings.themeColor}}"
                          type="password"></ion-input>
             </ion-item>
             <ion-item *ngIf="platform.is('android')">
@@ -93,14 +93,14 @@
               <ion-input readonly [minlength]="5" required placeholder="{{'SCAN_YOUR_MASAAR_CARD' | translate}}"
                          name="cardidandroid"
                          [(ngModel)]="tagIdValue"
-                         color="{{settings.themeColor}}"
+                         color="m-{{settings.themeColor}}"
                          type="text"></ion-input>
               <img src="img/nfc-t.gif" style="width:50px" item-end>
             </ion-item>
             <ion-item *ngIf="platform.is('ios')">
               <ion-label color="dark-gray-custom" stacked>{{'MASAAR_CARD' | translate}}</ion-label>
               <ion-input required [minlength]="5" placeholder="{{'TYPE_MASSAR_CARD_NUMBER' | translate}}" name="cardidios" ngModel
-                         color="{{settings.themeColor}}"
+                         color="m-{{settings.themeColor}}"
 
                          type="text"></ion-input>
             </ion-item>
@@ -108,7 +108,7 @@
 
           <ion-list>
             <ion-item class="sign-up-btn">
-              <button type="submit" large ion-button block [disabled]="!f.valid" color="{{settings.themeColor}}">
+              <button type="submit" large ion-button block [disabled]="!f.valid" color="m-{{settings.themeColor}}">
                 {{'SUBMIT' | translate}}
               </button>
             </ion-item>
@@ -118,23 +118,23 @@
           <ion-list inset>
             <ion-item>
               <ion-label color="dark-gray-custom" stacked>{{'POBOX' | translate}}</ion-label>
-              <ion-input required name="pobox" required [minlength]="3" ngModel color="{{settings.themeColor}}"
+              <ion-input required name="pobox" required [minlength]="3" ngModel color="m-{{settings.themeColor}}"
                          type="text"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label color="dark-gray-custom" stacked>{{'EMAIL' | translate}}</ion-label>
-              <ion-input required name="email" required [minlength]="8" ngModel color="{{settings.themeColor}}"
+              <ion-input required name="email" required [minlength]="8" ngModel color="m-{{settings.themeColor}}"
                          type="email"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label color="dark-gray-custom" stacked>{{'BILLING_ADDRESS' | translate}}</ion-label>
-              <ion-input required name="billingaddress" ngModel required [minlength]="4" color="{{settings.themeColor}}"
+              <ion-input required name="billingaddress" ngModel required [minlength]="4" color="m-{{settings.themeColor}}"
                          type="text"></ion-input>
             </ion-item>
           </ion-list>
           <ion-list>
             <ion-item class="sign-up-btn">
-              <button large type="submit" ion-button block [disabled]="!f2.valid" color="{{settings.themeColor}}">
+              <button large type="submit" ion-button block [disabled]="!f2.valid" color="m-{{settings.themeColor}}">
                 {{'SAVE' | translate}}&nbsp;
                 <ion-spinner *ngIf="progress" name="dots" item-end></ion-spinner>
               </button>

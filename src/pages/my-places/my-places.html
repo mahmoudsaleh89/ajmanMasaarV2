@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="{{settings.themeColor}}">
+  <ion-navbar color="m-{{settings.themeColor}}">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,7 +10,7 @@
 
 <ion-content has-bouncing="false">
   <div>
-    <ion-segment [(ngModel)]="setTab" color="{{settings.themeColor}}" padding-top>
+    <ion-segment [(ngModel)]="setTab" color="m-{{settings.themeColor}}" padding-top>
       <ion-segment-button color="light" value="favorite">
         {{'FAVORITES' | translate}}
       </ion-segment-button>
@@ -46,7 +46,7 @@
           <ion-item class="empty-result-array" text-center>
             <ion-icon name="happy"></ion-icon>
             <p>{{'FAV_WARNING' | translate}}</p>
-            <button ion-button text-center block large clear color="{{settings.themeColor}}" (click)="backToHome()">
+            <button ion-button text-center block large clear color="m-{{settings.themeColor}}" (click)="backToHome()">
               {{'FAV_BTN_LABEL' | translate}}
             </button>
           </ion-item>
@@ -78,7 +78,7 @@
           <ion-item class="empty-result-array" text-center>
             <ion-icon name="happy"></ion-icon>
             <p>{{'HISTORY_WARNING' | translate}}</p>
-            <button ion-button text-center block large clear color="{{settings.themeColor}}" (click)="backToHome()">
+            <button ion-button text-center block large clear color="m-{{settings.themeColor}}" (click)="backToHome()">
               {{'RIDE_NOW' | translate}}
             </button>
           </ion-item>

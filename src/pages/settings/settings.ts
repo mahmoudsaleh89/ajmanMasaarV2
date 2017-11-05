@@ -14,7 +14,7 @@ import {MyApp} from "../../app/app.component";
 })
 export class SettingsPage {
   user: any;
-  themecolor: string = 'orange';
+ /* themecolor: string = 'orange';*/
   language: string = 'English';
   searchRoute: string = 'lesswalk';
   editMode: boolean = false;
@@ -46,7 +46,7 @@ export class SettingsPage {
   }
 
   onSelectTheme(data) {
-    this.themecolor = data;
+  /*  this.themecolor = data;*/
     this.settings.themeColor = data;
     this.storage.set('statusBarColor', data);
     this.storage.set('themeColor', this.settings.themeColor)
@@ -94,8 +94,7 @@ export class SettingsPage {
     debugger;
     console.log(JSON.stringify(this.myForm.value));
     this.configInfo = {
-      themeColor: 'm-orange',
-      statusBarColor: 'e16c28',
+      themeColor: this.myForm.value.themecolor,
       isLoggedIn: true,
       lang: this.myForm.value.language,
       user: {
@@ -119,25 +118,17 @@ export class SettingsPage {
     }
 
     switch (this.myForm.value.themecolor) {
-      case 'Orange':
-        this.configInfo.themeColor = 'm-orange';
-        this.settings.themeColor = 'm-orange';
+      case 'orange':
+        this.configInfo.themeColor = 'orange';
+        this.settings.themeColor = 'orange';
         break;
-      case 'Pink':
-        this.configInfo.themeColor = 'm-pink';
-        this.settings.themeColor = 'm-pink';
+      case 'pink':
+        this.configInfo.themeColor = 'pink';
+        this.settings.themeColor = 'pink';
         break;
-      case 'Dark blue':
-        this.configInfo.themeColor = 'm-dark-blue';
-        this.settings.themeColor = 'm-dark-blue';
-        break;
-      case 'Light blue':
-        this.configInfo.themeColor = 'm-blue';
-        this.settings.themeColor = 'm-blue';
-        break;
-      case 'Brown':
-        this.configInfo.themeColor = 'm-brown';
-        this.settings.themeColor = 'm-brown';
+      case 'blue':
+        this.configInfo.themeColor = 'blue';
+        this.settings.themeColor = 'blue';
         break;
     }
     switch (this.myForm.value.language) {
