@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar color="m-{{settings.themeColor}}">
+    <ion-title>Notifications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let notify of settings.notificationList">
+      <h3 style="font-size:17px;color:black">{{notify.textmessage}}</h3>
+      <ion-icon *ngIf="!notify.typeOfNotification == 'Alert'" name="paper" color="m-{{settings.themeColor}}"></ion-icon>&nbsp;
+      <ion-icon *ngIf="notify.typeOfNotification == 'Alert'" name="card" color="m-{{settings.themeColor}}"></ion-icon>&nbsp;
+      <span style="font-size: 12px;color: #5d5c5c">{{notify.currentTime}}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

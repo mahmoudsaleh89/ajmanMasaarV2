@@ -1,5 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, LoadingController, MenuController, ModalController, Nav, Platform} from 'ionic-angular';
+import {
+  AlertController, LoadingController, MenuController, ModalController, Nav, Platform,
+  ToastController
+} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {GeneralSettingsProvider} from "../providers/general-settings/general-settings";
@@ -36,7 +39,9 @@ export class MyApp {
               public alertCtr: AlertController,
               public modalCtrl: ModalController,
               public translate: TranslateService,
-              public fcm: FCM) {
+              public fcm: FCM,
+              public toastCtrl: ToastController) {
+
 
     this.initializeApp();
     this.pages = [
@@ -62,9 +67,49 @@ export class MyApp {
   initializeApp() {
 
     this.platform.ready().then(() => {
+      this.fcm.onNotification().subscribe(data => {
+        if (data.wasTapped) {
+          this.settings.alertNotify = false;
+          console.log(data);
+        } else {
+          this.settings.alertNotify = true;
+          console.log(data);
+          this.toastCtrl.create({
+            message: data.textmessage,
+            duration: 5000,
+            position: 'top'
+          }).present();
+          this.storage.get('notificationList').then((res) => {
+            if (res) {
+              this.settings.notificationList = res;
+              this.settings.notificationList.push({
+                currentTime: data.currentTime,
+                textmessage: data.textmessage,
+                typeOfNotification: data.typeOfNotification
+              });
+              this.storage.set('notificationList', this.settings.notificationList);
+            } else {
+              this.settings.notificationList = [];
+              this.settings.notificationList.push({
+                currentTime: data.currentTime,
+                textmessage: data.textmessage,
+                typeOfNotification: data.typeOfNotification
+              });
+              this.storage.set('notificationList',this.settings.notificationList);
+            }
+          });
+          console.log("Received in foreground");
+        }
+        /*this method for change token id*/
+        this.fcm.onTokenRefresh().subscribe(token => {
+          this.storage.get('lang').then((data) => {
+            this.settings.onSendToken(token, this.usertemp.Id, data);
+          });
+        });
+      });
 
       //area to call push notification function >>>
-      this.onStartPusNotification();
+
 
       setTimeout(() => {
         this.splashScreen.hide();
@@ -87,6 +132,7 @@ export class MyApp {
           } else if (data.lang == 'ur') {
             this.settings.side = 'right';
           }
+          this.onStartPusNotification(data.lang);
           this.account.onGetMasaarCardInfo(this.usertemp.NFCCardId);
         } else {
 
@@ -189,7 +235,16 @@ export class MyApp {
           this.nav.setRoot('IntroPage');
         }
       });
-
+      this.storage.get('notificationList').then((res) => {
+        if (res) {
+          this.settings.notificationList = res;
+          this.storage.set('notificationList', this.settings.notificationList);
+        } else {
+          this.settings.notificationList = [];
+          this.storage.set('notificationList',this.settings.notificationList);
+        }
+        console.log('hellosodokfosdjojosdfojso',this.settings.notificationList);
+      });
     });
 
   }
@@ -246,24 +301,19 @@ export class MyApp {
     this.menuCtrl.close();
   }
 
-  onStartPusNotification() {
+  onStartPusNotification(lang) {
     /*to get device token*/
-    this.fcm.getToken().then(token => {
-      /**/
-      console.log(token);
-    });
-    /*to set what is going on when message recived*/
-    this.fcm.onNotification().subscribe(data => {
-      if (data.wasTapped) {
-        console.log("Received in background");
-      } else {
-        console.log("Received in foreground");
-      }
-      /*this method for change token id*/
-      this.fcm.onTokenRefresh().subscribe(token => {
-        console.log(token);
+    debugger;
+    if (this.settings.isLoggedIn == true) {
+      this.fcm.getToken().then(token => {
+        this.settings.onSendToken(token, this.usertemp.Id, lang);
       });
-    })
+
+    } else {
+      return;
+    }
+
+    /*to set what is going on when message recived*/
 
 
   }

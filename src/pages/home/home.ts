@@ -49,8 +49,9 @@ export class HomePage implements OnInit {
   DestnitionLocation: string;
   DifferentPlaces: string;
 
+
   constructor(public navCtrl: NavController,
-              public settings: GeneralSettingsProvider,
+                public settings: GeneralSettingsProvider,
               public locations: LocationsProvider,
               public modalCtrl: ModalController,
               public storage: Storage,
@@ -473,5 +474,8 @@ export class HomePage implements OnInit {
     });
   }
 
-  onOpenNotification(){}
+  onOpenNotification() {
+    this.settings.alertNotify = false;
+    this.navCtrl.push('NotificationsPage');
+  }
 }

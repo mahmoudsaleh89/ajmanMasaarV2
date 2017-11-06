@@ -10,7 +10,8 @@
         <ion-icon name="contact"></ion-icon>
       </button>
       <button item-starts large ion-button (click)="onOpenNotification()">
-        <div class="notification_dots"></div>
+
+        <div *ngIf="settings.alertNotify" class="notification_dots"></div>
         <ion-icon name="notifications"></ion-icon>
       </button>
     </ion-buttons>
@@ -26,7 +27,8 @@
 
     <ion-item class="btn-from">
       <ion-icon item-start name="locate" color=m-btn-{{settings.themeColor}}></ion-icon>
-      <ion-input placeholder="{{'FROM' | translate}}" disabled (click)="onAddPlace('from')" [(ngModel)]="addressFrom.place" block clear
+      <ion-input placeholder="{{'FROM' | translate}}" disabled (click)="onAddPlace('from')"
+                 [(ngModel)]="addressFrom.place" block clear
                  text-start>
         Current location
       </ion-input>
@@ -38,7 +40,8 @@
 
     <ion-item class="btn-from">
       <ion-icon item-start name="pin" color="danger"></ion-icon>
-      <ion-input placeholder="{{'TO' | translate}}" disabled (click)="onAddPlace('to')" [(ngModel)]="addressTo.place" block clear
+      <ion-input placeholder="{{'TO' | translate}}" disabled (click)="onAddPlace('to')" [(ngModel)]="addressTo.place"
+                 block clear
                  text-start>
         click to add destination
       </ion-input>

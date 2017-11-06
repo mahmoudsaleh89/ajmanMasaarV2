@@ -1,0 +1,20 @@
+page-notifications {
+ ion-label{
+   white-space: normal;
+ }
+  span{
+    /*color: #9E9E9E;*/
+    font-size: 15px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  h3{
+    color:#615d5d;
+  }
+  .back-button-md{
+    color: #ffffff !important;
+  }
+  .toolbar-md-m-orange .bar-button-clear-md, .toolbar-md-m-orange .bar-button-default-md, .toolbar-md-m-orange .bar-button-outline-md, .toolbar-md-m-orange .toolbar-title-md{
+    color: #ffffff !important;
+  }
+}

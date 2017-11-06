@@ -18,7 +18,9 @@ export class GeneralSettingsProvider {
   statusBarColor: any;
   loder: any;
   side: string;
-  sortRouteIs:string = 'Best route';
+  sortRouteIs: string = 'Best route';
+  alertNotify: boolean;
+  notificationList: Array<any>;
 
   /* massarCard:any;*/
   constructor(public http: Http,
@@ -113,5 +115,25 @@ export class GeneralSettingsProvider {
 
   }
 
+  onSendToken(token, userId, lang) {
+    this.data = {
+      TockenID: token,
+      SubscriberId: userId,
+      language: lang
+    };
+    console.log(JSON.stringify(this.data));
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers})
+    this.http.post('http://192.168.0.36/AjmanWebAPIs/api/PushNotification/RegisterTocken', this.data, options).map(res => res.json())
+      .subscribe(data => {
+        if (data) {
+          console.log('hello' + data);
+        }
+      }, (err) => {
+        debugger;
+        console.log(err);
+      });
+
+  }
 
 }

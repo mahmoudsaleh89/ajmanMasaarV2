@@ -66,7 +66,6 @@ export class AccountProvider {
   addSubscriber(userData) {
     debugger;
     this.data = userData;
-    this.data.pars
     console.log(JSON.stringify(this.data));
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers})
