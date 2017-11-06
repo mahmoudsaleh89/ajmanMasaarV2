@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {Chart} from 'chart.js';
 import {TranslateService} from "@ngx-translate/core";
+import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 
 
 @IonicPage()
@@ -16,39 +17,43 @@ export class AppReviewPage {
   happy_label: string = 'happy';
   veryhappy_label: string = 'very happy';
   doughnutChart: any;
+  analysisData:any;
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public settings: GeneralSettingsProvider,
               public storage: Storage,
               public translate: TranslateService,
               public platform: Platform) {
   }
 
   ionViewDidLoad() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-
-      type: 'doughnut',
-      data: {
-        labels: [this.veryhappy_label, this.happy_label, this.normal_label, this.sad_label],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#36a287",
-            "#36A2EB",
-            "#FFCE56",
-          ]
-        }]
-      }
-
+    this.settings.onGetChartData().then((res) => {
+      debugger;
+      this.analysisData = res;
+      this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+        type: 'doughnut',
+        data: {
+          labels: this.analysisData.labels,
+          datasets: [{
+            label: '# of Votes',
+            data: this.analysisData.data,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+            ],
+            hoverBackgroundColor: [
+              "#FF6384",
+              "#36a287",
+              "#36A2EB",
+              "#FFCE56",
+            ]
+          }]
+        }
+      });
     });
   }
 

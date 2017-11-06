@@ -136,4 +136,16 @@ export class GeneralSettingsProvider {
 
   }
 
+  onGetChartData() {
+    return new Promise(resolve => {
+      let msg = 'Your Masar verification number is';
+      this.http.get('http://192.168.0.36/AjmanWebAPIs/api/Dashboard/GetDashboardData').map(res => res.json())
+        .subscribe(data => {
+          debugger;
+          console.log(data);
+          resolve(data);
+        });
+    });
+
+  }
 }

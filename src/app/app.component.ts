@@ -77,7 +77,7 @@ export class MyApp {
           this.toastCtrl.create({
             message: data.textmessage,
             duration: 5000,
-            position: 'top'
+            position: 'bottom'
           }).present();
           this.storage.get('notificationList').then((res) => {
             if (res) {
