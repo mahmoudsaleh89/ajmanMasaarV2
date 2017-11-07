@@ -17,8 +17,8 @@ export class AppReviewPage {
   happy_label: string = 'happy';
   veryhappy_label: string = 'very happy';
   doughnutChart: any;
-  analysisData:any;
-  progress:boolean;
+  analysisData: any;
+  progress: boolean;
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
   constructor(public navCtrl: NavController,
@@ -27,13 +27,14 @@ export class AppReviewPage {
               public storage: Storage,
               public translate: TranslateService,
               public platform: Platform) {
+    this.setLangAndDirction();
   }
 
   ionViewDidLoad() {
-    this.progress=false;
+    this.progress = false;
     this.settings.onGetChartData().then((res) => {
       debugger;
-      this.progress=true;
+      this.progress = true;
       this.analysisData = res;
       this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
         type: 'doughnut',
