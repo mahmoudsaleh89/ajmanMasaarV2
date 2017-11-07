@@ -124,7 +124,7 @@ export class GeneralSettingsProvider {
     console.log(JSON.stringify(this.data));
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers})
-    this.http.post('http://192.168.0.36/AjmanWebAPIs/api/PushNotification/RegisterTocken', this.data, options).map(res => res.json())
+    this.http.post('http://151.253.35.253:9015/MasaarWebAPI/api/PushNotification/RegisterTocken', this.data, options).map(res => res.json())
       .subscribe(data => {
         if (data) {
           console.log('hello' + data);
@@ -139,7 +139,7 @@ export class GeneralSettingsProvider {
   onGetChartData() {
     return new Promise(resolve => {
       let msg = 'Your Masar verification number is';
-      this.http.get('http://192.168.0.36/AjmanWebAPIs/api/Dashboard/GetDashboardData').map(res => res.json())
+      this.http.get('http://151.253.35.253:9015/MasaarWebAPI/api/Dashboard/GetDashboardData').map(res => res.json())
         .subscribe(data => {
           debugger;
           console.log(data);

@@ -7,6 +7,7 @@
   <div class="background-rate">
 
     <div class="faces">
+      <ion-spinner *ngIf="!progress" name="circles" item-end></ion-spinner>
       <ion-header text-center>{{'APP_REVIEW' | translate}}</ion-header>
       <canvas #doughnutCanvas></canvas>
     </div>

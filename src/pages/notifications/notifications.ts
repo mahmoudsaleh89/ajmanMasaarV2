@@ -12,12 +12,14 @@ import {GeneralSettingsProvider} from "../../providers/general-settings/general-
 export class NotificationsPage {
   IOS_BACK: string;
   @ViewChild(Navbar) navbar: Navbar;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public translate: TranslateService,
               public platform: Platform,
               public storage: Storage,
               public settings: GeneralSettingsProvider) {
+    this.setLangAndDirction();
   }
 
   ionViewDidLoad() {

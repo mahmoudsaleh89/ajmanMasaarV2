@@ -51,4 +51,11 @@ page-app-review {
   .close-modal ion-icon {
     font-size: 30px !important;
   }
+
+  ion-spinner * {
+    width: 28px;
+    height: 28px;
+    stroke: green;
+    fill: red;
+  }
 }
