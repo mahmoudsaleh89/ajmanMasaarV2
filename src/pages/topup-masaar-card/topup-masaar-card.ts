@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {AlertController, IonicPage, Navbar, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {BalanceProvider} from "../../providers/balance/balance";
 import {AccountProvider} from "../../providers/account/account";
@@ -25,6 +25,8 @@ export class TopupMasaarCardPage {
   progress: boolean;
   paymentCancel: string;
 
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public settings: GeneralSettingsProvider,
@@ -257,13 +259,28 @@ export class TopupMasaarCardPage {
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
+
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
       } else if (result == 'en') {
+
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.paymentCancel = "Payment process was canceled !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }else if (result == 'ur') {
+
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.paymentCancel = "ادائیگی کی ادائیگی منسوخ کردی گئی تھی !";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
@@ -272,6 +289,10 @@ export class TopupMasaarCardPage {
         this.settings.side = 'right';
       }
       else {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.paymentCancel = "Payment process was canceled !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);

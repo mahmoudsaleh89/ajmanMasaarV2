@@ -8,6 +8,7 @@ import {VerificationCodePage} from "../verification-code/verification-code";
 import {Ndef, NFC} from "@ionic-native/nfc";
 import {BalanceProvider} from "../../providers/balance/balance";
 import {TranslateService} from "@ngx-translate/core";
+import {FCM} from "@ionic-native/fcm";
 
 @IonicPage()
 @Component({
@@ -51,7 +52,8 @@ export class LoginPage {
               private platform: Platform,
               private ndef: Ndef,
               public balance: BalanceProvider,
-              public translate: TranslateService) {
+              public translate: TranslateService,
+              public fcm: FCM) {
     this.setLangAndDirction();
 
   }
@@ -75,6 +77,7 @@ export class LoginPage {
     this.account.onSignin(userName, pass).then(() => {
       debugger;
       if (this.account.userLoginSuccess) {
+
         let configInfo = {
           themeColor: this.settings.themeColor,
           statusBarColor: this.settings.statusBarColor,
@@ -84,6 +87,20 @@ export class LoginPage {
           cardInfo: this.account.cardInfo,
           massarCard: this.account.massarCard
         }
+        this.storage.get('lang').then((res) => {
+          if (res) {
+            this.fcm.getToken().then(token => {
+              configInfo.lang = res;
+              this.settings.onSendToken(token, this.account.userLoginSuccess.Id, res);
+            });
+          } else {
+            this.fcm.getToken().then(token => {
+              configInfo.lang = res;
+              this.settings.onSendToken(token, this.account.userLoginSuccess.Id, 'en');
+            });
+          }
+
+        });
         console.log(JSON.stringify(this.account.userLoginSuccess))
         this.storage.set('config', configInfo);
         this.settings.isLoggedIn = true;
@@ -92,7 +109,6 @@ export class LoginPage {
         console.log(JSON.stringify(this.account.userLoginSuccess))
       }
     });
-
   }
 
 

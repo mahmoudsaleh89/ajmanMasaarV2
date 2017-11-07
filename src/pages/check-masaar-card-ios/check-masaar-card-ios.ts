@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {AlertController, IonicPage, Navbar, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {BalanceProvider} from "../../providers/balance/balance";
 import {AccountProvider} from "../../providers/account/account";
@@ -20,6 +20,9 @@ export class CheckMasaarCardIosPage {
   paymentResult: boolean;
   cardSerial: string;
   cardResult: any;
+
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -244,19 +247,29 @@ export class CheckMasaarCardIosPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       }
       else if (result == 'ur') {
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -264,7 +277,10 @@ export class CheckMasaarCardIosPage {
         this.settings.side = 'right';
       }
       else {
-
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

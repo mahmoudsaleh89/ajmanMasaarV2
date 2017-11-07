@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="m-{{settings.themeColor}}">
-    <ion-title>Masaar card balance</ion-title>
+    <ion-title>{{'IOS_MASAAR_BALANCE_LBL' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,7 +24,7 @@
               <ion-row *ngIf="showBalanceIos">
                 <ion-col>
                   <ion-item *ngIf="showBalanceIos" text-center>
-                    <ion-label text-center>AED</ion-label>
+                    <ion-label text-center>{{'AED_S' | translate}}</ion-label>
                     <ion-input [ngClass]="{'infinite flash' :showBalanceIos}" class="animated" disabled text-center
                                type="text" [(ngModel)]="balance.massarCardBlance"></ion-input>
                   </ion-item>
@@ -51,11 +51,11 @@
       </ion-card>
       <ion-list *ngIf="!showBalanceIos">
         <ion-item>
-          <ion-label stacked>Card number</ion-label>
+          <ion-label stacked>{{'CARD_NUMBER' | translate}}</ion-label>
           <ion-input required [(ngModel)]="cardSerial" [minlength]="10" [maxlength]="10" type="number"
                      placeholder="123XXXXXXX"></ion-input>
           <button (click)="CheckCardBySerial()" ion-button outline item-end>
-            Check card
+            {{'CHECK_CARD' | translate}}
           </button>
         </ion-item>
       </ion-list>

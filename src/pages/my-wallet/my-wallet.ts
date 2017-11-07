@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {AlertController, IonicPage, Navbar, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {Storage} from '@ionic/storage'
 import {BalanceProvider} from "../../providers/balance/balance";
@@ -20,6 +20,8 @@ export class MyWalletPage {
   OK: string;
   GO_SETTING: string;
   NFC_NOT_DETECTED: string;
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -34,13 +36,11 @@ export class MyWalletPage {
               public account: AccountProvider,
               public  translate: TranslateService) {
     this.setLangAndDirction();
-    /*this.platform.ready().then(() => {
-
-    });*/
   }
 
   ionViewDidEnter() {
     if (this.platform.is('android')) {
+
       this.checkNFC();
       this.nfc.addNdefListener().subscribe(nfcData => {
       });
@@ -144,24 +144,40 @@ export class MyWalletPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
-        this.NFC_DISABLED="NFC تم ايقاف";
-        this.OK="موافق";
-        this.GO_SETTING="أذهب الى الأعدادات";
-        this.NFC_NOT_DETECTED="لم يتم العثور على NFC";
+        this.NFC_DISABLED = "NFC تم ايقاف";
+        this.OK = "موافق";
+        this.GO_SETTING = "أذهب الى الأعدادات";
+        this.NFC_NOT_DETECTED = "لم يتم العثور على NFC";
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
-        this.NFC_DISABLED="NFC DISABLED";
-        this.OK="OK";
-        this.GO_SETTING="GO SETTING";
-        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
+        this.NFC_DISABLED = "NFC DISABLED";
+        this.OK = "OK";
+        this.GO_SETTING = "GO SETTING";
+        this.NFC_NOT_DETECTED = "NFC NOT DETECTED";
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
-      }else if (result == 'ur') {
+      } else if (result == 'ur') {
+        this.NFC_DISABLED = "NFC ردعمل";
+        this.OK = "ٹھیک ہے";
+        this.GO_SETTING = "سیٹنگنگ جاؤ";
+        this.NFC_NOT_DETECTED = "وضاحت نہیں کی NFC";
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -169,10 +185,14 @@ export class MyWalletPage {
         this.settings.side = 'right';
       }
       else {
-        this.NFC_DISABLED="NFC DISABLED";
-        this.OK="OK";
-        this.GO_SETTING="GO SETTING";
-        this.NFC_NOT_DETECTED="NFC NOT DETECTED";
+        this.NFC_DISABLED = "NFC DISABLED";
+        this.OK = "OK";
+        this.GO_SETTING = "GO SETTING";
+        this.NFC_NOT_DETECTED = "NFC NOT DETECTED";
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

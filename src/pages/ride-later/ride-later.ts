@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {IonicPage, Navbar, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {Geolocation} from '@ionic-native/geolocation';
 import {DatePicker} from "@ionic-native/date-picker";
@@ -21,6 +21,8 @@ export class RideLaterPage {
   addressFrom: any;
   addressTo: any;
   SIT_TIME_WARNING: string;
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -147,18 +149,30 @@ export class RideLaterPage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.SIT_TIME_WARNING="الرجاء احديد الوقت !";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.SIT_TIME_WARNING="Please sit your time !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       } else if (result == 'ur') {
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.SIT_TIME_WARNING="اپنا وقت بیٹھو !";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
@@ -167,6 +181,10 @@ export class RideLaterPage {
         this.settings.side = 'right';
       }
       else {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.SIT_TIME_WARNING="Please sit your time !";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);

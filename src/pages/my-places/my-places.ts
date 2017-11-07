@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, ItemSliding, NavController, NavParams, Platform} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {AlertController, IonicPage, ItemSliding, Navbar, NavController, NavParams, Platform} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {LocationsProvider} from "../../providers/locations/locations";
 import {Geolocation} from '@ionic-native/geolocation';
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
+
 
 
 @IonicPage()
@@ -21,6 +22,9 @@ export class MyPlacesPage {
   Cancel: string;
   OK: string;
   RemoveHis: string;
+
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -106,6 +110,10 @@ export class MyPlacesPage {
         this.Cancel ="الغاء";
         this.OK="نعم";
         this.RemoveHis="";
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
@@ -116,6 +124,10 @@ export class MyPlacesPage {
         this.Cancel ="Cancel";
         this.OK="Ok";
         this.RemoveHis="Remove History";
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
@@ -125,6 +137,10 @@ export class MyPlacesPage {
         this.SureQus = "کیا تمہیں یقین ہے ؟";
         this.Cancel ="منسوخ کریں";
         this.OK="ٹھیک ہے";
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -136,6 +152,10 @@ export class MyPlacesPage {
         this.SureQus = "Are you sure?";
         this.Cancel ="Cancel";
         this.OK="Ok";
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

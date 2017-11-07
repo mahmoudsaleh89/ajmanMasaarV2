@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {Storage} from '@ionic/storage';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {TranslateService} from "@ngx-translate/core";
+import {FCM} from "@ionic-native/fcm";
 
 @IonicPage()
 @Component({
@@ -26,7 +27,8 @@ export class VerificationCodePage {
               public toastCtrl: ToastController,
               public settings: GeneralSettingsProvider,
               public  translate: TranslateService,
-              private platform: Platform) {
+              private platform: Platform,
+              public fcm: FCM) {
     this.setLangAndDirction();
     this.verifyCode = Math.floor((1 + Math.random()) * 0x10000).toString(16);
     /*this.phone = this.account.userLoginSuccess.Phone;*/
@@ -68,9 +70,19 @@ export class VerificationCodePage {
             };
             this.storage.get('lang').then((res) => {
               if (res) {
-                configInfo.lang = res;
+                this.fcm.getToken().then(token => {
+                  configInfo.lang = res;
+                  this.settings.onSendToken(token, this.account.userLoginSuccess.Id, res);
+                });
+              } else {
+                this.fcm.getToken().then(token => {
+                  configInfo.lang = res;
+                  this.settings.onSendToken(token, this.account.userLoginSuccess.Id, 'en');
+                });
               }
             });
+
+
             this.account.userLoginSuccess = res;
             /* this.account.userLoginSuccess.NFCCardId = res.NFCCardId;*/
             this.storage.set('config', configInfo);

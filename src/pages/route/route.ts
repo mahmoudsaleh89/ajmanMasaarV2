@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams, Platform} from 'ionic-angular';
+import {IonicPage, LoadingController, Navbar, NavController, NavParams, Platform} from 'ionic-angular';
 import {LocationsProvider} from "../../providers/locations/locations";
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {TranslateService} from "@ngx-translate/core";
@@ -15,6 +15,9 @@ declare var google;
 export class RoutePage implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('directionsPanelx') directionsPanel: ElementRef;
+
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
   map: any;
   directionsService: any;
   sortBy: string;
@@ -330,6 +333,10 @@ export class RoutePage implements OnInit {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.PlzWait = 'يرجى الانتظار'
         /* OK: string;
          OrginLocation: string;
@@ -343,6 +350,10 @@ export class RoutePage implements OnInit {
         this.settings.side = 'right';
       }
       else if (result == 'en') {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.PlzWait = 'Please Wait';
         this.storage.set('lang', 'en');
         this.translate.setDefaultLang('en');
@@ -351,6 +362,10 @@ export class RoutePage implements OnInit {
         this.settings.side = 'left';
       }
       else if (result == 'ur') {
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.PlzWait = 'برائے مہربانی انتظار کریں';
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
@@ -359,6 +374,10 @@ export class RoutePage implements OnInit {
         this.settings.side = 'right';
       }
       else {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.PlzWait = 'Please Wait';
         this.storage.set('lang', 'en');
         this.translate.setDefaultLang('en');
