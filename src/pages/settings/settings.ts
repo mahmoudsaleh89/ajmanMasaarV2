@@ -1,5 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, Navbar, NavController, NavParams, Platform} from 'ionic-angular';
+import {
+  ActionSheetController, AlertController, IonicPage, LoadingController, Navbar, NavController, NavParams,
+  Platform
+} from 'ionic-angular';
 import {GeneralSettingsProvider} from "../../providers/general-settings/general-settings";
 import {AccountProvider} from "../../providers/account/account";
 import {Storage} from '@ionic/storage';
@@ -15,7 +18,7 @@ import {MyApp} from "../../app/app.component";
 export class SettingsPage {
   user: any;
   /* themecolor: string = 'orange';*/
-  language: string = 'English';
+  language: string;
   searchRoute: string = 'lesswalk';
   editMode: boolean = false;
   configInfo: any;
@@ -26,6 +29,10 @@ export class SettingsPage {
   SaveChanges: string;
   DiscardChanges: string;
   SavingData: string;
+  MSG_CONFIRM_LANG: string;
+  CANCEL: string;
+  OK_LBL: string;
+
   @ViewChild('myForm', {read: NgForm}) myForm: any;
 
   IOS_BACK: string;
@@ -40,7 +47,9 @@ export class SettingsPage {
               public translate: TranslateService,
               public platform: Platform,
               public loadingCtrl: LoadingController,
-              private myAPP: MyApp) {
+              private myAPP: MyApp,
+              public actionSheetCtrl: ActionSheetController,
+              private alertCtrl: AlertController) {
     this.setLangAndDirction();
   }
 
@@ -78,8 +87,100 @@ export class SettingsPage {
 
   }
 
-  saveAndUpdate() {
-    //Call Api to update info
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your Language',
+      buttons: [
+        {
+          text: 'English',
+          handler: () => {
+            let alert = this.alertCtrl.create({
+              title: this.Warning,
+              message: this.MSG_CONFIRM_LANG,
+              buttons: [
+                {
+                  text: this.CANCEL,
+                  handler: () => {
+                    return;
+                  }
+                },
+                {
+                  text:this.OK_LBL,
+                  handler: () => {
+                    debugger;
+                    this.language = "en";
+                    this.storage.set("lang", this.language).then(() => {
+                      this.platform.exitApp();
+                    });
+
+
+                  }
+                }
+              ]
+            });
+            alert.present();
+
+          }
+        },
+        {
+          text: 'العربية',
+          handler: () => {
+            let alert = this.alertCtrl.create({
+              title: this.Warning,
+              message: this.MSG_CONFIRM_LANG,
+              buttons: [
+                {
+                  text: this.CANCEL,
+                  handler: () => {
+                    return;
+                  }
+                },
+                {
+                  text: this.OK_LBL,
+                  handler: () => {
+                    this.language = "ar";
+                    this.storage.set("lang", this.language).then(() => {
+                      this.platform.exitApp();
+                    });
+
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+        },
+        {
+          text: 'أردو',
+          handler: () => {
+            let alert = this.alertCtrl.create({
+              title: this.Warning,
+              message: this.MSG_CONFIRM_LANG,
+              buttons: [
+                {
+                  text: this.CANCEL,
+                  handler: () => {
+                    return;
+                  }
+                },
+                {
+                  text: this.OK_LBL,
+                  handler: () => {
+                    this.language = "ur";
+                    this.storage.set("lang", this.language).then(() => {
+                      this.platform.exitApp();
+                    });
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
   }
 
   openEditMode() {
@@ -99,7 +200,7 @@ export class SettingsPage {
     this.configInfo = {
       themeColor: this.myForm.value.themecolor,
       isLoggedIn: true,
-      lang: this.myForm.value.language,
+      lang: this.settings.lang,
       user: {
         "Id": this.acc.userLoginSuccess.Id,
         "Email": this.myForm.value.email,
@@ -139,31 +240,6 @@ export class SettingsPage {
       case 'blue':
         this.configInfo.themeColor = 'blue';
         this.settings.themeColor = 'blue';
-        break;
-    }
-    switch (this.myForm.value.language) {
-      case 'arabic':
-        this.configInfo.lang = 'ar';
-        this.settings.themeColor = 'ar';
-        this.SavingData = 'جاري حفظ الاعدادات';
-        this.translate.setDefaultLang('ar');
-        this.platform.setDir('rtl', true);
-        this.platform.setLang('ar', true);
-        break;
-      case 'english':
-        this.configInfo.lang = 'en';
-        this.settings.lang = 'en';
-        this.SavingData = 'Saving your changes';
-        this.translate.setDefaultLang('en');
-        this.platform.setDir('ltr', true);
-        this.platform.setLang('en', true);
-        break;
-      case 'urdu':
-        this.translate.setDefaultLang('ur');
-        this.platform.setDir('rtl', true);
-        this.platform.setLang('ur', true);
-        this.configInfo.lang = 'ur';
-        this.settings.lang = 'ur';
         break;
     }
     debugger;
@@ -222,8 +298,12 @@ export class SettingsPage {
         this.SaveChanges = "حفظ التعديلات";
         this.DiscardChanges = "الغاء التعديلات";
         this.SavingData = 'جاري حفظ الاعدادات';
-
+        this.language = 'العربية';
         this.IOS_BACK = "عودة";
+        this.MSG_CONFIRM_LANG = "سوف يتم اغلاق التطبيق , هل ترغب بالمتابعة؟";
+        this.OK_LBL = "نعم";
+        this.CANCEL = "الغاء";
+
         if (this.platform.is('ios')) {
           this.navbar.setBackButtonText(this.IOS_BACK);
         }
@@ -238,6 +318,10 @@ export class SettingsPage {
         this.DiscardChanges = "Discard changes";
         this.SavingData = 'Saving your changes';
         this.IOS_BACK = "Back";
+        this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+        this.OK_LBL = "Ok";
+        this.CANCEL = "Cancel";
+
         if (this.platform.is('ios')) {
           this.navbar.setBackButtonText(this.IOS_BACK);
         }
@@ -252,8 +336,11 @@ export class SettingsPage {
         this.SaveChanges = "تبدیلیاں محفوظ کرو";
         this.DiscardChanges = "تبدیلیاں مسترد کریں";
         this.SavingData = 'آپ کی تبدیلیوں کو محفوظ کرنا';
-
+        this.language = 'اوردو';
         this.IOS_BACK = "پیچھے";
+        this.MSG_CONFIRM_LANG = "آپ کا ایپ بند ہو جائے گا، کیا آپ آگے بڑھنا چاہتے ہیں !";
+        this.OK_LBL = "ٹھیک ہے";
+        this.CANCEL = "منسوخ کریں";
         if (this.platform.is('ios')) {
           this.navbar.setBackButtonText(this.IOS_BACK);
         }
@@ -269,8 +356,11 @@ export class SettingsPage {
         this.SaveChanges = "Save changes";
         this.DiscardChanges = "Discard changes";
         this.SavingData = 'Saving your changes';
-
+        this.language = 'English';
         this.IOS_BACK = "Back";
+        this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+        this.OK_LBL = "Ok";
+        this.CANCEL = "Cancel";
         if (this.platform.is('ios')) {
           this.navbar.setBackButtonText(this.IOS_BACK);
         }
