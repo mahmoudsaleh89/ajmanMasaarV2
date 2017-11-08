@@ -300,7 +300,11 @@ export class SettingsPage {
         this.SavingData = 'جاري حفظ الاعدادات';
         this.language = 'العربية';
         this.IOS_BACK = "عودة";
-        this.MSG_CONFIRM_LANG = "سوف يتم اغلاق التطبيق , هل ترغب بالمتابعة؟";
+        if(this.platform.is('ios')){
+          this.MSG_CONFIRM_LANG = "يرجى اغلاق البرنامج لتطبيق الاعدادات الجديدة !";
+        }else{
+          this.MSG_CONFIRM_LANG = "سوف يتم اغلاق التطبيق , هل ترغب بالمتابعة؟";
+        }
         this.OK_LBL = "نعم";
         this.CANCEL = "الغاء";
 
@@ -318,7 +322,12 @@ export class SettingsPage {
         this.DiscardChanges = "Discard changes";
         this.SavingData = 'Saving your changes';
         this.IOS_BACK = "Back";
-        this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+
+        if(this.platform.is('ios')){
+          this.MSG_CONFIRM_LANG = "Close the App , to make your changes take the effect !";
+        }else{
+          this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+        }
         this.OK_LBL = "Ok";
         this.CANCEL = "Cancel";
 
@@ -338,7 +347,12 @@ export class SettingsPage {
         this.SavingData = 'آپ کی تبدیلیوں کو محفوظ کرنا';
         this.language = 'اوردو';
         this.IOS_BACK = "پیچھے";
-        this.MSG_CONFIRM_LANG = "آپ کا ایپ بند ہو جائے گا، کیا آپ آگے بڑھنا چاہتے ہیں !";
+        if(this.platform.is('ios')){
+          this.MSG_CONFIRM_LANG = "اے پی پی بند کرو، اپنے تبدیلیوں کو اثر انداز کرو!";
+        }else{
+          this.MSG_CONFIRM_LANG = "آپ کا ایپ بند ہو جائے گا، کیا آپ آگے بڑھنا چاہتے ہیں !";
+        }
+
         this.OK_LBL = "ٹھیک ہے";
         this.CANCEL = "منسوخ کریں";
         if (this.platform.is('ios')) {
@@ -358,7 +372,11 @@ export class SettingsPage {
         this.SavingData = 'Saving your changes';
         this.language = 'English';
         this.IOS_BACK = "Back";
-        this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+        if(this.platform.is('ios')){
+          this.MSG_CONFIRM_LANG = "Close the App , to make your changes take the effect !";
+        }else{
+          this.MSG_CONFIRM_LANG = "Your App wil be closed, do you want to proceed !";
+        }
         this.OK_LBL = "Ok";
         this.CANCEL = "Cancel";
         if (this.platform.is('ios')) {
