@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, Navbar, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {AccountProvider} from "../../providers/account/account";
 import {NgForm} from "@angular/forms";
 import {Storage} from '@ionic/storage';
@@ -19,6 +19,9 @@ export class VerificationCodePage {
   user: any;
   inactive = true;
   CodeErr: string;
+
+  IOS_BACK: string;
+  @ViewChild(Navbar) navbar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -122,19 +125,31 @@ export class VerificationCodePage {
     this.storage.get('lang').then((result) => {
       debugger;
       if (result == 'ar') {
+        this.IOS_BACK = "عودة";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.CodeErr = "الرمز الذي ادخلتة غير متطابق !";
         this.translate.setDefaultLang('ar');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ar', true);
         this.settings.side = 'right';
       } else if (result == 'en') {
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
         this.CodeErr = "code you entered didn't match";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);
         this.settings.side = 'left';
       } else if (result == 'ur') {
-        this.CodeErr = "code you entered didn't match";
+        this.IOS_BACK = "پیچھے";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
+        this.CodeErr = "آپ نے درج کردہ کوڈ نہیں ملا";
         this.storage.set('lang', 'ur');
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
@@ -142,7 +157,11 @@ export class VerificationCodePage {
         this.settings.side = 'right';
       }
       else {
-        this.CodeErr = "آپ نے درج کردہ کوڈ نہیں ملا";
+        this.IOS_BACK = "Back";
+        if (this.platform.is('ios')) {
+          this.navbar.setBackButtonText(this.IOS_BACK);
+        }
+        this.CodeErr = "code you entered didn't match";
         this.translate.setDefaultLang('en');
         this.platform.setDir('ltr', true);
         this.platform.setLang('en', true);

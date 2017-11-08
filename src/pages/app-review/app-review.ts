@@ -94,7 +94,6 @@ export class AppReviewPage {
         this.translate.setDefaultLang('ur');
         this.platform.setDir('rtl', true);
         this.platform.setLang('ur', true);
-
       }
       else {
         this.veryhappy_label = "eryhappy";
