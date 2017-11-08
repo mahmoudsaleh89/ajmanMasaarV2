@@ -1,6 +1,12 @@
 {
   "name": "ajmanMasaarV2",
   "app_id": "",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://www.at.gov.ae:7007/APTCOnlineWebservices/APTCOnline.asmx/IncubePaymentRequest"
+    }
+  ],
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

@@ -79,9 +79,9 @@
           <ion-label>{{'LANGUAGE' | translate}}</ion-label>
           <ion-select name="language" [(ngModel)]="settings.lang" [(ngModel)]="settings.themeColor"
                       okText="{{'OK_BTN' | translate}}" cancelText="{{'CANCEL_BTN' | translate}}">
-            <ion-option value="english">English</ion-option>
-            <ion-option value="arabic">العربية</ion-option>
-            <ion-option value="urdu">ارڈو</ion-option>
+            <ion-option value="english">{{'ENGLISH' | translate}}</ion-option>
+            <ion-option value="arabic">{{'ARABIC' | translate}}</ion-option>
+            <ion-option value="urdu">{{'URDU' | translate}}</ion-option>
           </ion-select>
           <ion-icon name="ios-globe-outline" item-start></ion-icon>
 
@@ -91,9 +91,9 @@
           <ion-label>{{'THEME_COLOR' | translate}}</ion-label>
           <ion-select name="themecolor" [(ngModel)]="settings.themeColor" okText="{{'OK_BTN' | translate}}"
                       cancelText="{{'CANCEL_BTN' | translate}}">
-            <ion-option value="orange">Orange</ion-option>
-            <ion-option value="pink">Pink</ion-option>
-            <ion-option value="blue">Blue</ion-option>
+            <ion-option value="orange">{{'ORANGE' | translate}}</ion-option>
+            <ion-option value="pink">{{'PINK' | translate}}</ion-option>
+            <ion-option value="blue">{{'BLUE' | translate}}</ion-option>
           </ion-select>
         </ion-item>
         <ion-item hidden>
@@ -106,10 +106,10 @@
           <ion-select name="searchroute" [(ngModel)]="settings.sortRouteIs" okText="{{'OK_BTN' | translate}}"
                       cancelText="{{'CANCEL_BTN' | translate}}">
             <ion-option value=" bestrout
-          ">Best route
+          ">{{'BEST_ROUTE' | translate}}
             </ion-option>
-            <ion-option value="lesstransfers">less transfers</ion-option>
-            <ion-option value="lesswalk">Less Walk</ion-option>
+            <ion-option value="lesstransfers">{{'LESS_TRANSFERS' | translate}}</ion-option>
+            <ion-option value="lesswalk">{{'lESS_WALK' | translate}}</ion-option>
           </ion-select>
           <ion-icon name="ios-globe-outline" item-start></ion-icon>
         </ion-item>
@@ -124,7 +124,6 @@
         <p>{{'PROFILE' | translate}}</p>
       </ion-list-header>
       <ion-item>
-
         <ion-icon name="ios-person-outline" item-start></ion-icon>
         <h3>{{'NAME' | translate}}</h3>
         <p>{{acc.userLoginSuccess.FirstName}} {{acc.userLoginSuccess.LastName}}</p>
@@ -151,13 +150,13 @@
       <ion-item>
         <ion-icon name="ios-globe-outline" item-start></ion-icon>
         <h3>{{'LANGUAGE' | translate}}</h3>
-        <p>{{settings.lang}}</p>
+        <p>{{settings.lang | translate}}</p>
         <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
       </ion-item>
       <ion-item>
         <ion-icon name="ios-color-palette-outline" item-start></ion-icon>
         <h3>{{'THEME_COLOR' | translate}}</h3>
-        <p>{{settings.themeColor}}</p>
+        <p>{{settings.themeColor | translate}}</p>
       </ion-item>
       <ion-item>
         <ion-icon name="md-color-filter" item-start></ion-icon>
@@ -167,7 +166,7 @@
       <ion-item>
         <ion-icon name="ios-browsers-outline" item-start></ion-icon>
         <h3>{{'SORT_BY' | translate}} </h3>
-        {{settings.sortRouteIs}}
+        {{settings.sortRouteIs | translate}}
         <ion-icon name="ios-arrow-forward" color="light-custom" item-end></ion-icon>
       </ion-item>
     </ion-list>

@@ -44,16 +44,16 @@ export class AppReviewPage {
             label: '# of Votes',
             data: this.analysisData.data,
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
+              'rgba(6, 187, 211, 0.70)',
+              'rgba(216, 26, 101, 0.70)',
+              'rgba(175, 135, 120, 0.70)',
+              'rgba(225, 108, 40, 0.70)',
             ],
             hoverBackgroundColor: [
-              "#FF6384",
-              "#36a287",
-              "#36A2EB",
-              "#FFCE56",
+              "#06bbd3",
+              "#d81a65",
+              "#af8778",
+              "#e16c28",
             ]
           }]
         }

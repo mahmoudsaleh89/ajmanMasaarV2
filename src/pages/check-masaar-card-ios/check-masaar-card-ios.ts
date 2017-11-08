@@ -37,7 +37,7 @@ export class CheckMasaarCardIosPage {
               private theInAppBrowser: InAppBrowser,
               public  translate: TranslateService,
               public storage: Storage) {
-
+    this.setLangAndDirction();
 
     /*this.platform.ready().then(() => {
 

@@ -16,7 +16,8 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()"
-                 (ionCancel)="dismiss()" placeholder="{{'TYPE_PLACE_NAME_TO_SEARCH' | translate}}">
+                 (ionCancel)="dismiss()" placeholder="{{'TYPE_PLACE_NAME_TO_SEARCH' | translate}}"
+                 cancelButtonText="{{'CANCEL_BTN' | translate}}">
 
   </ion-searchbar>
   <div class="element_content">
