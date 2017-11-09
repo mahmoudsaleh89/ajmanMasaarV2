@@ -11,6 +11,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {NativeGeocoder, NativeGeocoderForwardResult, NativeGeocoderReverseResult} from "@ionic-native/native-geocoder";
 import {TranslateService} from '@ngx-translate/core';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {BalanceProvider} from "../../providers/balance/balance";
 
 declare var google;
 declare var networkinterface: any;
@@ -51,7 +52,7 @@ export class HomePage implements OnInit {
 
 
   constructor(public navCtrl: NavController,
-                public settings: GeneralSettingsProvider,
+              public settings: GeneralSettingsProvider,
               public locations: LocationsProvider,
               public modalCtrl: ModalController,
               public storage: Storage,
@@ -61,7 +62,8 @@ export class HomePage implements OnInit {
               public loadingCtrl: LoadingController,
               public alertCtr: AlertController,
               public translate: TranslateService,
-              public platform: Platform) {
+              public platform: Platform,
+              public balance: BalanceProvider) {
     this.setLangAndDirction();
     this.addressFrom = {
       place: '',
@@ -477,5 +479,9 @@ export class HomePage implements OnInit {
   onOpenNotification() {
     this.settings.alertNotify = false;
     this.navCtrl.push('NotificationsPage');
+  }
+
+  onTEST() {
+    this.balance.getPaymetEncryptedKey('', '', '', '', '', true);
   }
 }
